@@ -1,0 +1,17 @@
+{
+  "name": "smartlib-frontend",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev:web": "npm run dev -w @smartlib/web",
+    "dev:admin": "npm run dev -w @smartlib/admin",
+    "build": "npm run build --workspaces --if-present",
+    "build:web": "npm run build -w @smartlib/web",
+    "build:admin": "npm run build -w @smartlib/admin",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
