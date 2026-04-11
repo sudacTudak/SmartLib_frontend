@@ -1,6 +1,6 @@
 'use client';
 
-import { SmartLibConfigProvider } from '@smartlib/ui';
+import { SmartLibConfigProvider } from '@shared-packages/ui';
 import type { ReactNode } from 'react';
 
 export function Providers({ children }: { children: ReactNode }) {

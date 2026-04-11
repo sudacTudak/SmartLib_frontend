@@ -1,7 +1,7 @@
 {
   "name": "smartlib-frontend",
   "private": true,
-  "workspaces": ["apps/*", "packages/*"],
+  "workspaces": ["apps/*", "shared-packages"],
   "scripts": {
     "dev:web": "npm run dev -w @smartlib/web",
     "dev:admin": "npm run dev -w @smartlib/admin",

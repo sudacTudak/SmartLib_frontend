@@ -12,8 +12,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
-    "@smartlib/api-client": "*",
-    "@smartlib/ui": "*",
+    "@smartlib/shared-packages": "*",
     "antd": "^5.24.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
