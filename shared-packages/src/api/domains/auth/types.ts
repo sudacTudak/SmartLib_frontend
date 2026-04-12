@@ -12,8 +12,15 @@ export type RegisterBody = {
 
 export type LogoutBody = { refresh: string };
 
-/** Как `ChangePasswordSerializer` + `BaseAuthSerializer`. */
+/** `ChangePasswordSerializer` — смена пароля авторизованным пользователем (detail). */
 export type ChangePasswordBody = {
+  password: string;
+  new_password: string;
+  new_password_repeat: string;
+};
+
+/** `ResetPasswordSerializer` — сброс без авторизации. */
+export type ResetPasswordBody = {
   email: string;
   password: string;
   new_password: string;

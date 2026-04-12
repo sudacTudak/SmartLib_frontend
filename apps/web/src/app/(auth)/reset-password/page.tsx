@@ -1,24 +1,69 @@
-import Link from 'next/link';
+'use client';
 
-import styles from '../auth-form.module.scss';
+import {
+  SmartlibPasswordForm,
+  SmartlibPasswordFormVariant,
+  type SmartlibPasswordFormValues,
+} from '@shared-packages/components/auth';
+import authFormStyles from '@shared-packages/components/auth/auth-forms.module.scss';
+import { message, Spin } from 'antd';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect } from 'react';
+
+import { getAuthSession } from 'src/lib/api';
+import { AuthStatus } from 'src/lib/auth/enums';
+import { useAuth } from 'src/lib/auth/auth-context';
+
+import styles from './reset-password-page.module.scss';
 
 export default function ResetPasswordPage() {
+  const router = useRouter();
+  const { user, status } = useAuth();
+
+  useEffect(() => {
+    if (status === AuthStatus.Ready && user) {
+      router.replace('/change-password');
+    }
+  }, [status, user, router]);
+
+  const handleSubmit = useCallback(async (values: SmartlibPasswordFormValues) => {
+    await getAuthSession().resetPassword({
+      email: values.email!.trim(),
+      password: values.password,
+      new_password: values.new_password,
+      new_password_repeat: values.new_password_repeat,
+    });
+    message.success('Пароль обновлён');
+    router.push('/login');
+  }, [router]);
+
+  if (status === AuthStatus.Loading || status === AuthStatus.Idle) {
+    return (
+      <div className={styles.loading}>
+        <Spin size="large" />
+      </div>
+    );
+  }
+
+  if (user) {
+    return null;
+  }
+
   return (
-    <>
-      <h1 className={styles.title}>Смена пароля</h1>
-      <p className={styles.lead}>Запрос ссылки на email — позже.</p>
-      <form className={styles.form} noValidate>
-        <label className={styles.label}>
-          Email
-          <input className={styles.input} type="email" name="email" autoComplete="email" disabled />
-        </label>
-        <button className={styles.submit} type="button" disabled>
-          Отправить ссылку
-        </button>
-      </form>
-      <p className={styles.footer}>
-        <Link href="/login">Назад ко входу</Link>
-      </p>
-    </>
+    <SmartlibPasswordForm
+      variant={SmartlibPasswordFormVariant.Reset}
+      headerLeft={
+        <Link href="/" className={authFormStyles.homeLink}>
+          На главную
+        </Link>
+      }
+      onSubmit={handleSubmit}
+      footer={
+        <p className={authFormStyles.footer}>
+          <Link href="/login">Назад ко входу</Link>
+        </p>
+      }
+    />
   );
 }

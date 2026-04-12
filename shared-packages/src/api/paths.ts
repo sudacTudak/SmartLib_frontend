@@ -11,6 +11,7 @@ export const ApiPaths = {
   usersAuthLogin: 'users/auth/login',
   usersAuthRegister: 'users/auth/register',
   usersAuthLogout: 'users/auth/logout',
+  usersAuthResetPassword: 'users/auth/reset-password',
   usersProfile: 'users/profile',
   usersStaff: 'users/staff',
   books: 'books',

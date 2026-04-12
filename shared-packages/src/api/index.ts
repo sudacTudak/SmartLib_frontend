@@ -45,7 +45,7 @@ export { createInventoryApi } from './domains/inventory';
 export { createSuppliersApi } from './domains/suppliers';
 export { createAmenitiesApi } from './domains/amenities';
 
-export type { LoginBody, RegisterBody, LogoutBody, ChangePasswordBody } from './domains/auth';
+export type { LoginBody, RegisterBody, LogoutBody, ChangePasswordBody, ResetPasswordBody } from './domains/auth';
 
 export type { UserPublic, UsersListParams, UsersListData, UsersDetailData } from './domains/users';
 

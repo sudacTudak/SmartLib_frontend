@@ -54,8 +54,8 @@ export function Header() {
         {showUser ? (
           <>
             <Typography.Text type="secondary">{formatDisplayName(user)}</Typography.Text>
-            <Button type="primary" onClick={() => router.push('/cabinet')}>
-              Личный кабинет
+            <Button type="primary" onClick={() => router.push('/profile')}>
+              Профиль
             </Button>
           </>
         ) : (

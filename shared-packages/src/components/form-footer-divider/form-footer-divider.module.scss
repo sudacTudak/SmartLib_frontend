@@ -1,0 +1,10 @@
+.root {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  min-height: 0.875rem;
+  flex-shrink: 0;
+  background-color: var(--smartlib-color-border);
+  border-radius: 9999px;
+  align-self: center;
+}

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import '@shared-packages/styles/smartlib-root.css';
 import { Providers } from './providers';
 import './globals.scss';
 

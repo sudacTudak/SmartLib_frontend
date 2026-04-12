@@ -2,7 +2,7 @@ import type { AxiosInstance } from 'axios';
 
 import { refreshTokensWithStorage } from './auth-interceptor';
 import { createAuthApi } from './domains/auth';
-import type { ChangePasswordBody, LoginBody, RegisterBody } from './domains/auth/types';
+import type { ChangePasswordBody, LoginBody, RegisterBody, ResetPasswordBody } from './domains/auth/types';
 import type { EmptySuccessData, TokenPayload, TokenStorage } from './types';
 
 export type CreateSmartlibAuthSessionOptions = {
@@ -57,6 +57,8 @@ export function createSmartlibAuthSession(options: CreateSmartlibAuthSessionOpti
     },
 
     changePassword: (userId: string | number, body: ChangePasswordBody) => auth.changePassword(userId, body),
+
+    resetPassword: (body: ResetPasswordBody) => auth.resetPassword(body),
   };
 }
 

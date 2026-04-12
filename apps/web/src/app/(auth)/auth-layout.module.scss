@@ -4,15 +4,18 @@
   align-items: center;
   justify-content: center;
   padding: 1.5rem 1rem;
-  background: var(--smartlib-color-bg-layout);
+  background: #f0f2f5;
 }
 
 .card {
+  position: relative;
   width: 100%;
-  max-width: 420px;
-  padding: 2rem 1.5rem;
-  border-radius: var(--smartlib-border-radius);
+  max-width: 440px;
+  padding: 2rem 1.75rem;
+  border-radius: 12px;
   border: 1px solid var(--smartlib-color-border-secondary);
-  background: var(--smartlib-color-bg-container);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  background: #fff;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.04),
+    0 12px 24px rgba(0, 0, 0, 0.08);
 }

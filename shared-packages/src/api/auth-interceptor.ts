@@ -59,7 +59,8 @@ function isAuthFreeRequest(config: InternalAxiosRequestConfig): boolean {
   return (
     u.includes(ApiPaths.usersAuthLogin) ||
     u.includes(ApiPaths.usersAuthRegister) ||
-    u.includes(ApiPaths.usersAuthTokenRefresh)
+    u.includes(ApiPaths.usersAuthTokenRefresh) ||
+    u.includes(ApiPaths.usersAuthResetPassword)
   );
 }
 

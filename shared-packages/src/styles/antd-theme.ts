@@ -33,4 +33,13 @@ export const smartlibAntdTheme: ThemeConfig = {
 
     borderRadius: 6,
   },
+  components: {
+    Segmented: {
+      trackBg: themeVars.color.fill.background.screen.layout,
+      itemColor: themeVars.color.text.secondary,
+      itemHoverColor: themeVars.color.brand.primary,
+      itemSelectedBg: themeVars.color.fill.background.screen.container,
+      itemSelectedColor: themeVars.color.brand.primary,
+    },
+  },
 };
