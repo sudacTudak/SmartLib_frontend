@@ -1,0 +1,11 @@
+@use '@shared-packages/styles/tokens';
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--smartlib-font-family);
+  background: var(--smartlib-color-bg-layout);
+  color: var(--smartlib-color-text);
+}

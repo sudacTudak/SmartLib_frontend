@@ -1,0 +1,16 @@
+@use '@shared-packages/styles/tokens';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--smartlib-font-family);
+  background: var(--smartlib-color-bg-layout);
+  color: var(--smartlib-color-text);
+}

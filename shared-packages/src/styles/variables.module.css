@@ -1,0 +1,42 @@
+/**
+ * @value — для postcss-modules-values (импорт в других css и :export ниже).
+ * Импорт в TS: `import styles from './variables.module.css'` → `styles.colorPrimaryLight` и т.д.
+ */
+
+@value colorPrimaryLight: #1677ff;
+@value colorSuccessLight: #52c41a;
+@value colorWarningLight: #faad14;
+@value colorErrorLight: #ff4d4f;
+@value colorInfoLight: #1677ff;
+
+@value colorTextLight: rgba(0, 0, 0, 0.88);
+@value colorTextSecondaryLight: rgba(0, 0, 0, 0.65);
+@value colorTextTertiaryLight: rgba(0, 0, 0, 0.45);
+@value colorTextQuaternaryLight: rgba(0, 0, 0, 0.25);
+
+@value colorBgLight: #ffffff;
+@value colorBgContainerLight: #ffffff;
+@value colorBgLayoutLight: #f5f5f5;
+@value colorBgElevatedLight: #ffffff;
+
+@value colorBorderLight: #d9d9d9;
+@value colorBorderSecondaryLight: #f0f0f0;
+
+/* Экспорт в JS (Next/Vite). Имена совпадают с @value — подстановка тем же плагином. */
+:export {
+  colorPrimaryLight: colorPrimaryLight;
+  colorSuccessLight: colorSuccessLight;
+  colorWarningLight: colorWarningLight;
+  colorErrorLight: colorErrorLight;
+  colorInfoLight: colorInfoLight;
+  colorTextLight: colorTextLight;
+  colorTextSecondaryLight: colorTextSecondaryLight;
+  colorTextTertiaryLight: colorTextTertiaryLight;
+  colorTextQuaternaryLight: colorTextQuaternaryLight;
+  colorBgLight: colorBgLight;
+  colorBgContainerLight: colorBgContainerLight;
+  colorBgLayoutLight: colorBgLayoutLight;
+  colorBgElevatedLight: colorBgElevatedLight;
+  colorBorderLight: colorBorderLight;
+  colorBorderSecondaryLight: colorBorderSecondaryLight;
+}
