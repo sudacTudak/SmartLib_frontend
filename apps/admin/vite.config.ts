@@ -4,12 +4,15 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const srcRoot = path.resolve(__dirname, 'src');
+const sharedPackagesSrc = path.resolve(__dirname, '../../shared-packages/src');
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@shared-packages': path.resolve(__dirname, '../../shared-packages/src'),
+      src: srcRoot,
+      '@shared-packages': sharedPackagesSrc,
     },
   },
   server: {

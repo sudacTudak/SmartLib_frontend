@@ -9,7 +9,7 @@ import type {
   LibraryBranchListData,
   LibraryBranchListParams,
   LibraryBranchPatchBody,
-} from './libraries.types';
+} from './types';
 
 /** `LibraryBranchViewSet`: list, retrieve, create, partial_update (без destroy). */
 export function createLibrariesApi(client: AxiosInstance) {

@@ -11,7 +11,7 @@ import type {
   BookLoanListParams,
   BookLoanProlongBody,
   BookLoanProlongData,
-} from './book-loans.types';
+} from './types';
 
 /**
  * `BookLoanViewSet`: list, retrieve, create, prolong.

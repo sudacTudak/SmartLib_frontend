@@ -18,7 +18,7 @@ import type {
   GenreDetailData,
   GenreListData,
   GenrePatchBody,
-} from './books.types';
+} from './types';
 
 /** `book-bases`, `genre`, `book` + `by-library`. */
 export function createBooksApi(client: AxiosInstance) {

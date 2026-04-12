@@ -2,7 +2,12 @@
   "name": "smartlib-frontend",
   "private": true,
   "workspaces": ["apps/*", "shared-packages"],
+  "devDependencies": {
+    "prettier": "^3.5.0"
+  },
   "scripts": {
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,mjs,cjs,json,css,scss,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mjs,cjs,json,css,scss,md}\"",
     "dev:web": "npm run dev -w @smartlib/web",
     "dev:admin": "npm run dev -w @smartlib/admin",
     "build": "npm run build --workspaces --if-present",

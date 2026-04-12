@@ -1,2 +1,2 @@
 export { createInventoryApi } from './api';
-export type * from './inventory.types';
+export type * from './types';

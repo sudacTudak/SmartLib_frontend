@@ -1,7 +1,5 @@
+import { BookLoanStatus } from '@shared-packages/enums';
 import type { IsoDateString, IsoDateTimeString } from '../../types';
-
-/** `BookLoanStatus` — int enum на бэкенде. */
-export type BookLoanStatusCode = 0 | 1;
 
 /**
  * `BookLoanReadSerializer` — list / retrieve / create / prolong.
@@ -15,7 +13,7 @@ export type BookLoan = {
   client_email: string | null;
   client_fullname: string;
   loaned_till: IsoDateString;
-  status: BookLoanStatusCode;
+  status: BookLoanStatus;
   closed_at: IsoDateTimeString | null;
   created_at: IsoDateTimeString;
   updated_at: IsoDateTimeString;

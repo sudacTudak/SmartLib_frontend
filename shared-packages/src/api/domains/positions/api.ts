@@ -11,7 +11,7 @@ import type {
   PositionListParams,
   PositionPatchBody,
   PositionWriteResponseData,
-} from './positions.types';
+} from './types';
 
 export function createPositionsApi(client: AxiosInstance) {
   return {

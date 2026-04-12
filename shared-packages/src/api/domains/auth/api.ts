@@ -3,7 +3,7 @@ import { apiPath } from '../../apiPath';
 import { ApiPaths, actionPath, listPath } from '../../paths';
 import type { EmptySuccessData, HttpSuccessBody, TokenPayload } from '../../types';
 import { unwrapData } from '../../unwrap';
-import type { ChangePasswordBody, LoginBody, LogoutBody, RegisterBody } from './auth.types';
+import type { ChangePasswordBody, LoginBody, LogoutBody, RegisterBody } from './types';
 
 export function createAuthApi(client: AxiosInstance) {
   return {

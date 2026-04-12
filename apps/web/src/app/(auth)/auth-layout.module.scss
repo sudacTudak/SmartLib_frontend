@@ -1,0 +1,18 @@
+.root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  background: var(--smartlib-color-bg-layout);
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem 1.5rem;
+  border-radius: var(--smartlib-border-radius);
+  border: 1px solid var(--smartlib-color-border-secondary);
+  background: var(--smartlib-color-bg-container);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}

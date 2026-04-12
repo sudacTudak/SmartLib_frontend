@@ -102,7 +102,6 @@ export type {
 } from './domains/libraries';
 
 export type {
-  BookLoanStatusCode,
   BookLoan,
   BookLoanListParams,
   BookLoanListData,
@@ -125,7 +124,6 @@ export type {
 } from './domains/positions';
 
 export type {
-  InventoryMovementTypeCode,
   InventoryMovement,
   InventoryMovementListParams,
   InventoryMovementListData,

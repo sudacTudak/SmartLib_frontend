@@ -17,7 +17,7 @@ import type {
   AmenityVendorPatchBody,
   AmenityVendorWriteResponse,
   AmenityWriteResponse,
-} from './amenities.types';
+} from './types';
 
 /** `amenities` + `amenities/vendors`. */
 export function createAmenitiesApi(client: AxiosInstance) {

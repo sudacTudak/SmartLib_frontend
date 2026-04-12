@@ -1,3 +1,4 @@
+import { Gender } from '@shared-packages/enums';
 import type { IsoDateTimeString } from '../../types';
 
 /**
@@ -10,7 +11,7 @@ export type UserPublic = {
   first_name: string;
   last_name: string;
   patronymic: string;
-  gender: string;
+  gender: Gender;
   is_active: boolean;
   created_at: IsoDateTimeString;
 };

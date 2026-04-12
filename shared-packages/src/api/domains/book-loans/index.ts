@@ -1,2 +1,2 @@
 export { createBookLoansApi } from './api';
-export type * from './book-loans.types';
+export type * from './types';

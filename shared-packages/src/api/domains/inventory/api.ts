@@ -8,7 +8,7 @@ import type {
   InventoryMovementCreateResponseData,
   InventoryMovementListData,
   InventoryMovementListParams,
-} from './inventory.types';
+} from './types';
 
 /**
  * `InventoryMovementViewSet`: только list и create (кастомный create).

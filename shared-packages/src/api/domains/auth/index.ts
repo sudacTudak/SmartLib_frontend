@@ -1,2 +1,2 @@
 export { createAuthApi } from './api';
-export type * from './auth.types';
+export type * from './types';

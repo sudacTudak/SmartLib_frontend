@@ -1,0 +1,11 @@
+.root {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}

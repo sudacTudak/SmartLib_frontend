@@ -1,14 +1,12 @@
+import { InventoryMovementType } from '@shared-packages/enums';
 import type { IsoDateTimeString } from '../../types';
-
-/** `InventoryMovementType` на бэкенде. */
-export type InventoryMovementTypeCode = 'in' | 'out';
 
 /**
  * `ReadInventoryMovementSerializer` — list / create (после создания).
  */
 export type InventoryMovement = {
   id: string;
-  type: InventoryMovementTypeCode;
+  type: InventoryMovementType;
   library_branch_id: string;
   book_basis_id: string;
   supplier_id: string | null;
