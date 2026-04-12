@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios';
 import { apiPath } from '../../apiPath';
-import { ApiPaths, detailPath, listPath } from '../../paths';
+import { ApiPaths, detailPath, regularPath } from '../../paths';
 import type { HttpSuccessBody } from '../../types';
 import { unwrapData } from '../../unwrap';
 import type {
@@ -25,7 +25,7 @@ export function createAmenitiesApi(client: AxiosInstance) {
     amenities: {
       list: async (params?: AmenityListParams) => {
         const res = await client.get<HttpSuccessBody<AmenityListData>>(
-          apiPath(listPath(ApiPaths.amenities)),
+          apiPath(regularPath(ApiPaths.amenities)),
           { params },
         );
         return unwrapData<AmenityListData>(res);
@@ -38,7 +38,7 @@ export function createAmenitiesApi(client: AxiosInstance) {
       },
       create: async (body: AmenityCreateBody) => {
         const res = await client.post<HttpSuccessBody<AmenityWriteResponse>>(
-          apiPath(listPath(ApiPaths.amenities)),
+          apiPath(regularPath(ApiPaths.amenities)),
           body,
         );
         return unwrapData<AmenityWriteResponse>(res);
@@ -61,7 +61,7 @@ export function createAmenitiesApi(client: AxiosInstance) {
     vendors: {
       list: async (params?: AmenityListParams) => {
         const res = await client.get<HttpSuccessBody<AmenityVendorListData>>(
-          apiPath(listPath(ApiPaths.amenityVendors)),
+          apiPath(regularPath(ApiPaths.amenityVendors)),
           { params },
         );
         return unwrapData<AmenityVendorListData>(res);
@@ -74,7 +74,7 @@ export function createAmenitiesApi(client: AxiosInstance) {
       },
       create: async (body: AmenityVendorCreateBody) => {
         const res = await client.post<HttpSuccessBody<AmenityVendorWriteResponse>>(
-          apiPath(listPath(ApiPaths.amenityVendors)),
+          apiPath(regularPath(ApiPaths.amenityVendors)),
           body,
         );
         return unwrapData<AmenityVendorWriteResponse>(res);

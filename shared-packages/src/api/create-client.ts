@@ -15,7 +15,8 @@ export function createSmartlibHttpClient(
     headers: {
       'Content-Type': 'application/json',
     },
-    withCredentials: false,
+    /** С tokenStorage нужны cookie (HttpOnly refresh) на тот же API-origin. */
+    withCredentials: options.tokenStorage ? true : false,
   });
 
   if (options.tokenStorage) {

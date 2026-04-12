@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios';
 import { apiPath } from '../../apiPath';
-import { ApiPaths, actionPath, detailPath, listPath } from '../../paths';
+import { ApiPaths, actionPath, detailPath, regularPath } from '../../paths';
 import type { HttpSuccessBody } from '../../types';
 import { unwrapData } from '../../unwrap';
 import type {
@@ -21,7 +21,7 @@ export function createStaffApi(client: AxiosInstance) {
   return {
     list: async (params?: StaffListParams) => {
       const res = await client.get<HttpSuccessBody<StaffListData>>(
-        apiPath(listPath(ApiPaths.usersStaff)),
+        apiPath(regularPath(ApiPaths.usersStaff)),
         { params },
       );
       return unwrapData<StaffListData>(res);
@@ -36,7 +36,7 @@ export function createStaffApi(client: AxiosInstance) {
 
     create: async (body: StaffCreateBody) => {
       const res = await client.post<HttpSuccessBody<StaffCreateResponseData>>(
-        apiPath(listPath(ApiPaths.usersStaff)),
+        apiPath(regularPath(ApiPaths.usersStaff)),
         body,
       );
       return unwrapData<StaffCreateResponseData>(res);

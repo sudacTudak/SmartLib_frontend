@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios';
 import { apiPath } from '../../apiPath';
-import { ApiPaths, detailPath, listPath } from '../../paths';
+import { ApiPaths, detailPath, regularPath } from '../../paths';
 import type { HttpSuccessBody } from '../../types';
 import { unwrapData } from '../../unwrap';
 import type {
@@ -16,7 +16,7 @@ export function createSuppliersApi(client: AxiosInstance) {
   return {
     list: async (params?: SupplierListParams) => {
       const res = await client.get<HttpSuccessBody<SupplierListData>>(
-        apiPath(listPath(ApiPaths.suppliers)),
+        apiPath(regularPath(ApiPaths.suppliers)),
         { params },
       );
       return unwrapData<SupplierListData>(res);
@@ -29,7 +29,7 @@ export function createSuppliersApi(client: AxiosInstance) {
     },
     create: async (body: SupplierCreateBody) => {
       const res = await client.post<HttpSuccessBody<SupplierDetailData>>(
-        apiPath(listPath(ApiPaths.suppliers)),
+        apiPath(regularPath(ApiPaths.suppliers)),
         body,
       );
       return unwrapData<SupplierDetailData>(res);

@@ -1,6 +1,6 @@
 export { API_PATH_PREFIX, apiPath } from './apiPath';
 
-export { ApiPaths, listPath, detailPath, actionPath } from './paths';
+export { ApiPaths, regularPath as listPath, detailPath, actionPath } from './paths';
 
 export type {
   TokenStorage,
@@ -14,23 +14,25 @@ export type {
   IsoDateString,
 } from './types';
 
-export {
-  unwrapBody,
-  unwrapData,
-  isHttpSuccessBody,
-  isHttpFailureBody,
-} from './unwrap';
+export { unwrapBody, unwrapData, isHttpSuccessBody, isHttpFailureBody } from './unwrap';
 
-export {
-  createSmartlibHttpClient,
-  createClient,
-} from './create-client';
+export { createSmartlibHttpClient, createClient } from './create-client';
 
 export { createSmartlibApi, type SmartlibApi } from './create-api';
 
 export type { AxiosInstance } from 'axios';
 
 export { createMemoryTokenStorage } from './token-storage-memory';
+
+export { TokenApi, SMARTLIB_REFRESH_TOKEN_STORAGE_KEY } from './token-api';
+
+export { refreshTokensWithStorage } from './auth-interceptor';
+
+export {
+  createSmartlibAuthSession,
+  type SmartlibAuthSession,
+  type CreateSmartlibAuthSessionOptions,
+} from './auth-session';
 
 export { createAuthApi } from './domains/auth';
 export { createUsersApi } from './domains/users';
@@ -43,19 +45,9 @@ export { createInventoryApi } from './domains/inventory';
 export { createSuppliersApi } from './domains/suppliers';
 export { createAmenitiesApi } from './domains/amenities';
 
-export type {
-  LoginBody,
-  RegisterBody,
-  LogoutBody,
-  ChangePasswordBody,
-} from './domains/auth';
+export type { LoginBody, RegisterBody, LogoutBody, ChangePasswordBody } from './domains/auth';
 
-export type {
-  UserPublic,
-  UsersListParams,
-  UsersListData,
-  UsersDetailData,
-} from './domains/users';
+export type { UserPublic, UsersListParams, UsersListData, UsersDetailData } from './domains/users';
 
 export type {
   BookBasis,

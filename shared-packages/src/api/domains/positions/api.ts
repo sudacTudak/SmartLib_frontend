@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios';
 import { apiPath } from '../../apiPath';
-import { ApiPaths, detailPath, listPath } from '../../paths';
+import { ApiPaths, detailPath, regularPath } from '../../paths';
 import type { HttpSuccessBody } from '../../types';
 import { unwrapData } from '../../unwrap';
 import type {
@@ -17,7 +17,7 @@ export function createPositionsApi(client: AxiosInstance) {
   return {
     list: async (params?: PositionListParams) => {
       const res = await client.get<HttpSuccessBody<PositionListData>>(
-        apiPath(listPath(ApiPaths.positions)),
+        apiPath(regularPath(ApiPaths.positions)),
         { params },
       );
       return unwrapData<PositionListData>(res);
@@ -30,7 +30,7 @@ export function createPositionsApi(client: AxiosInstance) {
     },
     create: async (body: PositionCreateBody) => {
       const res = await client.post<HttpSuccessBody<PositionWriteResponseData>>(
-        apiPath(listPath(ApiPaths.positions)),
+        apiPath(regularPath(ApiPaths.positions)),
         body,
       );
       return unwrapData<PositionWriteResponseData>(res);

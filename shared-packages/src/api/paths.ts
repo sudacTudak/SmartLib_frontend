@@ -11,6 +11,7 @@ export const ApiPaths = {
   usersAuthLogin: 'users/auth/login',
   usersAuthRegister: 'users/auth/register',
   usersAuthLogout: 'users/auth/logout',
+  usersProfile: 'users/profile',
   usersStaff: 'users/staff',
   books: 'books',
   bookBases: 'books/book-bases',
@@ -29,7 +30,7 @@ export const ApiPaths = {
 } as const;
 
 /** DRF collection list: `segment/` */
-export function listPath(segment: string): string {
+export function regularPath(segment: string): string {
   return `${segment}/`;
 }
 
@@ -39,10 +40,6 @@ export function detailPath(segment: string, id: string | number): string {
 }
 
 /** Кастомное действие на объекте: `segment/id/action/` */
-export function actionPath(
-  segment: string,
-  id: string | number,
-  action: string,
-): string {
+export function actionPath(segment: string, id: string | number, action: string): string {
   return `${segment}/${id}/${action}/`;
 }

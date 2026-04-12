@@ -5,7 +5,6 @@ import { BookDetailView } from 'src/components/books/book-detail-view/book-detai
 import { PageContent } from 'src/components/layout/page-content/page-content';
 import { loadBookDetail } from 'src/lib/catalog-loaders';
 import { collectBookIdsForSSG } from 'src/lib/ssg-ids';
-import { fetchViewerForPage } from 'src/lib/viewer';
 
 type BookPageProps = {
   params: Promise<{ bookId: string }>;
@@ -38,11 +37,10 @@ export default async function BookPage({ params }: BookPageProps) {
 
   try {
     const book = await loadBookDetail(bookId);
-    const viewer = await fetchViewerForPage();
 
     return (
       <PageContent variant="detail">
-        <BookDetailView book={book} viewer={viewer} />
+        <BookDetailView book={book} />
       </PageContent>
     );
   } catch {

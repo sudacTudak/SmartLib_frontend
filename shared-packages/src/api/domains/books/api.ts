@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios';
 import { apiPath } from '../../apiPath';
-import { ApiPaths, detailPath, listPath } from '../../paths';
+import { ApiPaths, detailPath, regularPath } from '../../paths';
 import type { HttpSuccessBody } from '../../types';
 import { unwrapData } from '../../unwrap';
 import type {
@@ -26,7 +26,7 @@ export function createBooksApi(client: AxiosInstance) {
     bookBases: {
       list: async (params?: BookListQueryParams) => {
         const res = await client.get<HttpSuccessBody<BookBasisListData>>(
-          apiPath(listPath(ApiPaths.bookBases)),
+          apiPath(regularPath(ApiPaths.bookBases)),
           { params },
         );
         return unwrapData<BookBasisListData>(res);
@@ -39,7 +39,7 @@ export function createBooksApi(client: AxiosInstance) {
       },
       create: async (body: BookBasisCreateBody) => {
         const res = await client.post<HttpSuccessBody<BookBasisDetailData>>(
-          apiPath(listPath(ApiPaths.bookBases)),
+          apiPath(regularPath(ApiPaths.bookBases)),
           body,
         );
         return unwrapData<BookBasisDetailData>(res);
@@ -62,7 +62,7 @@ export function createBooksApi(client: AxiosInstance) {
     genre: {
       list: async (params?: BookListQueryParams) => {
         const res = await client.get<HttpSuccessBody<GenreListData>>(
-          apiPath(listPath(ApiPaths.genre)),
+          apiPath(regularPath(ApiPaths.genre)),
           { params },
         );
         return unwrapData<GenreListData>(res);
@@ -75,7 +75,7 @@ export function createBooksApi(client: AxiosInstance) {
       },
       create: async (body: GenreCreateBody) => {
         const res = await client.post<HttpSuccessBody<GenreDetailData>>(
-          apiPath(listPath(ApiPaths.genre)),
+          apiPath(regularPath(ApiPaths.genre)),
           body,
         );
         return unwrapData<GenreDetailData>(res);
@@ -106,7 +106,7 @@ export function createBooksApi(client: AxiosInstance) {
       /** GET `books/book/by-library/?library=&title=` */
       listByLibrary: async (params: BookByLibraryParams) => {
         const res = await client.get<HttpSuccessBody<BookByLibraryListData>>(
-          apiPath(listPath(ApiPaths.bookByLibrary)),
+          apiPath(regularPath(ApiPaths.bookByLibrary)),
           { params },
         );
         return unwrapData<BookByLibraryListData>(res);

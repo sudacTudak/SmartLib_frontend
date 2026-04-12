@@ -4,19 +4,26 @@ import { Button, Layout, Space, theme, Typography } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export type HeaderUser = {
-  displayName: string;
-} | null;
-
-type HeaderProps = {
-  user?: HeaderUser;
-};
+import { AuthStatus } from 'src/lib/auth/enums';
+import { useAuth } from 'src/lib/auth/auth-context';
 
 const { Header: AntHeader } = Layout;
 
-export function Header({ user = null }: HeaderProps) {
+function formatDisplayName(user: {
+  email: string;
+  first_name: string;
+  last_name: string;
+}): string {
+  const name = [user.last_name, user.first_name].filter(Boolean).join(' ');
+  return name || user.email;
+}
+
+export function Header() {
   const { token } = theme.useToken();
   const router = useRouter();
+  const { user, status } = useAuth();
+
+  const showUser = user && status === AuthStatus.Ready;
 
   return (
     <AntHeader
@@ -44,9 +51,9 @@ export function Header({ user = null }: HeaderProps) {
       </nav>
 
       <Space wrap>
-        {user ? (
+        {showUser ? (
           <>
-            <Typography.Text type="secondary">{user.displayName}</Typography.Text>
+            <Typography.Text type="secondary">{formatDisplayName(user)}</Typography.Text>
             <Button type="primary" onClick={() => router.push('/cabinet')}>
               Личный кабинет
             </Button>

@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios';
 import { apiPath } from '../../apiPath';
-import { ApiPaths, actionPath, detailPath, listPath } from '../../paths';
+import { ApiPaths, actionPath, detailPath, regularPath } from '../../paths';
 import type { HttpSuccessBody } from '../../types';
 import { unwrapData } from '../../unwrap';
 import type {
@@ -21,7 +21,7 @@ export function createBookLoansApi(client: AxiosInstance) {
   return {
     list: async (params?: BookLoanListParams) => {
       const res = await client.get<HttpSuccessBody<BookLoanListData>>(
-        apiPath(listPath(ApiPaths.bookLoans)),
+        apiPath(regularPath(ApiPaths.bookLoans)),
         { params },
       );
       return unwrapData<BookLoanListData>(res);
@@ -34,7 +34,7 @@ export function createBookLoansApi(client: AxiosInstance) {
     },
     create: async (body: BookLoanCreateBody) => {
       const res = await client.post<HttpSuccessBody<BookLoanCreateResponseData>>(
-        apiPath(listPath(ApiPaths.bookLoans)),
+        apiPath(regularPath(ApiPaths.bookLoans)),
         body,
       );
       return unwrapData<BookLoanCreateResponseData>(res);

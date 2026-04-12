@@ -1,14 +1,58 @@
-import axios, {
-  type AxiosError,
-  type AxiosInstance,
-  type InternalAxiosRequestConfig,
-} from 'axios';
+import axios, { type AxiosError, type AxiosInstance, type InternalAxiosRequestConfig } from 'axios';
 import { apiPath } from './apiPath';
-import { ApiPaths, listPath } from './paths';
+import { ApiPaths, regularPath } from './paths';
 import type { HttpSuccessBody, TokenPayload, TokenStorage } from './types';
 import { isHttpFailureBody, unwrapBody } from './unwrap';
 
-const REFRESH_RELATIVE = listPath(ApiPaths.usersAuthTokenRefresh);
+const REFRESH_RELATIVE = regularPath(ApiPaths.usersAuthTokenRefresh);
+
+const REFRESH_AXIOS_CONFIG = {
+  headers: { 'Content-Type': 'application/json' },
+  withCredentials: true,
+} as const;
+
+/**
+ * Обновить access по refresh.
+ * - Если в storage есть refresh (memory / тесты) — тело `{ refresh }`.
+ * - Если нет (HttpOnly в браузере) — пустое тело, cookie уходит с `withCredentials`
+ *   (нужен соответствующий эндпоинт на бэкенде).
+ */
+export async function refreshTokensWithStorage(
+  baseOrigin: string,
+  storage: TokenStorage,
+  onAuthFailure?: () => void | Promise<void>,
+): Promise<string | null> {
+  const refreshFromStorage = await storage.getRefreshToken();
+  const baseURL = baseOrigin.replace(/\/$/, '');
+  const url = `${baseURL}${apiPath(REFRESH_RELATIVE)}`;
+
+  try {
+    const { data } = refreshFromStorage
+      ? await axios.post<HttpSuccessBody<TokenPayload>>(
+          url,
+          { refresh: refreshFromStorage },
+          REFRESH_AXIOS_CONFIG,
+        )
+      : await axios.post<HttpSuccessBody<TokenPayload>>(url, {}, REFRESH_AXIOS_CONFIG);
+
+    if (isHttpFailureBody(data)) {
+      await storage.clearTokens();
+      await onAuthFailure?.();
+      return null;
+    }
+
+    const tokens = unwrapBody<TokenPayload>(data);
+    await storage.setTokens({
+      access: tokens.access,
+      refresh: tokens.refresh,
+    });
+    return tokens.access;
+  } catch {
+    await storage.clearTokens();
+    await onAuthFailure?.();
+    return null;
+  }
+}
 
 function isAuthFreeRequest(config: InternalAxiosRequestConfig): boolean {
   const u = `${config.baseURL ?? ''}${config.url ?? ''}`;
@@ -31,40 +75,8 @@ export function attachAuthInterceptors(
   let refreshPromise: Promise<string | null> | null = null;
 
   const runRefresh = async (): Promise<string | null> => {
-    const refresh = await storage.getRefreshToken();
-    if (!refresh) {
-      await storage.clearTokens();
-      await onAuthFailure?.();
-      return null;
-    }
-
-    const url = apiPath(REFRESH_RELATIVE);
-    try {
-      const { data } = await axios.post<HttpSuccessBody<TokenPayload>>(
-        `${String(client.defaults.baseURL ?? '').replace(/\/$/, '')}${url}`,
-        { refresh },
-        {
-          headers: { 'Content-Type': 'application/json' },
-        },
-      );
-
-      if (isHttpFailureBody(data)) {
-        await storage.clearTokens();
-        await onAuthFailure?.();
-        return null;
-      }
-
-      const tokens = unwrapBody<TokenPayload>(data);
-      await storage.setTokens({
-        access: tokens.access,
-        refresh: tokens.refresh,
-      });
-      return tokens.access;
-    } catch {
-      await storage.clearTokens();
-      await onAuthFailure?.();
-      return null;
-    }
+    const baseOrigin = String(client.defaults.baseURL ?? '');
+    return refreshTokensWithStorage(baseOrigin, storage, onAuthFailure);
   };
 
   client.interceptors.request.use(async (config) => {

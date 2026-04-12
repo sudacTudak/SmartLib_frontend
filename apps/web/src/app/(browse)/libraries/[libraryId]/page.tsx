@@ -5,7 +5,6 @@ import { LibraryDetailView } from 'src/components/libraries/library-detail-view/
 import { PageContent } from 'src/components/layout/page-content/page-content';
 import { loadLibraryBranchDetail } from 'src/lib/catalog-loaders';
 import { collectLibraryBranchIdsForSSG } from 'src/lib/ssg-ids';
-import { fetchViewerForPage } from 'src/lib/viewer';
 
 type LibraryPageProps = {
   params: Promise<{ libraryId: string }>;
@@ -36,11 +35,10 @@ export default async function LibraryPage({ params }: LibraryPageProps) {
 
   try {
     const library = await loadLibraryBranchDetail(libraryId);
-    const viewer = await fetchViewerForPage();
 
     return (
       <PageContent variant="detail">
-        <LibraryDetailView library={library} viewer={viewer} />
+        <LibraryDetailView library={library} />
       </PageContent>
     );
   } catch {

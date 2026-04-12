@@ -1,14 +1,19 @@
 'use client';
 
-import type { LibraryBranchDetailData, UsersDetailData } from '@shared-packages/api';
+import type { LibraryBranchDetailData } from '@shared-packages/api';
 import { Alert, Descriptions, Typography } from 'antd';
+
+import { AuthStatus } from 'src/lib/auth/enums';
+import { useAuth } from 'src/lib/auth/auth-context';
 
 type LibraryDetailViewProps = {
   library: LibraryBranchDetailData;
-  viewer: UsersDetailData | null;
 };
 
-export function LibraryDetailView({ library, viewer }: LibraryDetailViewProps) {
+export function LibraryDetailView({ library }: LibraryDetailViewProps) {
+  const { user, status } = useAuth();
+  const viewer = status === AuthStatus.Ready ? user : null;
+
   const fullName = viewer
     ? [viewer.last_name, viewer.first_name, viewer.patronymic].filter(Boolean).join(' ')
     : '';

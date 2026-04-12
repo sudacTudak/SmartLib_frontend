@@ -1,14 +1,19 @@
 'use client';
 
-import type { BookDetailData, UsersDetailData } from '@shared-packages/api';
+import type { BookDetailData } from '@shared-packages/api';
 import { Alert, Descriptions, Typography } from 'antd';
+
+import { AuthStatus } from 'src/lib/auth/enums';
+import { useAuth } from 'src/lib/auth/auth-context';
 
 type BookDetailViewProps = {
   book: BookDetailData;
-  viewer: UsersDetailData | null;
 };
 
-export function BookDetailView({ book, viewer }: BookDetailViewProps) {
+export function BookDetailView({ book }: BookDetailViewProps) {
+  const { user, status } = useAuth();
+  const viewer = status === AuthStatus.Ready ? user : null;
+
   const fullName = viewer
     ? [viewer.last_name, viewer.first_name, viewer.patronymic].filter(Boolean).join(' ')
     : '';
