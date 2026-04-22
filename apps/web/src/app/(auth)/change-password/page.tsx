@@ -48,8 +48,8 @@ export default function ChangePasswordPage() {
       onSubmit={async (values) => {
         await getAuthSession().changePassword(user.id, {
           password: values.password,
-          new_password: values.new_password,
-          new_password_repeat: values.new_password_repeat,
+          newPassword: values.newPassword,
+          newPasswordRepeat: values.newPasswordRepeat,
         });
         message.success('Пароль изменён');
         router.push('/profile');

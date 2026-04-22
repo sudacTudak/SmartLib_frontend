@@ -11,10 +11,10 @@ const { Header: AntHeader } = Layout;
 
 function formatDisplayName(user: {
   email: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
 }): string {
-  const name = [user.last_name, user.first_name].filter(Boolean).join(' ');
+  const name = [user.lastName, user.firstName].filter(Boolean).join(' ');
   return name || user.email;
 }
 

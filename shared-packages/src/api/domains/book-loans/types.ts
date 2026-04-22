@@ -6,18 +6,18 @@ import type { IsoDateString, IsoDateTimeString } from '../../types';
  */
 export type BookLoan = {
   id: string;
-  book_id: string;
-  library_branch_id: string;
-  client_id: string | null;
-  client_phone: string;
-  client_email: string | null;
-  client_fullname: string;
-  loaned_till: IsoDateString;
+  bookId: string;
+  libraryBranchId: string;
+  clientId: string | null;
+  clientPhone: string;
+  clientEmail: string | null;
+  clientFullname: string;
+  loanedTill: IsoDateString;
   status: BookLoanStatus;
-  closed_at: IsoDateTimeString | null;
-  created_at: IsoDateTimeString;
-  updated_at: IsoDateTimeString;
-  created_by_id: string | null;
+  closedAt: IsoDateTimeString | null;
+  createdAt: IsoDateTimeString;
+  updatedAt: IsoDateTimeString;
+  createdById: string | null;
 };
 
 export type BookLoanListData = BookLoan[];
@@ -31,6 +31,6 @@ export type BookLoanProlongData = BookLoan;
 export type BookLoanCreateBody = Record<string, unknown>;
 
 /** Prolong: `BookLoanProlongSerializer` — prolong_time (ms). */
-export type BookLoanProlongBody = { prolong_time: number };
+export type BookLoanProlongBody = { prolongTime: number };
 
 export type BookLoanListParams = Record<string, string | number | boolean | undefined>;

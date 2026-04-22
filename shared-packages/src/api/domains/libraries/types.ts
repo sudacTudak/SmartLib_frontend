@@ -7,8 +7,8 @@ import type { IsoDateTimeString } from '../../types';
 export type LibraryBranch = {
   id: string;
   address: string;
-  created_at: IsoDateTimeString;
-  updated_at: IsoDateTimeString;
+  createdAt: IsoDateTimeString;
+  updatedAt: IsoDateTimeString;
 };
 
 export type LibraryBranchListData = LibraryBranch[];

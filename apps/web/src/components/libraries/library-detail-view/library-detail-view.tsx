@@ -15,7 +15,7 @@ export function LibraryDetailView({ library }: LibraryDetailViewProps) {
   const viewer = status === AuthStatus.Ready ? user : null;
 
   const fullName = viewer
-    ? [viewer.last_name, viewer.first_name, viewer.patronymic].filter(Boolean).join(' ')
+    ? [viewer.lastName, viewer.firstName, viewer.patronymic].filter(Boolean).join(' ')
     : '';
 
   return (
@@ -34,8 +34,8 @@ export function LibraryDetailView({ library }: LibraryDetailViewProps) {
       </Typography.Title>
       <Descriptions bordered column={1} size="middle">
         <Descriptions.Item label="Адрес">{library.address}</Descriptions.Item>
-        <Descriptions.Item label="Создана">{library.created_at}</Descriptions.Item>
-        <Descriptions.Item label="Обновлена">{library.updated_at}</Descriptions.Item>
+        <Descriptions.Item label="Создана">{library.createdAt}</Descriptions.Item>
+        <Descriptions.Item label="Обновлена">{library.updatedAt}</Descriptions.Item>
         <Descriptions.Item label="ID">{library.id}</Descriptions.Item>
       </Descriptions>
     </>

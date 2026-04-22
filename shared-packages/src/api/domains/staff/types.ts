@@ -17,14 +17,14 @@ export type StaffPermission = { id: string; code: number };
 export type Staff = {
   id: string;
   email: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   patronymic: string;
   gender: string;
   role: string;
-  library_branch_id: string | null;
-  position_id: string | null;
-  user_permissions: StaffPermission[];
+  libraryBranchId: string | null;
+  positionId: string | null;
+  userPermissions: StaffPermission[];
 };
 
 export type StaffListData = Staff[];
@@ -36,20 +36,20 @@ export type StaffDetailData = Staff;
  */
 export type StaffCreateResponseData = {
   email: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   patronymic: string;
   gender: string;
   role: string;
-  library_branch_id: string;
-  position_id: string;
+  libraryBranchId: string;
+  positionId: string;
 };
 
 /**
- * `UpdateStaffSerializer` — PATCH: email, first_name, last_name, patronymic, gender.
+ * `UpdateStaffSerializer` — PATCH: email, firstName, lastName, patronymic, gender.
  */
 export type StaffPatchBody = Partial<
-  Pick<Staff, 'email' | 'first_name' | 'last_name' | 'patronymic' | 'gender'>
+  Pick<Staff, 'email' | 'firstName' | 'lastName' | 'patronymic' | 'gender'>
 >;
 
 export type StaffCreateBody = Record<string, unknown>;

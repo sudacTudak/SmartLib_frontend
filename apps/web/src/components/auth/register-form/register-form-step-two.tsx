@@ -28,7 +28,7 @@ export function RegisterFormStepTwo({ submitError, submitting, onBack }: Registe
 
       <Form.Item
         label="Ваше имя"
-        name="first_name"
+        name="firstName"
         preserve
         rules={[
           { required: true, message: 'Введите имя' },
@@ -40,7 +40,7 @@ export function RegisterFormStepTwo({ submitError, submitting, onBack }: Registe
 
       <Form.Item
         label="Ваша фамилия"
-        name="last_name"
+        name="lastName"
         preserve
         rules={[
           { required: true, message: 'Введите фамилию' },

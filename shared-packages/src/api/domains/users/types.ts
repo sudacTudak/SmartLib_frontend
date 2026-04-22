@@ -3,17 +3,17 @@ import type { IsoDateTimeString } from '../../types';
 
 /**
  * `GetUserPublicSerializer` — users list / retrieve.
- * Поля: id, email, first_name, last_name, patronymic, gender, is_active, created_at
+ * Поля: id, email, firstName, lastName, patronymic, gender, isActive, createdAt
  */
 export type UserPublic = {
   id: string;
   email: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   patronymic: string;
   gender: Gender;
-  is_active: boolean;
-  created_at: IsoDateTimeString;
+  isActive: boolean;
+  createdAt: IsoDateTimeString;
 };
 
 export type UsersListData = UserPublic[];

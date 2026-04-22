@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@smartlib/shared-packages": "*",
+    "@tanstack/react-query": "^5.99.2",
     "antd": "^5.24.0",
     "next": "^15.2.0",
     "react": "^19.0.0",
@@ -21,9 +22,9 @@
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.2.0",
-    "autoprefixer": "^10.4.20",
     "postcss-modules-values": "^4.0.0",
     "sass": "^1.77.0",
     "typescript": "^5.7.0"

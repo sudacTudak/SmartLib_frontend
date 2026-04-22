@@ -34,7 +34,7 @@ export default function ProfilePage() {
     return null;
   }
 
-  const fullName = [user.last_name, user.first_name, user.patronymic].filter(Boolean).join(' ');
+  const fullName = [user.lastName, user.firstName, user.patronymic].filter(Boolean).join(' ');
 
   return (
     <div className={styles.root}>

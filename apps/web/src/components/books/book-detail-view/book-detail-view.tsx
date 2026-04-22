@@ -15,7 +15,7 @@ export function BookDetailView({ book }: BookDetailViewProps) {
   const viewer = status === AuthStatus.Ready ? user : null;
 
   const fullName = viewer
-    ? [viewer.last_name, viewer.first_name, viewer.patronymic].filter(Boolean).join(' ')
+    ? [viewer.lastName, viewer.firstName, viewer.patronymic].filter(Boolean).join(' ')
     : '';
 
   return (
@@ -35,18 +35,18 @@ export function BookDetailView({ book }: BookDetailViewProps) {
       <Descriptions bordered column={{ xs: 1, sm: 1, md: 2 }} size="middle">
         <Descriptions.Item label="Автор">{book.author}</Descriptions.Item>
         <Descriptions.Item label="Издательство">{book.publisher}</Descriptions.Item>
-        <Descriptions.Item label="Год">{book.created_year}</Descriptions.Item>
-        <Descriptions.Item label="Жанр (id)">{book.genre_id}</Descriptions.Item>
-        <Descriptions.Item label="Филиал (id)">{book.library_branch_id}</Descriptions.Item>
-        <Descriptions.Item label="Всего экземпляров">{book.total_count}</Descriptions.Item>
-        <Descriptions.Item label="Доступно">{book.available_count}</Descriptions.Item>
+        <Descriptions.Item label="Год">{book.createdYear}</Descriptions.Item>
+        <Descriptions.Item label="Жанр (id)">{book.genreId}</Descriptions.Item>
+        <Descriptions.Item label="Филиал (id)">{book.libraryBranchId}</Descriptions.Item>
+        <Descriptions.Item label="Всего экземпляров">{book.totalCount}</Descriptions.Item>
+        <Descriptions.Item label="Доступно">{book.availableCount}</Descriptions.Item>
         <Descriptions.Item label="Описание" span={2}>
           {book.description || '—'}
         </Descriptions.Item>
-        {book.online_version_link ? (
+        {book.onlineVersionLink ? (
           <Descriptions.Item label="Онлайн" span={2}>
-            <Typography.Link href={book.online_version_link} target="_blank" rel="noreferrer">
-              {book.online_version_link}
+            <Typography.Link href={book.onlineVersionLink} target="_blank" rel="noreferrer">
+              {book.onlineVersionLink}
             </Typography.Link>
           </Descriptions.Item>
         ) : null}

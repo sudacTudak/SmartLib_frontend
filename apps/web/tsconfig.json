@@ -12,6 +12,8 @@
     "baseUrl": ".",
     "paths": {
       "src/*": ["./src/*"],
+      "@features/*": ["./src/features/*"],
+      "@lib/*": ["./src/lib/*"],
       "@shared-packages/*": ["../../shared-packages/src/*"]
     }
   },
@@ -20,6 +22,6 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "../../shared-packages/src/ui/icons/CloseIcon.tsx", "../../shared-packages/src/ui/icons/index.ts"  ],
   "exclude": ["node_modules"]
 }

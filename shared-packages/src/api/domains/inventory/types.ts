@@ -7,13 +7,13 @@ import type { IsoDateTimeString } from '../../types';
 export type InventoryMovement = {
   id: string;
   type: InventoryMovementType;
-  library_branch_id: string;
-  book_basis_id: string;
-  supplier_id: string | null;
+  libraryBranchId: string;
+  bookBasisId: string;
+  supplierId: string | null;
   quantity: number;
   reason: string;
   comment: string;
-  created_at: IsoDateTimeString;
+  createdAt: IsoDateTimeString;
 };
 
 export type InventoryMovementListData = InventoryMovement[];

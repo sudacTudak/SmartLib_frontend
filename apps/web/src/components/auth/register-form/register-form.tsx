@@ -21,8 +21,8 @@ export type RegisterFormValues = {
   password: string;
   confirm: string;
   gender: Gender;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   patronymic?: string;
 };
 
@@ -57,8 +57,8 @@ export function RegisterForm() {
       await getAuthSession().register({
         email: values.email,
         password: values.password,
-        first_name: values.first_name.trim(),
-        last_name: values.last_name.trim(),
+        firstName: values.firstName.trim(),
+        lastName: values.lastName.trim(),
         patronymic: values.patronymic?.trim() || undefined,
         gender: values.gender,
       });

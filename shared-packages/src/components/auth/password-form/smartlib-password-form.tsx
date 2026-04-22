@@ -15,8 +15,8 @@ import { SmartlibPasswordFormVariant } from './smartlib-password-form-variant';
 export type SmartlibPasswordFormValues = {
   email?: string;
   password: string;
-  new_password: string;
-  new_password_repeat: string;
+  newPassword: string;
+  newPasswordRepeat: string;
 };
 
 export type SmartlibPasswordFormProps = {
@@ -110,20 +110,20 @@ export function SmartlibPasswordForm({
             <Input.Password autoComplete="current-password" placeholder="Текущий пароль" size="large" />
           </Form.Item>
 
-          <Form.Item label="Новый пароль" name="new_password" preserve extra={passwordHint} rules={newPasswordRules}>
+          <Form.Item label="Новый пароль" name="newPassword" preserve extra={passwordHint} rules={newPasswordRules}>
             <Input.Password autoComplete="new-password" placeholder="Новый пароль" size="large" />
           </Form.Item>
 
           <Form.Item
             label="Повторите новый пароль"
-            name="new_password_repeat"
+            name="newPasswordRepeat"
             preserve
-            dependencies={['new_password']}
+            dependencies={['newPassword']}
             rules={[
               { required: true, message: 'Повторите новый пароль' },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue('new_password') === value) {
+                  if (!value || getFieldValue('newPassword') === value) {
                     return Promise.resolve();
                   }
                   return Promise.reject(new Error('Новый пароль и повтор не совпадают'));

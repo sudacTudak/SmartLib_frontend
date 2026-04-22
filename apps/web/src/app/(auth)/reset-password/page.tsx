@@ -31,8 +31,8 @@ export default function ResetPasswordPage() {
     await getAuthSession().resetPassword({
       email: values.email!.trim(),
       password: values.password,
-      new_password: values.new_password,
-      new_password_repeat: values.new_password_repeat,
+      newPassword: values.newPassword,
+      newPasswordRepeat: values.newPasswordRepeat,
     });
     message.success('Пароль обновлён');
     router.push('/login');

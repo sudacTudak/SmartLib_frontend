@@ -15,8 +15,13 @@ export function createSmartlibHttpClient(
     headers: {
       'Content-Type': 'application/json',
     },
-    /** С tokenStorage нужны cookie (HttpOnly refresh) на тот же API-origin. */
-    withCredentials: options.tokenStorage ? true : false,
+    /**
+     * По умолчанию без credentials.
+     * Credentials включаем точечно на auth-эндпоинтах (login/refresh/logout), чтобы:
+     * - не требовать CORS credentials для всех запросов
+     * - не отправлять cookies на каждый API вызов
+     */
+    withCredentials: false,
   });
 
   if (options.tokenStorage) {

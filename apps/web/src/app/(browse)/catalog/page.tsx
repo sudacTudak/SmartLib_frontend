@@ -1,10 +1,18 @@
+import { Suspense, use } from 'react';
 import { PageContent } from 'src/components/layout/page-content/page-content';
+import { BookList } from '@features/books/components/BookList';
+import { Loader } from 'src/features/ui/Loader';
+import { getSmartlibApi } from 'src/lib/api';
 
-export default function CatalogPage() {
+const api = getSmartlibApi()
+
+export default async function CatalogPage() {
+  const books = await api.books.bookBases.list()
+  console.log('books: ', books);
+
   return (
     <PageContent>
-      <h1>Каталог</h1>
-      <p>Список книг и фильтры — подключение к API на следующем шаге.</p>
+        <BookList books={books}/>
     </PageContent>
   );
 }

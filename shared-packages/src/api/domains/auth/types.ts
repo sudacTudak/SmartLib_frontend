@@ -4,8 +4,8 @@ export type LoginBody = { email: string; password: string };
 export type RegisterBody = {
   email: string;
   password: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   patronymic?: string;
   gender: 'male' | 'female';
 };
@@ -15,14 +15,14 @@ export type LogoutBody = { refresh: string };
 /** `ChangePasswordSerializer` — смена пароля авторизованным пользователем (detail). */
 export type ChangePasswordBody = {
   password: string;
-  new_password: string;
-  new_password_repeat: string;
+  newPassword: string;
+  newPasswordRepeat: string;
 };
 
 /** `ResetPasswordSerializer` — сброс без авторизации. */
 export type ResetPasswordBody = {
   email: string;
   password: string;
-  new_password: string;
-  new_password_repeat: string;
+  newPassword: string;
+  newPasswordRepeat: string;
 };

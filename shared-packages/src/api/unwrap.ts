@@ -5,9 +5,9 @@ export function isHttpSuccessBody(x: unknown): x is HttpSuccessBody {
   return (
     typeof x === 'object' &&
     x !== null &&
-    'status_code' in x &&
+    'statusCode' in x &&
     'data' in x &&
-    typeof (x as HttpSuccessBody).status_code === 'number'
+    typeof (x as HttpSuccessBody).statusCode === 'number'
   );
 }
 
@@ -15,7 +15,7 @@ export function isHttpFailureBody(x: unknown): x is HttpFailureBody {
   return (
     typeof x === 'object' &&
     x !== null &&
-    'status_code' in x &&
+    'statusCode' in x &&
     'message' in x &&
     typeof (x as HttpFailureBody).message === 'string'
   );

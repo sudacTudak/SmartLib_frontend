@@ -6,7 +6,7 @@ import type { IsoDateTimeString } from '../../types';
 export type Supplier = {
   id: string;
   name: string;
-  created_at: IsoDateTimeString;
+  createdAt: IsoDateTimeString;
 };
 
 export type SupplierListData = Supplier[];

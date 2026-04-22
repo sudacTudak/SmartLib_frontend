@@ -6,13 +6,13 @@ export type IsoDateString = string;
 
 /** Как в `http_core.response_body` (успех). */
 export type HttpSuccessBody<T = unknown> = {
-  status_code: number;
+  statusCode: number;
   data: T;
 };
 
 /** Как в `http_core.response_body` (ошибка). */
 export type HttpFailureBody = {
-  status_code: number;
+  statusCode: number;
   message: string;
   data?: unknown;
 };

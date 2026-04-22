@@ -5,10 +5,10 @@ import type { IsoDateTimeString } from '../../types';
  */
 export type AmenityVendor = {
   id: string;
-  amenity_name: string;
-  vendor_name: string;
-  preview_link: string;
-  created_at: IsoDateTimeString;
+  amenityName: string;
+  vendorName: string;
+  previewLink: string;
+  createdAt: IsoDateTimeString;
 };
 
 /**
@@ -16,11 +16,11 @@ export type AmenityVendor = {
  */
 export type Amenity = {
   id: string;
-  library_branch_id: string;
-  vendor_id: string;
+  libraryBranchId: string;
+  vendorId: string;
   vendor: AmenityVendor;
-  preview_link: string;
-  created_at: IsoDateTimeString;
+  previewLink: string;
+  createdAt: IsoDateTimeString;
 };
 
 export type AmenityListData = Amenity[];
@@ -31,10 +31,10 @@ export type AmenityDetailData = Amenity;
  */
 export type AmenityWriteResponse = {
   id: string;
-  library_branch_id: string;
-  vendor_id: string;
-  preview_link: string;
-  created_at: IsoDateTimeString;
+  libraryBranchId: string;
+  vendorId: string;
+  previewLink: string;
+  createdAt: IsoDateTimeString;
 };
 
 export type AmenityCreateBody = Record<string, unknown>;
@@ -53,9 +53,9 @@ export type AmenityVendorDetailData = AmenityVendor;
  * после create в ответе нет `id` в Meta.fields (пока бэкенд не расширит сериализатор).
  */
 export type AmenityVendorWriteResponse = {
-  amenity_name: string;
-  vendor_name: string;
-  preview_link: string;
+  amenityName: string;
+  vendorName: string;
+  previewLink: string;
 };
 
 export type AmenityVendorCreateBody = Record<string, unknown>;

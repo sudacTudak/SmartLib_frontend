@@ -10,11 +10,11 @@ export type BookBasis = {
   description: string | null;
   author: string;
   publisher: string;
-  created_year: number;
+  createdYear: number;
   genre: string;
-  online_version_link: string | null;
-  created_at: IsoDateTimeString;
-  updated_at: IsoDateTimeString;
+  onlineVersionLink: string | null;
+  createdAt: IsoDateTimeString;
+  updatedAt: IsoDateTimeString;
 };
 
 export type BookBasisListData = BookBasis[];
@@ -26,9 +26,9 @@ export type BookBasisCreateBody = Partial<
     | 'description'
     | 'author'
     | 'publisher'
-    | 'created_year'
+    | 'createdYear'
     | 'genre'
-    | 'online_version_link'
+    | 'onlineVersionLink'
   >
 >;
 export type BookBasisPatchBody = Partial<BookBasisCreateBody>;
@@ -41,9 +41,9 @@ export type BookBasisDeleteData = BookBasis;
 export type Genre = {
   id: string;
   title: string;
-  created_at: IsoDateTimeString;
-  updated_at: IsoDateTimeString;
-  book_bases_ids: string[];
+  createdAt: IsoDateTimeString;
+  updatedAt: IsoDateTimeString;
+  bookBasesIds: string[];
 };
 
 export type GenreListData = Genre[];
@@ -58,18 +58,18 @@ export type GenreDeleteData = null;
  */
 export type BookByLibrary = {
   id: string;
-  library_branch_id: string;
-  genre_id: string;
+  libraryBranchId: string;
+  genreId: string;
   title: string;
   author: string;
   publisher: string;
   description: string;
-  created_year: number;
-  online_version_link: string;
-  total_count: number;
-  available_count: number;
-  created_at: IsoDateTimeString;
-  updated_at: IsoDateTimeString;
+  createdYear: number;
+  onlineVersionLink: string;
+  totalCount: number;
+  availableCount: number;
+  createdAt: IsoDateTimeString;
+  updatedAt: IsoDateTimeString;
 };
 
 export type BookDetailData = BookByLibrary;

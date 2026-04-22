@@ -8,14 +8,12 @@ const REFRESH_RELATIVE = regularPath(ApiPaths.usersAuthTokenRefresh);
 
 const REFRESH_AXIOS_CONFIG = {
   headers: { 'Content-Type': 'application/json' },
-  withCredentials: true,
 } as const;
 
 /**
  * Обновить access по refresh.
  * - Если в storage есть refresh (memory / тесты) — тело `{ refresh }`.
- * - Если нет (HttpOnly в браузере) — пустое тело, cookie уходит с `withCredentials`
- *   (нужен соответствующий эндпоинт на бэкенде).
+ * - Если нет (в будущем HttpOnly в браузере) — пустое тело; тогда refresh будет уходить через cookie.
  */
 export async function refreshTokensWithStorage(
   baseOrigin: string,
