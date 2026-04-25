@@ -37,21 +37,32 @@ export {
 export { createAuthApi } from './domains/auth';
 export { createUsersApi } from './domains/users';
 export { createStaffApi } from './domains/staff';
+export { createAuthorsApi } from './domains/authors';
 export { createBooksApi } from './domains/books';
 export { createLibrariesApi } from './domains/libraries';
 export { createBookLoansApi } from './domains/book-loans';
+export { createFeedbackApi } from './domains/feedback';
 export { createPositionsApi } from './domains/positions';
 export { createInventoryApi } from './domains/inventory';
 export { createSuppliersApi } from './domains/suppliers';
 export { createAmenitiesApi } from './domains/amenities';
 
-export type { LoginBody, RegisterBody, LogoutBody, ChangePasswordBody, ResetPasswordBody } from './domains/auth';
+export type {
+  LoginBody,
+  RegisterBody,
+  LogoutBody,
+  ChangePasswordBody,
+  ResetPasswordBody,
+} from './domains/auth';
 
 export type { UserPublic, UsersListParams, UsersListData, UsersDetailData } from './domains/users';
 
+export type { IAuthor, TAuthorListData, TAuthorDetailData, TAuthorCreateBody, TAuthorPatchBody } from './domains/authors';
+
 export type {
-  BookBasis,
+  IBookBasis,
   BookListQueryParams,
+  BookBasisListParams,
   BookBasisListData,
   BookBasisDetailData,
   BookBasisCreateBody,
@@ -68,6 +79,24 @@ export type {
   BookByLibraryParams,
   BookByLibraryListData,
 } from './domains/books';
+
+export type {
+  IBookBasisFeedback,
+  ILibraryBranchFeedback,
+  IFeedbackByUserParams,
+  IBookBasisFeedbackParentParams,
+  ILibraryBranchFeedbackParentParams,
+  TBookBasisFeedbackListData,
+  TBookBasisFeedbackDetailData,
+  TBookBasisFeedbackByUserData,
+  TLibraryBranchFeedbackListData,
+  TLibraryBranchFeedbackDetailData,
+  TLibraryBranchFeedbackByUserData,
+  TBookBasisFeedbackCreateBody,
+  TBookBasisFeedbackPatchBody,
+  TLibraryBranchFeedbackCreateBody,
+  TLibraryBranchFeedbackPatchBody,
+} from './domains/feedback';
 
 export type {
   StaffPermission,

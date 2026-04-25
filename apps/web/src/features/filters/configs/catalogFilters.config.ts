@@ -11,7 +11,7 @@ export enum CatalogFilterName {
 }
 
 export const CatalogFiltersFieldConfigs: TFormFilter[] = [
-  { name: CatalogFilterName.Genre, filterType: FilterType.MultiSelect, label: 'Жанр' },
+  { name: CatalogFilterName.Genre, filterType: FilterType.MultiSelect, label: 'Жанр', },
   {
     name: CatalogFilterName.LibraryBranch,
     filterType: FilterType.MultiSelect,

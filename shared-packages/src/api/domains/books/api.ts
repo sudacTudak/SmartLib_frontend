@@ -8,6 +8,7 @@ import type {
   BookBasisDeleteData,
   BookBasisDetailData,
   BookBasisListData,
+  BookBasisListParams,
   BookBasisPatchBody,
   BookByLibraryListData,
   BookByLibraryParams,
@@ -24,7 +25,7 @@ import type {
 export function createBooksApi(client: AxiosInstance) {
   return {
     bookBases: {
-      list: async (params?: BookListQueryParams) => {
+      list: async (params?: BookBasisListParams) => {
         const res = await client.get<HttpSuccessBody<BookBasisListData>>(
           apiPath(regularPath(ApiPaths.bookBases)),
           { params },

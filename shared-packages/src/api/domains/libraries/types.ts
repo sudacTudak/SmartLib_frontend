@@ -9,6 +9,9 @@ export type LibraryBranch = {
   address: string;
   createdAt: IsoDateTimeString;
   updatedAt: IsoDateTimeString;
+  /** Агрегат по отзывам (GET list/retrieve; при write-ответах может отсутствовать). */
+  ratingAvg?: number | null;
+  ratingCount?: number;
 };
 
 export type LibraryBranchListData = LibraryBranch[];

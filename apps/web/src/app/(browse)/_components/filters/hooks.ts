@@ -2,7 +2,7 @@ import { DefaultOptionType } from 'antd/es/select';
 import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getSmartlibApi } from 'src/lib/api';
-import { CatalogFilterName } from '../../configs';
+import { CatalogFilterName } from 'src/features/filters/configs';
 
 const api = getSmartlibApi();
 

@@ -33,7 +33,7 @@ export function BookDetailView({ book }: BookDetailViewProps) {
         {book.title}
       </Typography.Title>
       <Descriptions bordered column={{ xs: 1, sm: 1, md: 2 }} size="middle">
-        <Descriptions.Item label="Автор">{book.author}</Descriptions.Item>
+        <Descriptions.Item label="Авторы (id)">{book.authorIds.join(', ')}</Descriptions.Item>
         <Descriptions.Item label="Издательство">{book.publisher}</Descriptions.Item>
         <Descriptions.Item label="Год">{book.createdYear}</Descriptions.Item>
         <Descriptions.Item label="Жанр (id)">{book.genreId}</Descriptions.Item>

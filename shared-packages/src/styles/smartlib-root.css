@@ -13,12 +13,35 @@
   colorTextSecondaryLight,
   colorTextTertiaryLight,
   colorTextQuaternaryLight,
+
+  colorWhite,
+  colorYellow,
+
+  textButtonDefaultLight,
+  textButtonHoverLight,
+  textButtonActiveLight,
+  textButtonCancelDefaultLight,
+  textButtonCancelHoverLight,
+  textButtonCancelActiveLight,
+
   colorBgLight,
   colorBgContainerLight,
   colorBgLayoutLight,
   colorBgElevatedLight,
+
+  colorFillBackgroundComponentsButtonPrimaryDefaultLight,
+  colorFillBackgroundComponentsButtonPrimaryHoverLight,
+  colorFillBackgroundComponentsButtonPrimaryActiveLight,
+  colorFillBackgroundComponentsButtonSecondaryDefaultLight,
+  colorFillBackgroundComponentsButtonSecondaryHoverLight,
+  colorFillBackgroundComponentsButtonSecondaryActiveLight,
+
   colorBorderLight,
-  colorBorderSecondaryLight
+  colorBorderSecondaryLight,
+
+  colorIconPrimaryDefaultLight,
+  colorIconPrimaryHoverLight,
+  colorIconPrimaryActiveLight
   from './variables.module.css';
 
 :root {
@@ -28,15 +51,36 @@
   --smartlib-color-error: colorErrorLight;
   --smartlib-color-info: colorInfoLight;
 
+  --smartlib-color-white: colorWhite;
+  --smartlib-color-yellow: colorYellow;
+
   --smartlib-color-text: colorTextLight;
   --smartlib-color-text-secondary: colorTextSecondaryLight;
   --smartlib-color-text-tertiary: colorTextTertiaryLight;
   --smartlib-color-text-quaternary: colorTextQuaternaryLight;
 
+  --smartlib-text-button-default: textButtonDefaultLight,
+  --smartlib-text-button-hover: textButtonHoverLight,
+  --smartlib-text-button-active: textButtonActiveLight,
+  --smartlib-text-button-cancel-default: textButtonCancelDefaultLight,
+  --smartlib-text-button-cancel-hover: textButtonCancelHoverLight,
+  --smartlib-text-button-cancel-active: textButtonCancelActiveLight,
+
+  --smartlib-color-icon-primary: colorIconPrimaryLight;
+  --smartlib-color-icon-primary-hover: colorIconPrimaryHoverLight;
+  --smartlib-color-icon-primary-active: colorIconPrimaryActiveLight;
+
   --smartlib-color-bg: colorBgLight;
   --smartlib-color-bg-container: colorBgContainerLight;
   --smartlib-color-bg-layout: colorBgLayoutLight;
   --smartlib-color-bg-elevated: colorBgElevatedLight;
+
+  --smartlib-color-fill-background-components-button-primary-default: colorFillBackgroundComponentsButtonPrimaryDefaultLight
+  --smartlib-color-fill-background-components-button-primary-hover: colorFillBackgroundComponentsButtonPrimaryHoverLight
+  --smartlib-color-fill-background-components-button-primary-active: colorFillBackgroundComponentsButtonPrimaryActiveLight
+  --smartlib-color-fill-background-components-button-secondary-default: colorFillBackgroundComponentsButtonSecondaryDefaultLight
+  --smartlib-color-fill-background-components-button-secondary-hover: colorFillBackgroundComponentsButtonSecondaryHoverLight
+  --smartlib-color-fill-background-components-button-secondary-acive: colorFillBackgroundComponentsButtonSecondaryActiveLight
 
   --smartlib-color-border: colorBorderLight;
   --smartlib-color-border-secondary: colorBorderSecondaryLight;

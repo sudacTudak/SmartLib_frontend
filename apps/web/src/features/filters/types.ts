@@ -14,6 +14,7 @@ import {FormItemProps} from 'antd';
 interface IFilterCommonOptions<TValue> {
   label?: string;
   filterType: FilterType;
+  defaultValue?: TValue
 }
 
 interface ICheckboxOptions extends IFilterCommonOptions<boolean>, CheckboxProps {
@@ -25,21 +26,21 @@ interface IRadioOptions<TValue extends number | string = number | string>
   filterType: FilterType.Radio;
 }
 
-interface IInputOptions extends IFilterCommonOptions<string>, InputProps {
+interface IInputOptions extends IFilterCommonOptions<string | null>, Omit<InputProps, 'defaultValue'> {
   filterType: FilterType.Input;
 }
 
-interface ISingleSelectOptions<TValue extends number | string = number | string>
-  extends IFilterCommonOptions<TValue>, SelectProps {
+interface ISingleSelectOptions<TValue extends number | string | null = number | string | null>
+  extends IFilterCommonOptions<TValue>, Omit<SelectProps, 'defaultValue'> {
   filterType: FilterType.SingleSelect;
 }
 
 interface IMultiSelectOptions<TValue extends number[] | string[] = number[] | string[]>
-  extends IFilterCommonOptions<TValue>, SelectProps {
+  extends IFilterCommonOptions<TValue>, Omit<SelectProps, 'defaultValue'> {
   filterType: FilterType.MultiSelect;
 }
 
-interface IDateRangeOptions extends IFilterCommonOptions<Dayjs>, DatePickerProps {
+interface IDateRangeOptions extends IFilterCommonOptions<Dayjs | null>, Omit<DatePickerProps, 'defaultValue'> {
   filterType: FilterType.DateRange;
 }
 

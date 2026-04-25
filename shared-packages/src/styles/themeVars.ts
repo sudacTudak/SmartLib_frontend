@@ -6,6 +6,10 @@ import styles from './variables.module.css';
  */
 export const themeVars = {
   color: {
+    common: {
+      white: styles.colorWhite,
+      yellow: styles.colorYellow
+    },
     brand: {
       primary: styles.colorPrimaryLight,
       success: styles.colorSuccessLight,
@@ -18,6 +22,17 @@ export const themeVars = {
       secondary: styles.colorTextSecondaryLight,
       tertiary: styles.colorTextTertiaryLight,
       quaternary: styles.colorTextQuaternaryLight,
+
+      button: {
+        default: styles.textButtonDefaultLight,
+        hover: styles.textButtonHoverLight,
+        active: styles.textButtonActiveLight,
+        cancel: {
+          default: styles.textButtonCancelDefaultLight,
+          hover: styles.textButtonCancelHoverLight,
+          active: styles.textButtonCancelActiveLight,
+        },
+      },
     },
     fill: {
       background: {
@@ -27,11 +42,39 @@ export const themeVars = {
           layout: styles.colorBgLayoutLight,
           elevated: styles.colorBgElevatedLight,
         },
+        components: {
+          button: {
+            primary: {
+              default: styles.colorFillBackgroundComponentsButtonPrimaryDefaultLight,
+              hover: styles.colorFillBackgroundComponentsButtonPrimaryHoverLight,
+              active: styles.colorFillBackgroundComponentsButtonPrimaryActiveLight,
+            },
+            secondary: {
+              default: styles.colorFillBackgroundComponentsButtonSecondaryDefaultLight,
+              hover: styles.colorFillBackgroundComponentsButtonSecondaryHoverLight,
+              active: styles.colorFillBackgroundComponentsButtonSecondaryActiveLight,
+            },
+          },
+        },
+      },
+    },
+    icon: {
+      primary: {
+        default: styles.colorIconPrimaryDefaultLight,
+        hover: styles.colorIconPrimaryHoverLight,
+        active: styles.colorIconPrimaryActiveLight,
       },
     },
     border: {
       primary: styles.colorBorderLight,
       secondary: styles.colorBorderSecondaryLight,
+    },
+  },
+  sizes: {
+    borderRadius: {
+      small: 2,
+      medium: 4,
+      large: 8,
     },
   },
 } as const;

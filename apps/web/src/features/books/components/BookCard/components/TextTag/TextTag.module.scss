@@ -1,0 +1,18 @@
+.textTag {
+    display: inline-flex;
+    padding: 2px 4px;
+    border-radius: var(--ant-border-radius-sm);
+    /* Prefer SmartLib design tokens in custom SCSS; they are always available via `smartlib-root.css` */
+    background-color: var(--smartlib-color-white);
+    border: 1px solid currentColor;
+    font-size: 12px;
+    line-height: 1;
+
+    &.yellow {
+        color: var(--ant-color-warning);
+    }
+
+    &.green {
+        color: var(--ant-color-success);
+    }
+}

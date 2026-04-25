@@ -8,6 +8,7 @@ export function SmartLibConfigProvider({ children }: { children: ReactNode }) {
       theme={{
         algorithm: theme.defaultAlgorithm,
         ...smartlibAntdTheme,
+        cssVar: true,
       }}
     >
       {children}

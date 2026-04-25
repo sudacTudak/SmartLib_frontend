@@ -1,0 +1,13 @@
+.iconDefault {
+    color: var(--smartlib-color-icon-primary)
+}
+
+.svgIconFillInherit {
+  color: inherit;
+  fill: currentColor
+}
+
+.svgIconStrokeInherit {
+  color: inherit;
+  stroke: currentColor;
+}

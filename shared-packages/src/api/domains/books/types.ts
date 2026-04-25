@@ -4,27 +4,35 @@ import type { IsoDateTimeString } from '../../types';
  * `BookBasisSerializer` — book-bases list / retrieve / create / patch.
  * destroy: кастомный ответ 200 с тем же объектом, что и до удаления.
  */
-export type BookBasis = {
+export interface IBookBasis {
   id: string;
   title: string;
   description: string | null;
-  author: string;
+  authorIds: string[];
   publisher: string;
   createdYear: number;
   genre: string;
   onlineVersionLink: string | null;
   createdAt: IsoDateTimeString;
   updatedAt: IsoDateTimeString;
-};
+  /** Агрегат по отзывам (GET list/retrieve; при write-ответах может отсутствовать). */
+  ratingAvg?: number | null;
+  ratingCount?: number;
+  /** Сумма `availableCount` по всем экземплярам книги в филиалах (GET list/retrieve; иначе 0). */
+  booksAvailableTotal: number;
+}
 
-export type BookBasisListData = BookBasis[];
-export type BookBasisDetailData = BookBasis;
+export type BookBasisListData = IBookBasis[];
+export type BookBasisDetailData = IBookBasis;
+
+/** GET `book-bases/` — query. */
+export type BookBasisListParams = { onlyAvailable?: boolean };
 export type BookBasisCreateBody = Partial<
   Pick<
-    BookBasis,
+    IBookBasis,
     | 'title'
     | 'description'
-    | 'author'
+    | 'authorIds'
     | 'publisher'
     | 'createdYear'
     | 'genre'
@@ -32,7 +40,7 @@ export type BookBasisCreateBody = Partial<
   >
 >;
 export type BookBasisPatchBody = Partial<BookBasisCreateBody>;
-export type BookBasisDeleteData = BookBasis;
+export type BookBasisDeleteData = IBookBasis;
 
 /**
  * `GenreSerializer` — genre list / retrieve / create / patch.
@@ -61,7 +69,7 @@ export type BookByLibrary = {
   libraryBranchId: string;
   genreId: string;
   title: string;
-  author: string;
+  authorIds: string[];
   publisher: string;
   description: string;
   createdYear: number;

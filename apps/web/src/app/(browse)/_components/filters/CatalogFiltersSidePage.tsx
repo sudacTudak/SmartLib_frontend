@@ -3,9 +3,9 @@
 import { CloseIcon } from '@shared-packages/ui/icons';
 import { Drawer } from 'antd';
 import { memo, useCallback, useMemo } from 'react';
-import { FiltersForm } from './FilterForms';
+import { CustomForm } from '@features/filters/components';
 import { useFiltersOptions } from './hooks';
-import { CatalogFilterName, CatalogFiltersFieldConfigs } from '../../configs';
+import { CatalogFilterName, CatalogFiltersFieldConfigs } from '@features/filters/configs';
 
 interface ICatalogFiltersSidePageProps {
   isOpen: boolean;
@@ -53,7 +53,7 @@ export const CatalogFiltersSidePage = memo(function CatalogFiltersSidePage({
       placement="left"
       // maskClosable
     >
-      <FiltersForm<IFiltersFormData> filters={fields} onFinish={onFinish} />
+      <CustomForm<IFiltersFormData> filters={fields} onFinish={onFinish} />
     </Drawer>
   );
 });

@@ -1,4 +1,4 @@
-import { Header } from 'src/components/layout/header/header';
+import { Header } from 'src/components/layout/Header/Header';
 
 import styles from './account-layout.module.scss';
 

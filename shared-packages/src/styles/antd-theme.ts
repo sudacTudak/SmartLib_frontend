@@ -1,11 +1,13 @@
 import type { ThemeConfig } from 'antd';
 import { themeVars } from './themeVars';
 
+export type TCustomThemeConfig = ThemeConfig & {}
+
 /**
  * Тема Ant Design на литералах из `themeVars` (и `variables.module.css`).
  * Шрифт / радиус пока не вынесены в themeVars — см. `smartlib-root.css`.
  */
-export const smartlibAntdTheme: ThemeConfig = {
+export const smartlibAntdTheme: TCustomThemeConfig = {
   token: {
     colorPrimary: themeVars.color.brand.primary,
     colorSuccess: themeVars.color.brand.success,
@@ -31,7 +33,9 @@ export const smartlibAntdTheme: ThemeConfig = {
     fontSize: 14,
     lineHeight: 1.5714285714285714,
 
-    borderRadius: 6,
+    borderRadiusSM: themeVars.sizes.borderRadius.small,
+    borderRadius: themeVars.sizes.borderRadius.medium,
+    borderRadiusLG: themeVars.sizes.borderRadius.large,
   },
   components: {
     Segmented: {

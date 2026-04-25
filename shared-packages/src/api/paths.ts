@@ -14,6 +14,7 @@ export const ApiPaths = {
   usersAuthResetPassword: 'users/auth/reset-password',
   usersProfile: 'users/profile',
   usersStaff: 'users/staff',
+  authors: 'authors',
   books: 'books',
   bookBases: 'books/book-bases',
   genre: 'books/genre',
@@ -28,6 +29,9 @@ export const ApiPaths = {
   suppliers: 'suppliers',
   amenities: 'amenities',
   amenityVendors: 'amenities/vendors',
+  /** Отзывы: `api/v1/feedback/...` (см. `feedback/urls.py` на бэке). */
+  feedbackBookBases: 'feedback/book-bases',
+  feedbackLibs: 'feedback/libs',
 } as const;
 
 /** DRF collection list: `segment/` */

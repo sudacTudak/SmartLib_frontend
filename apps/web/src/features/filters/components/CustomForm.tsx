@@ -2,13 +2,13 @@
 
 import { memo, useMemo } from 'react';
 import { Button, Flex, Form, Typography } from 'antd';
-import { FilterComponentsByType } from '../../configsHelpers';
-import { TFormFilter } from '../../types';
+import { FilterComponentsByType } from '../configsHelpers';
+import { TFormFilter } from '../types';
 
 const { useForm } = Form;
 const { Title } = Typography;
 
-interface IFiltersFormProps<TFormData extends object> {
+interface CustomFormLocal<TFormData extends object> {
   title?: string;
   filters: TFormFilter[];
   onFinish: ((formData: TFormData) => void) | ((formData: TFormData) => Promise<void>);
@@ -16,13 +16,13 @@ interface IFiltersFormProps<TFormData extends object> {
   submitButtonText?: string;
 }
 
-function FiltersFormLocal<TFormData extends object>({
+function CustomFormLocal<TFormData extends object>({
   title,
   filters,
   initialValues,
   submitButtonText,
   onFinish,
-}: IFiltersFormProps<TFormData>) {
+}: CustomFormLocal<TFormData>) {
   const [form] = useForm<TFormData>();
 
   const fields = useMemo(() => {
@@ -55,5 +55,4 @@ function FiltersFormLocal<TFormData extends object>({
   );
 }
 
-
-export const FiltersForm = memo(FiltersFormLocal) as typeof FiltersFormLocal;
+export const CustomForm = memo(CustomFormLocal) as typeof CustomFormLocal;
