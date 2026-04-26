@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 4px;
+}
+
+.logo {
+  flex: 0 0 auto;
+}
+
+.nav {
+  flex: 0 0 auto;
+}
+
+.searchBar {
+  flex: 1 0 auto;
+}
+
+.profileLink {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.profileLinkInner {
+  &:hover {
+    color: var(--ant-color-primary);
+  }
+
+  :global('.ant-typography') {
+    color: var(--ant-color-primary) !important;
+  }
+}

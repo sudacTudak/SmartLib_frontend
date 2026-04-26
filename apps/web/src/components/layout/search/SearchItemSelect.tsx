@@ -1,15 +1,19 @@
 'use client'
 import { Select } from "antd";
 import { DefaultOptionType } from "antd/es/select";
-import { SelectProps } from "rc-select";
 import { memo, useCallback, useMemo } from "react";
 import { useSearchContext } from "src/features/search";
 import { SearchItemsType } from "src/features/search/enums";
+import { SelectProps } from "antd/es/select";
 
 type SearchItemSelectType = SelectProps<SearchItemsType>
 type THandleSelect = NonNullable<SearchItemSelectType['onSelect']>
 
-export const SearchItemSelect = memo(function SearchItemSelect() {
+interface ISearchItemSelectProps {
+    className?: string;
+}
+
+export const SearchItemSelect = memo(function SearchItemSelect({className}: ISearchItemSelectProps) {
     const {itemsType, setItemsType} = useSearchContext()
 
     const options = useMemo(() => [
@@ -32,5 +36,6 @@ export const SearchItemSelect = memo(function SearchItemSelect() {
         defaultValue={SearchItemsType.Books}
         options={options}
         onSelect={handleSelect}
+        className={className}
     />
 })

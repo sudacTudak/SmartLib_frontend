@@ -2,7 +2,7 @@
     border: 1px solid transparent;
     border-radius: 8px;
     overflow: hidden;
-    max-width: 155px;
+    max-width: var(--ant-book-card-width);
 
     &:hover {
         border-color: var(--ant-color-primary);
@@ -25,9 +25,20 @@
 }
 
 .title {
-    max-height: 32px;
+    max-width: 100%;
     margin-bottom: 0;
-    text-overflow: ellipsis;
+
+    /* 2-line ellipsis */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    /*
+      Fallback guardrail: keeps height stable even if line-clamp isn't supported.
+      Typography H3 line-height is configured in BookCard theme: 16px.
+    */
+    max-height: 32px;
 }
 
 .authorsBlock {

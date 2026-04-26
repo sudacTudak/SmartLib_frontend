@@ -33,7 +33,7 @@ function CustomFormLocal<TFormData extends object>({
       >;
 
       return (
-        <Form.Item key={props.name}>
+        <Form.Item key={props.name} label={props.label}>
           <FilterComponent {...props} />
         </Form.Item>
       );

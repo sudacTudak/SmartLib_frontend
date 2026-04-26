@@ -1,22 +1,22 @@
 'use client';
 
-import { Button, Layout, Space, theme, Typography } from 'antd';
+import { Button, Flex, Layout, Space, theme, Typography } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { AuthStatus } from 'src/lib/auth/enums';
 import { useAuth } from 'src/lib/auth/auth-context';
+import { SearchBar } from '../search/SearchBar';
+import { Loader } from 'src/features/ui/Loader';
+import { Suspense, useCallback } from 'react';
+
+import styles from './Header.module.scss';
+import { IconButton } from '@shared-packages/ui/buttons';
+import { ProfileIcon } from '@shared-packages/ui/icons';
+import { APP_ROUTES } from 'src/lib/routes';
 
 const { Header: AntHeader } = Layout;
-
-function formatDisplayName(user: {
-  email: string;
-  firstName: string;
-  lastName: string;
-}): string {
-  const name = [user.lastName, user.firstName].filter(Boolean).join(' ');
-  return name || user.email;
-}
+const { Title, Text } = Typography;
 
 export function Header() {
   const { token } = theme.useToken();
@@ -26,49 +26,31 @@ export function Header() {
   const showUser = user && status === AuthStatus.Ready;
 
   return (
-    <AntHeader
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        paddingInline: token.paddingLG,
-        background: token.colorBgContainer,
-        borderBottom: `1px solid ${token.colorBorderSecondary}`,
-        height: 'auto',
-        lineHeight: 'inherit',
-        gap: token.marginMD,
-      }}
-    >
-      <Link href="/" style={{ textDecoration: 'none' }}>
-        <Typography.Title level={4} style={{ margin: 0, color: token.colorPrimary }}>
+    <AntHeader className={styles.header}>
+      <Link href="/" className={styles.logo}>
+        <Title level={4} style={{ margin: 0, color: token.colorPrimary }}>
           SmartLib
-        </Typography.Title>
+        </Title>
       </Link>
 
-      <nav style={{ flex: 1 }} aria-label="Основное меню">
+      <nav aria-label="Основное меню" className={styles.nav}>
         <Button type="link" onClick={() => router.push('/catalog')}>
           Каталог
         </Button>
       </nav>
 
-      <Space wrap>
-        {showUser ? (
-          <>
-            <Typography.Text type="secondary">{formatDisplayName(user)}</Typography.Text>
-            <Button type="primary" onClick={() => router.push('/profile')}>
-              Профиль
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button type="default" onClick={() => router.push('/login')}>
-              Войти
-            </Button>
-            <Button type="primary" onClick={() => router.push('/register')}>
-              Регистрация
-            </Button>
-          </>
-        )}
-      </Space>
+      <Flex className={styles.searchBar}>
+        <Suspense fallback={<Loader />}>
+          <SearchBar />
+        </Suspense>
+      </Flex>
+
+      <Link href={showUser ? APP_ROUTES.profile : APP_ROUTES.auth.login} className={styles.profileLink}>
+        <Flex vertical align='center' gap={2} className={styles.profileLinkInner}>
+          <ProfileIcon />
+          <Text>{showUser ? user.email : 'Войти'}</Text>
+        </Flex>
+      </Link>
     </AntHeader>
   );
 }

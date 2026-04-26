@@ -10,6 +10,7 @@ import { TextTag, TextTagColor } from './components';
 import { useMemo } from 'react';
 import { StarIcon } from '@shared-packages/ui/icons';
 import { themeVars } from '@shared-packages/ui';
+import { BOOK_CARD_IMAGE_HEIGHT, BOOK_CARD_WIDTH } from '../constants';
 
 interface IBookCardProps {
   id: string;
@@ -21,6 +22,12 @@ interface IBookCardProps {
   available: boolean;
   className?: string;
 }
+
+type TBookCardThemeConfig = ThemeConfig & {
+  token: {
+    bookCardWidth: number;
+  };
+};
 
 const { Title, Text } = Typography;
 
@@ -36,6 +43,9 @@ export const BookCard = ({
   const themeConfig = useMemo(
     () =>
       ({
+        token: {
+          bookCardWidth: BOOK_CARD_WIDTH,
+        },
         components: {
           Typography: {
             fontSizeHeading3: 12,
@@ -45,7 +55,7 @@ export const BookCard = ({
             fontSize: 12,
           },
         },
-      }) as ThemeConfig,
+      }) as TBookCardThemeConfig,
     [],
   );
 
@@ -55,10 +65,10 @@ export const BookCard = ({
         <Link href={APP_ROUTES.book(id)}>
           <div className={styles.imageContainer}>
             <Image
-              src={'https://placehold.co/155x220/png'}
+              src={`https://placehold.co/${BOOK_CARD_WIDTH}x${BOOK_CARD_IMAGE_HEIGHT}/png`}
               alt="Картинка с книгой"
-              width={155}
-              height={220}
+              width={BOOK_CARD_WIDTH}
+              height={BOOK_CARD_IMAGE_HEIGHT}
             />
             {available && (
               <TextTag

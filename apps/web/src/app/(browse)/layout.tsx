@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 
 import { Header } from 'src/components/layout/Header';
-import { SearchBar } from './_components/search/SearchBar';
+import { SearchBar } from '../../components/layout/search/SearchBar';
 
 import styles from './browse-layout.module.scss';
 import { CatalogFilters } from './_components/filters/CatalogFilters';
@@ -17,9 +17,7 @@ export default function BrowseLayout({ children }: { children: React.ReactNode }
         <Header />
         <div>
           <FilterButton />
-          <Suspense fallback={<Loader />}>
-            <SearchBar />
-          </Suspense>
+
         </div>
         <CatalogFilters />
         <div className={styles.main}>{children}</div>

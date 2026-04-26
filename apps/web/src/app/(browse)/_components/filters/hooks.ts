@@ -29,14 +29,16 @@ function useLibraryBranchesOptions() {
 }
 
 function useAuthorsOptions() {
-  return useMemo(
-    () =>
-      [
-        { label: 'Толстой Л. Н.', value: 'tolstoi' },
-        { label: 'Пушкин А. С.', value: 'pushkin' },
-      ] as DefaultOptionType[],
-    [],
-  ) as DefaultOptionType[];
+  const { data } = useQuery({
+    queryKey: ['catalogFilters', 'authors'],
+    queryFn: () => api.authors.list(),
+  });
+
+  return useMemo(() => {
+    if (!data) return [];
+
+    return data.map(({ id, name }) => ({ label: name, value: id }) as DefaultOptionType);
+  }, [data]) as DefaultOptionType[];
 }
 
 export function useFiltersOptions() {
