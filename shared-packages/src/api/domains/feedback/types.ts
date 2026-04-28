@@ -6,7 +6,7 @@ import type { IsoDateTimeString } from '../../types';
  */
 export interface IBookBasisFeedback {
   id: string;
-  bookBasisId: string;
+  workId: string;
   clientId: string;
   score: number;
   comment: string | null;
@@ -31,7 +31,7 @@ export type TLibraryBranchFeedbackListData = ILibraryBranchFeedback[];
 export type TLibraryBranchFeedbackDetailData = ILibraryBranchFeedback;
 export type TLibraryBranchFeedbackByUserData = ILibraryBranchFeedback[];
 
-export type TBookBasisFeedbackCreateBody = Pick<IBookBasisFeedback, 'bookBasisId' | 'score'> & {
+export type TBookBasisFeedbackCreateBody = Pick<IBookBasisFeedback, 'workId' | 'score'> & {
   comment?: string | null;
 };
 export type TBookBasisFeedbackPatchBody = Partial<Pick<IBookBasisFeedback, 'score'>> & { comment?: string | null };
@@ -50,7 +50,7 @@ export interface IFeedbackByUserParams {
 
 /** Query: опциональная фильтрация list / by-user по книге / филиалу. */
 export interface IBookBasisFeedbackParentParams {
-  bookBasisId?: string;
+  workId?: string;
 }
 export interface ILibraryBranchFeedbackParentParams {
   libraryBranchId?: string;

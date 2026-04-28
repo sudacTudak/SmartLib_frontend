@@ -1,11 +1,11 @@
 import { cache } from 'react';
 
-import type { BookDetailData, LibraryBranchDetailData } from '@shared-packages/api';
+import type { LibraryBranchDetailData, WorkItemDetailData } from '@shared-packages/api';
 
 import { getPublicServerApi } from './server-api';
 
-export const loadBookDetail = cache(async (bookId: string): Promise<BookDetailData> => {
-  return getPublicServerApi().books.book.get(bookId);
+export const loadBookDetail = cache(async (bookId: string): Promise<WorkItemDetailData> => {
+  return getPublicServerApi().works.workItems.get(bookId);
 });
 
 export const loadLibraryBranchDetail = cache(

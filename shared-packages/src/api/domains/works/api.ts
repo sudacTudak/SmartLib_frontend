@@ -4,16 +4,16 @@ import { ApiPaths, detailPath, regularPath } from '../../paths';
 import type { HttpSuccessBody } from '../../types';
 import { unwrapData } from '../../unwrap';
 import type {
-  BookBasisCreateBody,
-  BookBasisDeleteData,
-  BookBasisDetailData,
-  BookBasisListData,
-  BookBasisListParams,
-  BookBasisPatchBody,
-  BookByLibraryListData,
-  BookByLibraryParams,
-  BookDetailData,
-  BookListQueryParams,
+  WorkCreateBody,
+  WorkDeleteData,
+  WorkDetailData,
+  WorkListData,
+  WorkListParams,
+  WorkPatchBody,
+  WorkItemsByLibraryListData,
+  WorkItemsByLibraryParams,
+  WorkItemDetailData,
+  WorksListQueryParams,
   GenreCreateBody,
   GenreDeleteData,
   GenreDetailData,
@@ -21,47 +21,47 @@ import type {
   GenrePatchBody,
 } from './types';
 
-/** `book-bases`, `genre`, `book` + `by-library`. */
-export function createBooksApi(client: AxiosInstance) {
+/** `works`, `genre`, `work-items` + `by-library`. */
+export function createWorksApi(client: AxiosInstance) {
   return {
-    bookBases: {
-      list: async (params?: BookBasisListParams) => {
-        const res = await client.get<HttpSuccessBody<BookBasisListData>>(
-          apiPath(regularPath(ApiPaths.bookBases)),
+    works: {
+      list: async (params?: WorkListParams) => {
+        const res = await client.get<HttpSuccessBody<WorkListData>>(
+          apiPath(regularPath(ApiPaths.works)),
           { params },
         );
-        return unwrapData<BookBasisListData>(res);
+        return unwrapData<WorkListData>(res);
       },
       get: async (id: string | number) => {
-        const res = await client.get<HttpSuccessBody<BookBasisDetailData>>(
-          apiPath(detailPath(ApiPaths.bookBases, id)),
+        const res = await client.get<HttpSuccessBody<WorkDetailData>>(
+          apiPath(detailPath(ApiPaths.works, id)),
         );
-        return unwrapData<BookBasisDetailData>(res);
+        return unwrapData<WorkDetailData>(res);
       },
-      create: async (body: BookBasisCreateBody) => {
-        const res = await client.post<HttpSuccessBody<BookBasisDetailData>>(
-          apiPath(regularPath(ApiPaths.bookBases)),
+      create: async (body: WorkCreateBody) => {
+        const res = await client.post<HttpSuccessBody<WorkDetailData>>(
+          apiPath(regularPath(ApiPaths.works)),
           body,
         );
-        return unwrapData<BookBasisDetailData>(res);
+        return unwrapData<WorkDetailData>(res);
       },
-      partialUpdate: async (id: string | number, body: BookBasisPatchBody) => {
-        const res = await client.patch<HttpSuccessBody<BookBasisDetailData>>(
-          apiPath(detailPath(ApiPaths.bookBases, id)),
+      partialUpdate: async (id: string | number, body: WorkPatchBody) => {
+        const res = await client.patch<HttpSuccessBody<WorkDetailData>>(
+          apiPath(detailPath(ApiPaths.works, id)),
           body,
         );
-        return unwrapData<BookBasisDetailData>(res);
+        return unwrapData<WorkDetailData>(res);
       },
       delete: async (id: string | number) => {
-        const res = await client.delete<HttpSuccessBody<BookBasisDeleteData>>(
-          apiPath(detailPath(ApiPaths.bookBases, id)),
+        const res = await client.delete<HttpSuccessBody<WorkDeleteData>>(
+          apiPath(detailPath(ApiPaths.works, id)),
         );
-        return unwrapData<BookBasisDeleteData>(res);
+        return unwrapData<WorkDeleteData>(res);
       },
     },
 
     genre: {
-      list: async (params?: BookListQueryParams) => {
+      list: async (params?: WorksListQueryParams) => {
         const res = await client.get<HttpSuccessBody<GenreListData>>(
           apiPath(regularPath(ApiPaths.genre)),
           { params },
@@ -96,22 +96,23 @@ export function createBooksApi(client: AxiosInstance) {
       },
     },
 
-    book: {
+    workItems: {
       get: async (id: string | number) => {
-        const res = await client.get<HttpSuccessBody<BookDetailData>>(
-          apiPath(detailPath(ApiPaths.book, id)),
+        const res = await client.get<HttpSuccessBody<WorkItemDetailData>>(
+          apiPath(detailPath(ApiPaths.workItems, id)),
         );
-        return unwrapData<BookDetailData>(res);
+        return unwrapData<WorkItemDetailData>(res);
       },
 
-      /** GET `books/book/by-library/?library=&title=` */
-      listByLibrary: async (params: BookByLibraryParams) => {
-        const res = await client.get<HttpSuccessBody<BookByLibraryListData>>(
-          apiPath(regularPath(ApiPaths.bookByLibrary)),
+      /** GET `works/work-items/by-library/?library=&title=` */
+      listByLibrary: async (params: WorkItemsByLibraryParams) => {
+        const res = await client.get<HttpSuccessBody<WorkItemsByLibraryListData>>(
+          apiPath(regularPath(ApiPaths.workItemsByLibrary)),
           { params },
         );
-        return unwrapData<BookByLibraryListData>(res);
+        return unwrapData<WorkItemsByLibraryListData>(res);
       },
     },
   };
 }
+

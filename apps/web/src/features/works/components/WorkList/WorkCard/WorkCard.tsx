@@ -5,14 +5,14 @@ import Link from 'next/link';
 import { APP_ROUTES } from '@lib/routes';
 import { ConfigProvider, Flex, ThemeConfig, Typography } from 'antd';
 import classNames from 'classnames';
-import styles from './BookCard.module.scss';
+import styles from './WorkCard.module.scss';
 import { TextTag, TextTagColor } from './components';
 import { useMemo } from 'react';
 import { StarIcon } from '@shared-packages/ui/icons';
 import { themeVars } from '@shared-packages/ui';
 import { BOOK_CARD_IMAGE_HEIGHT, BOOK_CARD_WIDTH } from '../constants';
 
-interface IBookCardProps {
+interface IWorkCardProps {
   id: string;
   title: string;
   authorNames: string[];
@@ -23,7 +23,7 @@ interface IBookCardProps {
   className?: string;
 }
 
-type TBookCardThemeConfig = ThemeConfig & {
+type TWorkCardThemeConfig = ThemeConfig & {
   token: {
     bookCardWidth: number;
   };
@@ -31,7 +31,7 @@ type TBookCardThemeConfig = ThemeConfig & {
 
 const { Title, Text } = Typography;
 
-export const BookCard = ({
+export const WorkCard = ({
   id,
   title,
   authorNames,
@@ -39,7 +39,7 @@ export const BookCard = ({
   onlineVersionLink,
   available,
   className,
-}: IBookCardProps) => {
+}: IWorkCardProps) => {
   const themeConfig = useMemo(
     () =>
       ({
@@ -55,7 +55,7 @@ export const BookCard = ({
             fontSize: 12,
           },
         },
-      }) as TBookCardThemeConfig,
+      }) as TWorkCardThemeConfig,
     [],
   );
 
@@ -71,11 +71,7 @@ export const BookCard = ({
               height={BOOK_CARD_IMAGE_HEIGHT}
             />
             {available && (
-              <TextTag
-                className={styles.availableTag}
-                text="В наличии"
-                color={TextTagColor.Green}
-              />
+              <TextTag className={styles.availableTag} text="В наличии" color={TextTagColor.Green} />
             )}
           </div>
           <Flex vertical className={styles.bookCardBody} gap={4}>
@@ -99,3 +95,4 @@ export const BookCard = ({
     </ConfigProvider>
   );
 };
+

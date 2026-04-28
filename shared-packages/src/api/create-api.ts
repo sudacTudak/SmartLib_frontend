@@ -2,8 +2,8 @@ import type { AxiosInstance } from 'axios';
 import { createAmenitiesApi } from './domains/amenities';
 import { createAuthorsApi } from './domains/authors';
 import { createAuthApi } from './domains/auth';
-import { createBookLoansApi } from './domains/book-loans';
-import { createBooksApi } from './domains/books';
+import { createWorkLoansApi } from './domains/work-loans';
+import { createWorksApi } from './domains/works';
 import { createFeedbackApi } from './domains/feedback';
 import { createInventoryApi } from './domains/inventory';
 import { createLibrariesApi } from './domains/libraries';
@@ -19,9 +19,9 @@ export function createSmartlibApi(client: AxiosInstance) {
     users: createUsersApi(client),
     staff: createStaffApi(client),
     authors: createAuthorsApi(client),
-    books: createBooksApi(client),
+    works: createWorksApi(client),
     libraries: createLibrariesApi(client),
-    bookLoans: createBookLoansApi(client),
+    workLoans: createWorkLoansApi(client),
     feedback: createFeedbackApi(client),
     positions: createPositionsApi(client),
     inventory: createInventoryApi(client),

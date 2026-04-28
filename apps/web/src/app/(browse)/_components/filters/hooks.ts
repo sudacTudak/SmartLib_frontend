@@ -9,7 +9,7 @@ const api = getSmartlibApi();
 function useGenreOptions() {
   const { data } = useQuery({
     queryKey: ['catalogFilters', 'genres'],
-    queryFn: () => api.books.genre.list(),
+    queryFn: () => api.works.genre.list(),
   });
   return useMemo(() => {
     if (!data) return [];

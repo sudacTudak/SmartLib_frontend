@@ -19,7 +19,7 @@ import type {
   TLibraryBranchFeedbackPatchBody,
 } from './types';
 
-const BOOK_BASIS_FEEDBACKS = `${ApiPaths.feedbackBookBases}/feedbacks`;
+const BOOK_BASIS_FEEDBACKS = `${ApiPaths.feedbackWorks}/feedbacks`;
 const LIB_BRANCH_FEEDBACKS = `${ApiPaths.feedbackLibs}/feedbacks`;
 
 function bookBasisByUserPath(): string {
@@ -35,13 +35,13 @@ function mergeParams(parent: object, extra?: object) {
 }
 
 /**
- * `feedback/book-bases/feedbacks/...` и `feedback/libs/feedbacks/...`
- * list / by-user: опциональный query `bookBasisId` / `libraryBranchId`;
- * create: тело с `bookBasisId` / `libraryBranchId`; patch/delete — только `pk` в path.
+ * `feedback/works/feedbacks/...` и `feedback/libs/feedbacks/...`
+ * list / by-user: опциональный query `workId` / `libraryBranchId`;
+ * create: тело с `workId` / `libraryBranchId`; patch/delete — только `pk` в path.
  */
 export function createFeedbackApi(client: AxiosInstance) {
   return {
-    bookBases: {
+    works: {
       list: async (parent: IBookBasisFeedbackParentParams) => {
         const res = await client.get<HttpSuccessBody<TBookBasisFeedbackListData>>(apiPath(`${BOOK_BASIS_FEEDBACKS}/`), {
           params: parent,

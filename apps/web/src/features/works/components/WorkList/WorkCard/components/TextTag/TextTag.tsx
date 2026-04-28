@@ -13,5 +13,11 @@ interface ITextTagProps {
 }
 
 export const TextTag = ({ color, text, icon, className }: ITextTagProps) => {
-  return <Flex gap={2} align='center' className={cn(styles.textTag, styles[color], className)}>{text}{icon}</Flex>;
+  return (
+    <Flex gap={2} align="center" className={cn(styles.textTag, styles[color], className)}>
+      {text}
+      {icon}
+    </Flex>
+  );
 };
+

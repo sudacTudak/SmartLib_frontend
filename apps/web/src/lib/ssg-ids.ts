@@ -12,16 +12,16 @@ export async function collectLibraryBranchIdsForSSG(): Promise<string[]> {
   }
 }
 
-/** ID экземпляров книг (books/book) по всем филиалам — для SSG. */
+/** ID экземпляров (works/work-items) по всем филиалам — для SSG. */
 export async function collectBookIdsForSSG(): Promise<string[]> {
   try {
     const api = getPublicServerApi();
     const libraries = await api.libraries.list();
     const ids = new Set<string>();
     for (const lib of libraries) {
-      const books = await api.books.book.listByLibrary({ library: lib.id });
-      for (const book of books) {
-        ids.add(book.id);
+      const items = await api.works.workItems.listByLibrary({ library: lib.id });
+      for (const item of items) {
+        ids.add(item.id);
       }
     }
     return [...ids];

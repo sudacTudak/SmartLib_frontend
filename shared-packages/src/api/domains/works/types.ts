@@ -1,10 +1,10 @@
 import type { IsoDateTimeString } from '../../types';
 
 /**
- * `BookBasisSerializer` — book-bases list / retrieve / create / patch.
+ * `WorkSerializer` — works list / retrieve / create / patch.
  * destroy: кастомный ответ 200 с тем же объектом, что и до удаления.
  */
-export interface IBookBasis {
+export interface IWork {
   id: string;
   title: string;
   description: string | null;
@@ -22,14 +22,14 @@ export interface IBookBasis {
   booksAvailableTotal: number;
 }
 
-export type BookBasisListData = IBookBasis[];
-export type BookBasisDetailData = IBookBasis;
+export type WorkListData = IWork[];
+export type WorkDetailData = IWork;
 
-/** GET `book-bases/` — query. */
-export type BookBasisListParams = { onlyAvailable?: boolean };
-export type BookBasisCreateBody = Partial<
+/** GET `works/` — query. */
+export type WorkListParams = { onlyAvailable?: boolean };
+export type WorkCreateBody = Partial<
   Pick<
-    IBookBasis,
+    IWork,
     | 'title'
     | 'description'
     | 'authorIds'
@@ -39,19 +39,19 @@ export type BookBasisCreateBody = Partial<
     | 'onlineVersionLink'
   >
 >;
-export type BookBasisPatchBody = Partial<BookBasisCreateBody>;
-export type BookBasisDeleteData = IBookBasis;
+export type WorkPatchBody = Partial<WorkCreateBody>;
+export type WorkDeleteData = IWork;
 
 /**
  * `GenreSerializer` — genre list / retrieve / create / patch.
- * `book_bases_ids`: read-only PK связанных book basis (см. related_name в модели).
+ * `works`: read-only PK связанных works (см. related_name в модели).
  */
 export type Genre = {
   id: string;
   title: string;
   createdAt: IsoDateTimeString;
   updatedAt: IsoDateTimeString;
-  bookBasesIds: string[];
+  works: string[];
 };
 
 export type GenreListData = Genre[];
@@ -62,9 +62,9 @@ export type GenrePatchBody = Partial<GenreCreateBody>;
 export type GenreDeleteData = null;
 
 /**
- * `BookByLibrarySerializer` — retrieve book и `by-library` (many).
+ * `WorkItemByLibrarySerializer` — retrieve work item и `by-library` (many).
  */
-export type BookByLibrary = {
+export type WorkItemByLibrary = {
   id: string;
   libraryBranchId: string;
   genreId: string;
@@ -80,8 +80,9 @@ export type BookByLibrary = {
   updatedAt: IsoDateTimeString;
 };
 
-export type BookDetailData = BookByLibrary;
-export type BookByLibraryParams = { library: string | number; title?: string };
-export type BookByLibraryListData = BookByLibrary[];
+export type WorkItemDetailData = WorkItemByLibrary;
+export type WorkItemsByLibraryParams = { library: string | number; title?: string };
+export type WorkItemsByLibraryListData = WorkItemByLibrary[];
 
-export type BookListQueryParams = Record<string, string | number | boolean | undefined>;
+export type WorksListQueryParams = Record<string, string | number | boolean | undefined>;
+

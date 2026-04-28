@@ -38,9 +38,9 @@ export { createAuthApi } from './domains/auth';
 export { createUsersApi } from './domains/users';
 export { createStaffApi } from './domains/staff';
 export { createAuthorsApi } from './domains/authors';
-export { createBooksApi } from './domains/books';
+export { createWorksApi } from './domains/works';
 export { createLibrariesApi } from './domains/libraries';
-export { createBookLoansApi } from './domains/book-loans';
+export { createWorkLoansApi } from './domains/work-loans';
 export { createFeedbackApi } from './domains/feedback';
 export { createPositionsApi } from './domains/positions';
 export { createInventoryApi } from './domains/inventory';
@@ -60,25 +60,25 @@ export type { UserPublic, UsersListParams, UsersListData, UsersDetailData } from
 export type { IAuthor, TAuthorListData, TAuthorDetailData, TAuthorCreateBody, TAuthorPatchBody } from './domains/authors';
 
 export type {
-  IBookBasis,
-  BookListQueryParams,
-  BookBasisListParams,
-  BookBasisListData,
-  BookBasisDetailData,
-  BookBasisCreateBody,
-  BookBasisPatchBody,
-  BookBasisDeleteData,
+  IWork,
+  WorksListQueryParams,
+  WorkListParams,
+  WorkListData,
+  WorkDetailData,
+  WorkCreateBody,
+  WorkPatchBody,
+  WorkDeleteData,
   Genre,
   GenreListData,
   GenreDetailData,
   GenreCreateBody,
   GenrePatchBody,
   GenreDeleteData,
-  BookByLibrary,
-  BookDetailData,
-  BookByLibraryParams,
-  BookByLibraryListData,
-} from './domains/books';
+  WorkItemByLibrary,
+  WorkItemDetailData,
+  WorkItemsByLibraryParams,
+  WorkItemsByLibraryListData,
+} from './domains/works';
 
 export type {
   IBookBasisFeedback,
@@ -123,15 +123,15 @@ export type {
 } from './domains/libraries';
 
 export type {
-  BookLoan,
-  BookLoanListParams,
-  BookLoanListData,
-  BookLoanDetailData,
-  BookLoanCreateBody,
-  BookLoanCreateResponseData,
-  BookLoanProlongBody,
-  BookLoanProlongData,
-} from './domains/book-loans';
+  WorkLoan,
+  WorkLoanListParams,
+  WorkLoanListData,
+  WorkLoanDetailData,
+  WorkLoanCreateBody,
+  WorkLoanCreateResponseData,
+  WorkLoanProlongBody,
+  WorkLoanProlongData,
+} from './domains/work-loans';
 
 export type {
   Position,

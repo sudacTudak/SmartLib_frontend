@@ -15,14 +15,13 @@ export const ApiPaths = {
   usersProfile: 'users/profile',
   usersStaff: 'users/staff',
   authors: 'authors',
-  books: 'books',
-  bookBases: 'books/book-bases',
-  genre: 'books/genre',
-  book: 'books/book',
-  bookByLibrary: 'books/book/by-library',
+  works: 'works',
+  genre: 'works/genre',
+  workItems: 'works/work-items',
+  workItemsByLibrary: 'works/work-items/by-library',
   libs: 'libs',
   libBranch: 'libs/branch',
-  bookLoans: 'book-loans',
+  workLoans: 'work-loans',
   positions: 'positions',
   inventory: 'inventory',
   inventoryMovements: 'inventory/movements',
@@ -30,7 +29,7 @@ export const ApiPaths = {
   amenities: 'amenities',
   amenityVendors: 'amenities/vendors',
   /** Отзывы: `api/v1/feedback/...` (см. `feedback/urls.py` на бэке). */
-  feedbackBookBases: 'feedback/book-bases',
+  feedbackWorks: 'feedback/works',
   feedbackLibs: 'feedback/libs',
 } as const;
 
