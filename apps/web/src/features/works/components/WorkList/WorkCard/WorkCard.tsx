@@ -16,7 +16,7 @@ interface IWorkCardProps {
   id: string;
   title: string;
   authorNames: string[];
-  genre?: string;
+  genreTitles: string[];
   rating?: number;
   onlineVersionLink: string | null;
   available: boolean;
@@ -35,6 +35,7 @@ export const WorkCard = ({
   id,
   title,
   authorNames,
+  genreTitles,
   rating,
   onlineVersionLink,
   available,
@@ -83,6 +84,13 @@ export const WorkCard = ({
                 <Text key={authorName}>{authorName}</Text>
               ))}
             </Flex>
+            {genreTitles.length > 0 && (
+              <Flex gap={2} className={styles.tags} wrap="wrap">
+                {genreTitles.slice(0, 2).map((t) => (
+                  <TextTag key={t} text={t} color={TextTagColor.Yellow} />
+                ))}
+              </Flex>
+            )}
             <Flex gap={2} className={styles.tags}>
               {onlineVersionLink && <TextTag text="PDF" color={TextTagColor.Green} />}
               {rating && (

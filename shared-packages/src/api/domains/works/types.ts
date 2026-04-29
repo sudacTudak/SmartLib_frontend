@@ -1,3 +1,5 @@
+import type { WorkCategory } from '@shared-packages/enums';
+
 import type { IsoDateTimeString } from '../../types';
 
 /**
@@ -9,9 +11,10 @@ export interface IWork {
   title: string;
   description: string | null;
   authorIds: string[];
+  category: WorkCategory;
   publisher: string;
   createdYear: number;
-  genre: string;
+  genreIds: string[];
   onlineVersionLink: string | null;
   createdAt: IsoDateTimeString;
   updatedAt: IsoDateTimeString;
@@ -26,16 +29,17 @@ export type WorkListData = IWork[];
 export type WorkDetailData = IWork;
 
 /** GET `works/` — query. */
-export type WorkListParams = { onlyAvailable?: boolean };
+export type WorkListParams = { onlyAvailable?: boolean; category?: WorkCategory };
 export type WorkCreateBody = Partial<
   Pick<
     IWork,
     | 'title'
     | 'description'
     | 'authorIds'
+    | 'category'
     | 'publisher'
     | 'createdYear'
-    | 'genre'
+    | 'genreIds'
     | 'onlineVersionLink'
   >
 >;
@@ -67,7 +71,8 @@ export type GenreDeleteData = null;
 export type WorkItemByLibrary = {
   id: string;
   libraryBranchId: string;
-  genreId: string;
+  category: WorkCategory;
+  genreIds: string[];
   title: string;
   authorIds: string[];
   publisher: string;

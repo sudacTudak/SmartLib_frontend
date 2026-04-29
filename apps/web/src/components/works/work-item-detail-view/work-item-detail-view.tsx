@@ -1,6 +1,7 @@
 'use client';
 
 import type { WorkItemDetailData } from '@shared-packages/api';
+import { getWorkCategoryLabel } from '@shared-packages/enums';
 import { Alert, Descriptions, Typography } from 'antd';
 
 import { AuthStatus } from 'src/lib/auth/enums';
@@ -34,7 +35,10 @@ export function WorkItemDetailView({ item }: WorkItemDetailViewProps) {
         <Descriptions.Item label="Авторы (id)">{item.authorIds.join(', ')}</Descriptions.Item>
         <Descriptions.Item label="Издательство">{item.publisher}</Descriptions.Item>
         <Descriptions.Item label="Год">{item.createdYear}</Descriptions.Item>
-        <Descriptions.Item label="Жанр (id)">{item.genreId}</Descriptions.Item>
+        <Descriptions.Item label="Тип произведения">
+          {getWorkCategoryLabel(item.category)} ({item.category})
+        </Descriptions.Item>
+        <Descriptions.Item label="Жанры (id)">{item.genreIds.join(', ') || '—'}</Descriptions.Item>
         <Descriptions.Item label="Филиал (id)">{item.libraryBranchId}</Descriptions.Item>
         <Descriptions.Item label="Всего экземпляров">{item.totalCount}</Descriptions.Item>
         <Descriptions.Item label="Доступно">{item.availableCount}</Descriptions.Item>
