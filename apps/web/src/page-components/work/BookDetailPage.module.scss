@@ -65,8 +65,8 @@
 }
 
 .title {
-  font-size: 2rem;
-  line-height: 1.15;
+  font-size: 24px;
+  line-height: calc(30px / 24px);
   font-weight: 700;
   margin: 0;
 }
@@ -74,9 +74,10 @@
 .subRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 0.75rem;
+  gap: 2px;
   color: var(--smartlib-color-text-secondary);
-  font-size: 0.95rem;
+  font-size: 14px;
+  line-height: calc(18px / 14px);
 }
 
 .label {
@@ -99,8 +100,19 @@
   border: 1px solid color-mix(in oklab, var(--smartlib-color-primary) 25%, transparent);
 }
 
-.desc {
-  margin: 0.75rem 0 0;
+.descriptionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.descriptionTitle {
+  font-size: 16px;
+  line-height: calc(20px / 16px);
+  font-weight: 700;
+}
+
+.description {
   color: var(--smartlib-color-text);
   font-size: 1rem;
   line-height: 1.6;
@@ -114,33 +126,23 @@
   margin-top: 0.5rem;
 }
 
-.reserveButton {
-  /* Styling AntD button via className (allowed as a small child component). */
-  background: var(--smartlib-color-fill-background-components-button-secondary-default);
-  border-color: var(--smartlib-color-fill-background-components-button-secondary-default);
-  color: var(--smartlib-color-text);
-  font-weight: 800;
-  border-radius: 12px;
-  height: 40px;
-  padding: 0 14px;
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.reserveButton:hover {
-  background: var(--smartlib-color-fill-background-components-button-secondary-hover);
-  border-color: var(--smartlib-color-fill-background-components-button-secondary-hover);
-}
-
-.reserveButton:active {
-  background: var(--smartlib-color-fill-background-components-button-secondary-active);
-  border-color: var(--smartlib-color-fill-background-components-button-secondary-active);
+.actions {
+  gap: 10px;
 }
 
 .readOnlineLink {
+  width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 10px 14px;
-  border-radius: 12px;
+  border-radius: 8px;
   background: var(--smartlib-color-fill-background-components-button-primary-default);
   color: var(--smartlib-color-white);
   text-decoration: none;
@@ -185,4 +187,3 @@
   background: rgba(0, 0, 0, 0.12);
   border-radius: 999px;
 }
-

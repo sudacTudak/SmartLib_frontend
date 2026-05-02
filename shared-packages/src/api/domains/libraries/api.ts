@@ -4,42 +4,41 @@ import { ApiPaths, detailPath, regularPath } from '../../paths';
 import type { HttpSuccessBody } from '../../types';
 import { unwrapData } from '../../unwrap';
 import type {
-  LibraryBranchCreateBody,
-  LibraryBranchDetailData,
-  LibraryBranchListData,
-  LibraryBranchListParams,
-  LibraryBranchPatchBody,
+  TLibraryBranchCreateBody,
+  TLibraryBranchDetailData,
+  TLibraryBranchListData,
+  TLibraryBranchListParams,
+  TLibraryBranchPatchBody,
 } from './types';
 
 /** `LibraryBranchViewSet`: list, retrieve, create, partial_update (без destroy). */
 export function createLibrariesApi(client: AxiosInstance) {
   return {
-    list: async (params?: LibraryBranchListParams) => {
-      const res = await client.get<HttpSuccessBody<LibraryBranchListData>>(
-        apiPath(regularPath(ApiPaths.libBranch)),
-        { params },
-      );
-      return unwrapData<LibraryBranchListData>(res);
+    list: async (params?: TLibraryBranchListParams) => {
+      const res = await client.get<HttpSuccessBody<TLibraryBranchListData>>(apiPath(regularPath(ApiPaths.libBranch)), {
+        params,
+      });
+      return unwrapData<TLibraryBranchListData>(res);
     },
     get: async (id: string | number) => {
-      const res = await client.get<HttpSuccessBody<LibraryBranchDetailData>>(
+      const res = await client.get<HttpSuccessBody<TLibraryBranchDetailData>>(
         apiPath(detailPath(ApiPaths.libBranch, id)),
       );
-      return unwrapData<LibraryBranchDetailData>(res);
+      return unwrapData<TLibraryBranchDetailData>(res);
     },
-    create: async (body: LibraryBranchCreateBody) => {
-      const res = await client.post<HttpSuccessBody<LibraryBranchDetailData>>(
+    create: async (body: TLibraryBranchCreateBody) => {
+      const res = await client.post<HttpSuccessBody<TLibraryBranchDetailData>>(
         apiPath(regularPath(ApiPaths.libBranch)),
         body,
       );
-      return unwrapData<LibraryBranchDetailData>(res);
+      return unwrapData<TLibraryBranchDetailData>(res);
     },
-    partialUpdate: async (id: string | number, body: LibraryBranchPatchBody) => {
-      const res = await client.patch<HttpSuccessBody<LibraryBranchDetailData>>(
+    partialUpdate: async (id: string | number, body: TLibraryBranchPatchBody) => {
+      const res = await client.patch<HttpSuccessBody<TLibraryBranchDetailData>>(
         apiPath(detailPath(ApiPaths.libBranch, id)),
         body,
       );
-      return unwrapData<LibraryBranchDetailData>(res);
+      return unwrapData<TLibraryBranchDetailData>(res);
     },
   };
 }

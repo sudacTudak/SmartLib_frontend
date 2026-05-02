@@ -33,14 +33,7 @@ export type WorkListParams = { onlyAvailable?: boolean; category?: WorkCategory 
 export type WorkCreateBody = Partial<
   Pick<
     IWork,
-    | 'title'
-    | 'description'
-    | 'authorIds'
-    | 'category'
-    | 'publisher'
-    | 'createdYear'
-    | 'genreIds'
-    | 'onlineVersionLink'
+    'title' | 'description' | 'authorIds' | 'category' | 'publisher' | 'createdYear' | 'genreIds' | 'onlineVersionLink'
   >
 >;
 export type WorkPatchBody = Partial<WorkCreateBody>;
@@ -95,3 +88,11 @@ export type WorkItemsByWorkListData = WorkItemByLibrary[];
 
 export type WorksListQueryParams = Record<string, string | number | boolean | undefined>;
 
+export interface IAvailabilityByWorkParams {
+  workId: string;
+}
+export interface IAvailabilityByWorkResponse {
+  workId: string;
+  totalAvailableCount: number;
+  availableByLibraryBranchIds: Record<string, number>;
+}

@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';;
+import Link from 'next/link';
 import { ConfigProvider, Flex, ThemeConfig, Typography } from 'antd';
 import classNames from 'classnames';
 import styles from './WorkCard.module.scss';
@@ -63,7 +63,7 @@ export const WorkCard = ({
   return (
     <ConfigProvider theme={themeConfig}>
       <Flex vertical className={classNames(styles.bookCard, className)}>
-        <Link href={APP_ROUTES.book(id)}>
+        <Link href={APP_ROUTES.work(id)}>
           <div className={styles.imageContainer}>
             <Image
               src={`https://placehold.co/${BOOK_CARD_WIDTH}x${BOOK_CARD_IMAGE_HEIGHT}/png`}
@@ -71,13 +71,7 @@ export const WorkCard = ({
               width={BOOK_CARD_WIDTH}
               height={BOOK_CARD_IMAGE_HEIGHT}
             />
-            {available && (
-              <TextTag
-                className={styles.availableTag}
-                text="В наличии"
-                color={TextTagColor.Green}
-              />
-            )}
+            {available && <TextTag className={styles.availableTag} text="В наличии" color={TextTagColor.Green} />}
           </div>
           <Flex vertical className={styles.bookCardBody} gap={4}>
             <Title level={3} className={styles.title}>
@@ -97,9 +91,7 @@ export const WorkCard = ({
             )}
             <Flex gap={2} className={styles.tags}>
               {onlineVersionLink && <TextTag text="PDF" color={TextTagColor.Green} />}
-              {rating && (
-                <TextTag text={rating.toString()} color={TextTagColor.Yellow} icon={<StarIcon />} />
-              )}
+              {rating && <TextTag text={rating.toString()} color={TextTagColor.Yellow} icon={<StarIcon />} />}
             </Flex>
           </Flex>
         </Link>

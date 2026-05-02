@@ -21,6 +21,8 @@ import type {
   GenreDetailData,
   GenreListData,
   GenrePatchBody,
+  IAvailabilityByWorkParams,
+  IAvailabilityByWorkResponse,
 } from './types';
 
 /** `works`, `genre`, `work-items` + `by-library`. */
@@ -28,81 +30,53 @@ export function createWorksApi(client: AxiosInstance) {
   return {
     works: {
       list: async (params?: WorkListParams) => {
-        const res = await client.get<HttpSuccessBody<WorkListData>>(
-          apiPath(regularPath(ApiPaths.works)),
-          { params },
-        );
+        const res = await client.get<HttpSuccessBody<WorkListData>>(apiPath(regularPath(ApiPaths.works)), { params });
         return unwrapData<WorkListData>(res);
       },
       get: async (id: string | number) => {
-        const res = await client.get<HttpSuccessBody<WorkDetailData>>(
-          apiPath(detailPath(ApiPaths.works, id)),
-        );
+        const res = await client.get<HttpSuccessBody<WorkDetailData>>(apiPath(detailPath(ApiPaths.works, id)));
         return unwrapData<WorkDetailData>(res);
       },
       create: async (body: WorkCreateBody) => {
-        const res = await client.post<HttpSuccessBody<WorkDetailData>>(
-          apiPath(regularPath(ApiPaths.works)),
-          body,
-        );
+        const res = await client.post<HttpSuccessBody<WorkDetailData>>(apiPath(regularPath(ApiPaths.works)), body);
         return unwrapData<WorkDetailData>(res);
       },
       partialUpdate: async (id: string | number, body: WorkPatchBody) => {
-        const res = await client.patch<HttpSuccessBody<WorkDetailData>>(
-          apiPath(detailPath(ApiPaths.works, id)),
-          body,
-        );
+        const res = await client.patch<HttpSuccessBody<WorkDetailData>>(apiPath(detailPath(ApiPaths.works, id)), body);
         return unwrapData<WorkDetailData>(res);
       },
       delete: async (id: string | number) => {
-        const res = await client.delete<HttpSuccessBody<WorkDeleteData>>(
-          apiPath(detailPath(ApiPaths.works, id)),
-        );
+        const res = await client.delete<HttpSuccessBody<WorkDeleteData>>(apiPath(detailPath(ApiPaths.works, id)));
         return unwrapData<WorkDeleteData>(res);
       },
     },
 
     genre: {
       list: async (params?: WorksListQueryParams) => {
-        const res = await client.get<HttpSuccessBody<GenreListData>>(
-          apiPath(regularPath(ApiPaths.genre)),
-          { params },
-        );
+        const res = await client.get<HttpSuccessBody<GenreListData>>(apiPath(regularPath(ApiPaths.genre)), { params });
         return unwrapData<GenreListData>(res);
       },
       get: async (id: string | number) => {
-        const res = await client.get<HttpSuccessBody<GenreDetailData>>(
-          apiPath(detailPath(ApiPaths.genre, id)),
-        );
+        const res = await client.get<HttpSuccessBody<GenreDetailData>>(apiPath(detailPath(ApiPaths.genre, id)));
         return unwrapData<GenreDetailData>(res);
       },
       create: async (body: GenreCreateBody) => {
-        const res = await client.post<HttpSuccessBody<GenreDetailData>>(
-          apiPath(regularPath(ApiPaths.genre)),
-          body,
-        );
+        const res = await client.post<HttpSuccessBody<GenreDetailData>>(apiPath(regularPath(ApiPaths.genre)), body);
         return unwrapData<GenreDetailData>(res);
       },
       partialUpdate: async (id: string | number, body: GenrePatchBody) => {
-        const res = await client.patch<HttpSuccessBody<GenreDetailData>>(
-          apiPath(detailPath(ApiPaths.genre, id)),
-          body,
-        );
+        const res = await client.patch<HttpSuccessBody<GenreDetailData>>(apiPath(detailPath(ApiPaths.genre, id)), body);
         return unwrapData<GenreDetailData>(res);
       },
       delete: async (id: string | number) => {
-        const res = await client.delete<HttpSuccessBody<GenreDeleteData>>(
-          apiPath(detailPath(ApiPaths.genre, id)),
-        );
+        const res = await client.delete<HttpSuccessBody<GenreDeleteData>>(apiPath(detailPath(ApiPaths.genre, id)));
         return unwrapData<GenreDeleteData>(res);
       },
     },
 
     workItems: {
       get: async (id: string | number) => {
-        const res = await client.get<HttpSuccessBody<WorkItemDetailData>>(
-          apiPath(detailPath(ApiPaths.workItems, id)),
-        );
+        const res = await client.get<HttpSuccessBody<WorkItemDetailData>>(apiPath(detailPath(ApiPaths.workItems, id)));
         return unwrapData<WorkItemDetailData>(res);
       },
 
@@ -123,7 +97,15 @@ export function createWorksApi(client: AxiosInstance) {
         );
         return unwrapData<WorkItemsByWorkListData>(res);
       },
+
+      availabilityByWork: async (params: IAvailabilityByWorkParams) => {
+        const res = await client.get<HttpSuccessBody<IAvailabilityByWorkResponse>>(
+          apiPath(regularPath(ApiPaths.workItemsAvailabilityByWork)),
+          { params },
+        );
+        console.log('res: ', res);
+        return unwrapData<IAvailabilityByWorkResponse>(res);
+      },
     },
   };
 }
-

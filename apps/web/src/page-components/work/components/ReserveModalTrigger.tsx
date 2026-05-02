@@ -3,6 +3,8 @@
 import { useMemo, useState } from 'react';
 import { Button, Modal } from 'antd';
 import styles from './ReserveModalTrigger.module.scss';
+import classNames from 'classnames';
+
 
 type ReserveModalTriggerProps = {
   disabled?: boolean;
@@ -29,7 +31,7 @@ export function ReserveModalTrigger({
 
   return (
     <>
-      <Button className={className} type={variant} disabled={disabled} onClick={() => setOpen(true)}>
+      <Button className={classNames(styles.reserveButton, className)} type={variant} disabled={disabled} onClick={() => setOpen(true)}>
         {label}
       </Button>
       <Modal

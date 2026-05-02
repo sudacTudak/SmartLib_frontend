@@ -47,17 +47,17 @@ export { createInventoryApi } from './domains/inventory';
 export { createSuppliersApi } from './domains/suppliers';
 export { createAmenitiesApi } from './domains/amenities';
 
-export type {
-  LoginBody,
-  RegisterBody,
-  LogoutBody,
-  ChangePasswordBody,
-  ResetPasswordBody,
-} from './domains/auth';
+export type { LoginBody, RegisterBody, LogoutBody, ChangePasswordBody, ResetPasswordBody } from './domains/auth';
 
 export type { UserPublic, UsersListParams, UsersListData, UsersDetailData } from './domains/users';
 
-export type { IAuthor, TAuthorListData, TAuthorDetailData, TAuthorCreateBody, TAuthorPatchBody } from './domains/authors';
+export type {
+  IAuthor,
+  TAuthorListData,
+  TAuthorDetailData,
+  TAuthorCreateBody,
+  TAuthorPatchBody,
+} from './domains/authors';
 
 export type {
   IWork,
@@ -116,12 +116,12 @@ export type {
 } from './domains/staff';
 
 export type {
-  LibraryBranch,
-  LibraryBranchListParams,
-  LibraryBranchListData,
-  LibraryBranchDetailData,
-  LibraryBranchCreateBody,
-  LibraryBranchPatchBody,
+  ILibraryBranch as LibraryBranch,
+  TLibraryBranchListParams as LibraryBranchListParams,
+  TLibraryBranchListData as LibraryBranchListData,
+  TLibraryBranchDetailData as LibraryBranchDetailData,
+  TLibraryBranchCreateBody as LibraryBranchCreateBody,
+  TLibraryBranchPatchBody as LibraryBranchPatchBody,
 } from './domains/libraries';
 
 export type {

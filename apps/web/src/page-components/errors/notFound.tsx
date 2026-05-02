@@ -1,6 +1,8 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import styles from './styles.module.scss';
-import { useRouter } from 'next/router';
 import { APP_ROUTES } from 'src/global/routes';
 
 export function NotFoundErrorPage() {
@@ -13,7 +15,9 @@ export function NotFoundErrorPage() {
           <h1 className={styles.title}>404. Страница не найдена</h1>
           <p>Извините, мы не смогли найти то, что Вы искали.</p>
           <div>
-            <button onClick={router.back}>Вернуться назад</button>
+            <button type="button" onClick={() => router.back()}>
+              Вернуться назад
+            </button>
             <Link href={APP_ROUTES.catalog}>К каталогу</Link>
           </div>
         </div>

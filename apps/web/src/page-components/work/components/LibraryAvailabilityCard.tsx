@@ -1,42 +1,43 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import type { LibraryBranchDetailData, WorkItemByLibrary } from '@shared-packages/api';
+import type { LibraryBranchDetailData } from '@shared-packages/api';
 
-import { APP_ROUTES } from 'src/lib/routes';
+import { APP_ROUTES } from '@global/routes';
 import styles from './LibraryAvailabilityCard.module.scss';
-import { ReserveButtonAuthGate } from '../../../../../components/book-detail/ReserveButtonAuthGate';
+import { ReserveButtonAuthGate } from './ReserveButtonAuthGate';
 
-type Props = {
-  branch: LibraryBranchDetailData;
-  item: WorkItemByLibrary;
+interface IProps {
+  workId: string
+  library: LibraryBranchDetailData;
+  availableCount: number;
 };
 
-export function LibraryAvailabilityCard({ branch, item }: Props) {
-  const preview = branch.previewLink || `https://placehold.co/600x400/png?text=Library`;
+export function LibraryAvailabilityCard({ workId, library, availableCount }: IProps) {
+  const preview = library.previewLink || `https://placehold.co/600x400/png?text=Library`;
 
   return (
     <div className={styles.card}>
       <div className={styles.image}>
-        <Image src={preview} alt={branch.address} fill sizes="260px" className={styles.img} />
+        <Image src={preview} alt={library.address} fill sizes="260px" className={styles.img} />
       </div>
 
       <div className={styles.body}>
-        <p className={styles.address}>{branch.address}</p>
-        <div className={styles.badge}>В наличии: {item.availableCount}</div>
+        <p className={styles.address}>{library.address}</p>
+        <div className={styles.badge}>В наличии: {availableCount}</div>
       </div>
 
       <div className={styles.overlay}>
         <div className={styles.overlayInner}>
-          <Link className={styles.overlayAction} href={APP_ROUTES.libraryBranch(branch.id)}>
+          <Link className={styles.overlayAction} href={APP_ROUTES.libraryBranch(library.id)}>
             Перейти
           </Link>
 
           <ReserveButtonAuthGate
-            disabled={item.availableCount <= 0}
+            disabled={availableCount <= 0}
             variant="default"
             className={styles.overlayReserveButton}
-            context={{ workItemId: item.id, workId: item.workId, libraryBranchId: branch.id }}
+            context={{ workId, libraryBranchId: library.id }}
           />
         </div>
       </div>

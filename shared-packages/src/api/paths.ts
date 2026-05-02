@@ -20,6 +20,7 @@ export const ApiPaths = {
   workItems: 'works/work-items',
   workItemsByLibrary: 'works/work-items/by-library',
   workItemsByWork: 'works/work-items/by-work',
+  workItemsAvailabilityByWork: 'works/work-items/availability-by-work',
   libs: 'libs',
   libBranch: 'libs/branch',
   workLoans: 'work-loans',

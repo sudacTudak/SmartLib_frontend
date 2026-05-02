@@ -1,7 +1,7 @@
 .textTag {
     display: inline-flex;
     padding: 2px 4px;
-    border-radius: var(--ant-border-radius-sm);
+    border-radius: var(--ant-border-radius);
     /* Prefer SmartLib design tokens in custom SCSS; they are set from `design-tokens.ts` via DesignTokensRootStyle */
     background-color: var(--smartlib-color-white);
     border: 1px solid currentColor;
