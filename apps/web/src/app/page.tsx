@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-import { APP_ROUTES } from '@lib/routes';
+import { APP_ROUTES } from '@global/routes';
 
 export default function HomePage() {
   redirect(APP_ROUTES.catalog);

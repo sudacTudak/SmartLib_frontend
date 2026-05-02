@@ -1,13 +1,9 @@
-import { Suspense } from 'react';
-
-import { Header } from 'src/components/layout/Header';
-import { SearchBar } from '../../components/layout/search/SearchBar';
+import { Header } from 'src/widgets/layout/Header';
 
 import styles from './browse-layout.module.scss';
-import { CatalogFilters } from './_components/filters/CatalogFilters';
-import { Loader } from 'src/features/ui/Loader';
-import { SearchContextProvider } from 'src/features/search';
-import { FilterButton } from './_components/filters/FilterButton';
+import { CatalogFilters } from '../../page-components/catalog/CatalogFilters/CatalogFilters';
+import { SearchContextProvider } from 'src/global/globalSearch';
+import { FilterButton } from '../../page-components/catalog/CatalogFilters/FilterButton';
 
 /** Каталог, карточки книги и библиотеки: общий шапка + поиск. */
 export default function BrowseLayout({ children }: { children: React.ReactNode }) {
@@ -17,7 +13,6 @@ export default function BrowseLayout({ children }: { children: React.ReactNode }
         <Header />
         <div>
           <FilterButton />
-
         </div>
         <CatalogFilters />
         <div className={styles.main}>{children}</div>

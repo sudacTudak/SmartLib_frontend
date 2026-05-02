@@ -1,8 +1,8 @@
-import { PageContent } from 'src/components/layout/page-content/page-content';
-import { WorkList } from '@features/works/components/WorkList';
-import { getSmartlibApi } from 'src/lib/api';
+import { PageContent } from '@widgets/layout/PageContent/PageContent';
+import { WorkList } from '@features/works/ui/WorkList';
+import { getSmartlibApi } from '@global/api';
 
-const api = getSmartlibApi()
+const api = getSmartlibApi();
 
 export default async function CatalogPage() {
   const works = await api.works.works.list();

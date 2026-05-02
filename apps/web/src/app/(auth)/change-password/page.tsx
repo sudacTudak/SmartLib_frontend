@@ -9,9 +9,9 @@ import { message, Spin } from 'antd';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-import { getAuthSession } from 'src/lib/api';
-import { AuthStatus } from 'src/lib/auth/enums';
-import { useAuth } from 'src/lib/auth/auth-context';
+import { getAuthSession } from '@global/api';
+import { AuthStatus } from '@global/auth/enums';
+import { useAuth } from '@global/auth/auth-context';
 
 import styles from './change-password-page.module.scss';
 

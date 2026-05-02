@@ -53,7 +53,7 @@ export enum WorkCategory {
 }
 
 /** Человекочитаемые названия для UI и отладки. */
-export const WORK_CATEGORY_LABELS: Record<WorkCategory, string> = {
+export const WORK_CATEGORY_SINGLE_LABELS: Record<WorkCategory, string> = {
   [WorkCategory.Book]: 'Книга',
   [WorkCategory.ScientificArticle]: 'Научная статья',
   [WorkCategory.CollectedArticles]: 'Сборник статей',
@@ -62,7 +62,11 @@ export const WORK_CATEGORY_LABELS: Record<WorkCategory, string> = {
   [WorkCategory.LectureNotes]: 'Сборник лекций',
 };
 
-export function getWorkCategoryLabel(category: WorkCategory | string): string {
-  const key = category as WorkCategory;
-  return WORK_CATEGORY_LABELS[key] ?? String(category);
-}
+export const WORK_CATEGORY_MULTI_LABELS: Record<WorkCategory, string> = {
+  [WorkCategory.Book]: 'Книги',
+  [WorkCategory.ScientificArticle]: 'Научные статьи',
+  [WorkCategory.CollectedArticles]: 'Сборники статей',
+  [WorkCategory.Journal]: 'Журналы',
+  [WorkCategory.Comic]: 'Комиксы',
+  [WorkCategory.LectureNotes]: 'Сборники лекций',
+};

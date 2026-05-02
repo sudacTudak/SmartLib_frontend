@@ -1,0 +1,14 @@
+.infoGrid {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  @media (max-width: 900px) {
+    gap: 4px;
+  }
+
+  @media (max-width: 520px) {
+    flex-direction: column;
+  }
+}
