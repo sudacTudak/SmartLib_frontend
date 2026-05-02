@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import '@shared-packages/styles/smartlib-root.css';
-import '@shared-packages/styles/normalize.scss'
+import { DesignTokensRootStyle } from '@shared-packages/styles/DesignTokensRootStyle';
+import '@shared-packages/styles/normalize.scss';
 import { Providers } from './providers';
 import './globals.scss';
 
@@ -13,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ru">
       <body>
+        <DesignTokensRootStyle />
         <Providers>{children}</Providers>
       </body>
     </html>

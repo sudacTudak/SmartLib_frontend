@@ -4,8 +4,8 @@ import { themeVars } from './themeVars';
 export type TCustomThemeConfig = ThemeConfig & {}
 
 /**
- * Тема Ant Design на литералах из `themeVars` (и `variables.module.css`).
- * Шрифт / радиус пока не вынесены в themeVars — см. `smartlib-root.css`.
+ * Тема Ant Design на литералах из `themeVars` (`design-tokens.ts`).
+ * Шрифт / радиус пока не вынесены в themeVars — см. тот же файл и `getSmartlibDesignTokensRootCss`.
  */
 export const smartlibAntdTheme: TCustomThemeConfig = {
   token: {

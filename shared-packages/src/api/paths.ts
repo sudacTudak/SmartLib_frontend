@@ -19,6 +19,7 @@ export const ApiPaths = {
   genre: 'works/genre',
   workItems: 'works/work-items',
   workItemsByLibrary: 'works/work-items/by-library',
+  workItemsByWork: 'works/work-items/by-work',
   libs: 'libs',
   libBranch: 'libs/branch',
   workLoans: 'work-loans',

@@ -7,6 +7,7 @@ import type { IsoDateTimeString } from '../../types';
 export type LibraryBranch = {
   id: string;
   address: string;
+  previewLink: string | null;
   createdAt: IsoDateTimeString;
   updatedAt: IsoDateTimeString;
   /** Агрегат по отзывам (GET list/retrieve; при write-ответах может отсутствовать). */

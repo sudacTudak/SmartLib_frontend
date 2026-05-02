@@ -1,0 +1,228 @@
+.root {
+  display: grid;
+  gap: 2rem;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.25rem;
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--smartlib-color-primary) 18%, var(--smartlib-color-bg-container)),
+    var(--smartlib-color-bg-container)
+  );
+  border: 1px solid var(--smartlib-color-border-secondary);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -120px -120px auto auto;
+  width: 280px;
+  height: 280px;
+  border-radius: 999px;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--smartlib-color-primary) 35%, transparent),
+    transparent
+  );
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cover {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 3 / 4;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--smartlib-color-bg-container);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.coverImg {
+  object-fit: cover;
+}
+
+.meta {
+  display: grid;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 2rem;
+  line-height: 1.15;
+  font-weight: 700;
+  margin: 0;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 900px) {
+  .infoGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.infoCard {
+  border: 1px solid var(--smartlib-color-border-secondary);
+  background: color-mix(in oklab, var(--smartlib-color-white) 80%, transparent);
+  border-radius: 14px;
+  padding: 0.75rem 0.85rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.infoLabel {
+  color: var(--smartlib-color-text-tertiary);
+  font-size: 0.85rem;
+}
+
+.infoValue {
+  color: var(--smartlib-color-text);
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.subRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  color: var(--smartlib-color-text-secondary);
+  font-size: 0.95rem;
+}
+
+.label {
+  font-weight: 700;
+  color: var(--smartlib-color-text);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--smartlib-color-text) 6%, transparent);
+  color: var(--smartlib-color-text);
+}
+
+.pillPrimary {
+  background: color-mix(in oklab, var(--smartlib-color-primary) 18%, transparent);
+  color: var(--smartlib-color-text);
+  border: 1px solid color-mix(in oklab, var(--smartlib-color-primary) 25%, transparent);
+}
+
+.desc {
+  margin: 0.75rem 0 0;
+  color: var(--smartlib-color-text);
+  font-size: 1rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.reserveButton {
+  /* Styling AntD button via className (allowed as a small child component). */
+  background: var(--smartlib-color-fill-background-components-button-secondary-default);
+  border-color: var(--smartlib-color-fill-background-components-button-secondary-default);
+  color: var(--smartlib-color-text);
+  font-weight: 800;
+  border-radius: 12px;
+  height: 40px;
+  padding: 0 14px;
+}
+
+.reserveButton:hover {
+  background: var(--smartlib-color-fill-background-components-button-secondary-hover);
+  border-color: var(--smartlib-color-fill-background-components-button-secondary-hover);
+}
+
+.reserveButton:active {
+  background: var(--smartlib-color-fill-background-components-button-secondary-active);
+  border-color: var(--smartlib-color-fill-background-components-button-secondary-active);
+}
+
+.readOnlineLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--smartlib-color-fill-background-components-button-primary-default);
+  color: var(--smartlib-color-white);
+  text-decoration: none;
+  font-weight: 700;
+  transition: background 150ms ease;
+  height: 40px;
+}
+
+.readOnlineLink:hover {
+  background: var(--smartlib-color-fill-background-components-button-primary-hover);
+}
+
+.readOnlineLink:active {
+  background: var(--smartlib-color-fill-background-components-button-primary-active);
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.slider {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.scrollRow {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 260px);
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x mandatory;
+}
+
+.scrollRow::-webkit-scrollbar {
+  height: 10px;
+}
+.scrollRow::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+}
+

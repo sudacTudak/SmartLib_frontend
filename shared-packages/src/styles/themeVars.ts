@@ -1,58 +1,57 @@
-import styles from './variables.module.css';
+import { designTokenLiterals as d } from './design-tokens';
 
 /**
- * Семантическая карта поверх литералов из `variables.module.css` (как в вашем примере с `themeVars`).
- * Расширяйте вложенность под продукт — здесь базовая схема Ant-подобных токенов.
+ * Семантическая карта поверх литералов из `design-tokens.ts` (тот же SSOT, что и `:root` в `DesignTokensRootStyle`).
  */
 export const themeVars = {
   color: {
     common: {
-      white: styles.colorWhite,
-      yellow: styles.colorYellow
+      white: d.colorWhite,
+      yellow: d.colorYellow,
     },
     brand: {
-      primary: styles.colorPrimaryLight,
-      success: styles.colorSuccessLight,
-      warning: styles.colorWarningLight,
-      error: styles.colorErrorLight,
-      info: styles.colorInfoLight,
+      primary: d.colorPrimaryLight,
+      success: d.colorSuccessLight,
+      warning: d.colorWarningLight,
+      error: d.colorErrorLight,
+      info: d.colorInfoLight,
     },
     text: {
-      primary: styles.colorTextLight,
-      secondary: styles.colorTextSecondaryLight,
-      tertiary: styles.colorTextTertiaryLight,
-      quaternary: styles.colorTextQuaternaryLight,
+      primary: d.colorTextLight,
+      secondary: d.colorTextSecondaryLight,
+      tertiary: d.colorTextTertiaryLight,
+      quaternary: d.colorTextQuaternaryLight,
 
       button: {
-        default: styles.textButtonDefaultLight,
-        hover: styles.textButtonHoverLight,
-        active: styles.textButtonActiveLight,
+        default: d.textButtonDefaultLight,
+        hover: d.textButtonHoverLight,
+        active: d.textButtonActiveLight,
         cancel: {
-          default: styles.textButtonCancelDefaultLight,
-          hover: styles.textButtonCancelHoverLight,
-          active: styles.textButtonCancelActiveLight,
+          default: d.textButtonCancelDefaultLight,
+          hover: d.textButtonCancelHoverLight,
+          active: d.textButtonCancelActiveLight,
         },
       },
     },
     fill: {
       background: {
         screen: {
-          base: styles.colorBgLight,
-          container: styles.colorBgContainerLight,
-          layout: styles.colorBgLayoutLight,
-          elevated: styles.colorBgElevatedLight,
+          base: d.colorBgLight,
+          container: d.colorBgContainerLight,
+          layout: d.colorBgLayoutLight,
+          elevated: d.colorBgElevatedLight,
         },
         components: {
           button: {
             primary: {
-              default: styles.colorFillBackgroundComponentsButtonPrimaryDefaultLight,
-              hover: styles.colorFillBackgroundComponentsButtonPrimaryHoverLight,
-              active: styles.colorFillBackgroundComponentsButtonPrimaryActiveLight,
+              default: d.colorFillBackgroundComponentsButtonPrimaryDefaultLight,
+              hover: d.colorFillBackgroundComponentsButtonPrimaryHoverLight,
+              active: d.colorFillBackgroundComponentsButtonPrimaryActiveLight,
             },
             secondary: {
-              default: styles.colorFillBackgroundComponentsButtonSecondaryDefaultLight,
-              hover: styles.colorFillBackgroundComponentsButtonSecondaryHoverLight,
-              active: styles.colorFillBackgroundComponentsButtonSecondaryActiveLight,
+              default: d.colorFillBackgroundComponentsButtonSecondaryDefaultLight,
+              hover: d.colorFillBackgroundComponentsButtonSecondaryHoverLight,
+              active: d.colorFillBackgroundComponentsButtonSecondaryActiveLight,
             },
           },
         },
@@ -60,14 +59,14 @@ export const themeVars = {
     },
     icon: {
       primary: {
-        default: styles.colorIconPrimaryDefaultLight,
-        hover: styles.colorIconPrimaryHoverLight,
-        active: styles.colorIconPrimaryActiveLight,
+        default: d.colorIconPrimaryDefaultLight,
+        hover: d.colorIconPrimaryHoverLight,
+        active: d.colorIconPrimaryActiveLight,
       },
     },
     border: {
-      primary: styles.colorBorderLight,
-      secondary: styles.colorBorderSecondaryLight,
+      primary: d.colorBorderLight,
+      secondary: d.colorBorderSecondaryLight,
     },
   },
   sizes: {

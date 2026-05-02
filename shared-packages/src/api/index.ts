@@ -78,6 +78,8 @@ export type {
   WorkItemDetailData,
   WorkItemsByLibraryParams,
   WorkItemsByLibraryListData,
+  WorkItemsByWorkParams,
+  WorkItemsByWorkListData,
 } from './domains/works';
 
 export type {

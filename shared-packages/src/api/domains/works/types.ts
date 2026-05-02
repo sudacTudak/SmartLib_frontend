@@ -71,6 +71,7 @@ export type GenreDeleteData = null;
 export type WorkItemByLibrary = {
   id: string;
   libraryBranchId: string;
+  workId: string;
   category: WorkCategory;
   genreIds: string[];
   title: string;
@@ -88,6 +89,9 @@ export type WorkItemByLibrary = {
 export type WorkItemDetailData = WorkItemByLibrary;
 export type WorkItemsByLibraryParams = { library: string | number; title?: string };
 export type WorkItemsByLibraryListData = WorkItemByLibrary[];
+
+export type WorkItemsByWorkParams = { work: string; onlyAvailable?: boolean };
+export type WorkItemsByWorkListData = WorkItemByLibrary[];
 
 export type WorksListQueryParams = Record<string, string | number | boolean | undefined>;
 

@@ -1,4 +1,4 @@
-import '@shared-packages/styles/smartlib-root.css';
+import { DesignTokensRootStyle } from '@shared-packages/styles/DesignTokensRootStyle';
 import { SmartLibConfigProvider } from '@shared-packages/ui';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -7,6 +7,7 @@ import './styles/global.scss';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <DesignTokensRootStyle />
     <SmartLibConfigProvider>
       <App />
     </SmartLibConfigProvider>

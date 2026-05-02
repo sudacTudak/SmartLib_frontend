@@ -2,7 +2,7 @@
     display: inline-flex;
     padding: 2px 4px;
     border-radius: var(--ant-border-radius-sm);
-    /* Prefer SmartLib design tokens in custom SCSS; they are always available via `smartlib-root.css` */
+    /* Prefer SmartLib design tokens in custom SCSS; they are set from `design-tokens.ts` via DesignTokensRootStyle */
     background-color: var(--smartlib-color-white);
     border: 1px solid currentColor;
     font-size: 12px;

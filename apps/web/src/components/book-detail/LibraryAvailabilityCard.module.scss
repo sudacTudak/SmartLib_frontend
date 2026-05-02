@@ -1,0 +1,99 @@
+.card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--smartlib-color-bg-container);
+  border: 1px solid var(--smartlib-color-border-secondary);
+  scroll-snap-align: start;
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  background: var(--smartlib-color-bg-container);
+}
+
+.img {
+  object-fit: cover;
+}
+
+.body {
+  padding: 0.75rem 0.75rem 0.85rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.address {
+  font-weight: 600;
+  line-height: 1.25;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.availability {
+  color: var(--smartlib-color-text-secondary);
+  font-size: 0.9rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--smartlib-color-success) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--smartlib-color-success) 22%, transparent);
+  color: var(--smartlib-color-text);
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.overlayReserveButton {
+  width: 100%;
+  border-radius: 10px;
+  height: 36px;
+  font-weight: 800;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity 150ms ease;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.overlayInner {
+  width: 100%;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.linkButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.overlayAction {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--smartlib-color-white);
+  color: var(--smartlib-color-text);
+  font-weight: 700;
+  text-decoration: none;
+}
+

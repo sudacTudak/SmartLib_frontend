@@ -13,6 +13,8 @@ import type {
   WorkItemsByLibraryListData,
   WorkItemsByLibraryParams,
   WorkItemDetailData,
+  WorkItemsByWorkListData,
+  WorkItemsByWorkParams,
   WorksListQueryParams,
   GenreCreateBody,
   GenreDeleteData,
@@ -111,6 +113,15 @@ export function createWorksApi(client: AxiosInstance) {
           { params },
         );
         return unwrapData<WorkItemsByLibraryListData>(res);
+      },
+
+      /** GET `works/work-items/by-work/?work=&onlyAvailable=` */
+      listByWork: async (params: WorkItemsByWorkParams) => {
+        const res = await client.get<HttpSuccessBody<WorkItemsByWorkListData>>(
+          apiPath(regularPath(ApiPaths.workItemsByWork)),
+          { params },
+        );
+        return unwrapData<WorkItemsByWorkListData>(res);
       },
     },
   };
