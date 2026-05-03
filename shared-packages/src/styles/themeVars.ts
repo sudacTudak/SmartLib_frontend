@@ -8,6 +8,7 @@ export const themeVars = {
     common: {
       white: d.colorWhite,
       yellow: d.colorYellow,
+      lightRed: d.colorLightRed,
     },
     brand: {
       primary: d.colorPrimaryLight,

@@ -1,0 +1,12 @@
+.favoriteButton {
+    &:global(.ant-btn) {
+        width: 100%;
+        box-shadow: none;
+    
+        &:hover,&:active {
+            background-color: var(--ant-color-light-red) !important;
+            color: var(--ant-color-white) !important;
+            border-color: var(--ant-color-light-red) !important;
+        }
+    }
+}

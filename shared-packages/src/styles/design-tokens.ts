@@ -4,7 +4,8 @@
  */
 
 export const designTokenLiterals = {
-  colorPrimaryLight: '#1677ff',
+  // colorPrimaryLight: '#1677ff',
+  colorPrimaryLight: '#0092fa',
   colorSuccessLight: '#52c41a',
   colorWarningLight: '#faad14',
   colorErrorLight: '#ff4d4f',
@@ -12,6 +13,8 @@ export const designTokenLiterals = {
 
   colorWhite: '#ffffff',
   colorYellow: '#ffb122',
+  // colorLightRed: '#E83035',
+  colorLightRed: '#F95849',
 
   colorTextLight: 'rgba(0, 0, 0, 0.88)',
   colorTextSecondaryLight: 'rgba(0, 0, 0, 0.65)',
@@ -58,6 +61,7 @@ export function getSmartlibDesignTokensRootCss(): string {
 
     `--smartlib-color-white: ${L.colorWhite}`,
     `--smartlib-color-yellow: ${L.colorYellow}`,
+    `--smartlib-color-light-red: ${L.colorLightRed}`,
 
     `--smartlib-color-text: ${L.colorTextLight}`,
     `--smartlib-color-text-secondary: ${L.colorTextSecondaryLight}`,

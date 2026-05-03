@@ -11,4 +11,30 @@
   @media (max-width: 520px) {
     flex-direction: column;
   }
+
+  .divider {
+    height: 100%;
+    border-inline-start-width: 2px;
+  }
+}
+
+.infoCard {
+  display: flex;
+  background: transparent;
+  padding: 2px 4px;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.infoLabel {
+  color: var(--smartlib-color-text-tertiary);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.infoValue {
+  color: var(--smartlib-color-text);
+  font-size: 16px;
+  line-height: calc(16px / 12px);
 }

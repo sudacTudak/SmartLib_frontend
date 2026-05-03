@@ -6,11 +6,11 @@ import { ConfigProvider, Flex, ThemeConfig, Typography } from 'antd';
 import classNames from 'classnames';
 import styles from './WorkCard.module.scss';
 import { useMemo } from 'react';
-import { StarIcon } from '@shared-packages/ui/icons';
 import { themeVars } from '@shared-packages/ui';
 import { BOOK_CARD_IMAGE_HEIGHT, BOOK_CARD_WIDTH } from '../WorkList/constants';
 import { APP_ROUTES } from '@global/routes';
 import { TextTag, TextTagColor } from './components';
+import { StarFilled } from '@ant-design/icons';
 
 interface IWorkCardProps {
   id: string;
@@ -90,8 +90,8 @@ export const WorkCard = ({
               </Flex>
             )}
             <Flex gap={2} className={styles.tags}>
-              {onlineVersionLink && <TextTag text="PDF" color={TextTagColor.Green} />}
-              {rating && <TextTag text={rating.toString()} color={TextTagColor.Yellow} icon={<StarIcon />} />}
+              {onlineVersionLink && <TextTag text="PDF" color={TextTagColor.Blue} />}
+              {rating && <TextTag text={rating.toString()} color={TextTagColor.Yellow} icon={<StarFilled width={12} height={12}/>} />}
             </Flex>
           </Flex>
         </Link>

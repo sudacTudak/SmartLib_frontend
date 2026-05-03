@@ -1,7 +1,10 @@
 {
   "name": "smartlib-frontend",
   "private": true,
-  "workspaces": ["apps/*", "shared-packages"],
+  "workspaces": [
+    "apps/*",
+    "shared-packages"
+  ],
   "devDependencies": {
     "prettier": "^3.5.0"
   },
@@ -18,5 +21,8 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.2.2"
   }
 }

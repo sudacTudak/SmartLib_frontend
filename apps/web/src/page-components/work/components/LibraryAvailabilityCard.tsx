@@ -5,7 +5,7 @@ import type { LibraryBranchDetailData } from '@shared-packages/api';
 
 import { APP_ROUTES } from '@global/routes';
 import styles from './LibraryAvailabilityCard.module.scss';
-import { ReserveButtonAuthGate } from './ReserveButtonAuthGate';
+import { ReserveModalTrigger } from './ReserveModalTrigger';
 
 interface IProps {
   workId: string
@@ -33,7 +33,7 @@ export function LibraryAvailabilityCard({ workId, library, availableCount }: IPr
             Перейти
           </Link>
 
-          <ReserveButtonAuthGate
+          <ReserveModalTrigger
             disabled={availableCount <= 0}
             variant="default"
             className={styles.overlayReserveButton}

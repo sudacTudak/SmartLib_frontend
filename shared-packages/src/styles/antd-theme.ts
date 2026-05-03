@@ -1,7 +1,20 @@
 import type { ThemeConfig } from 'antd';
 import { themeVars } from './themeVars';
 
-export type TCustomThemeConfig = ThemeConfig & {}
+export type TCustomThemeConfig = ThemeConfig & {
+  token: {
+    // Common colors
+    colorLightRed: string;
+
+    colorFillBgComponentsButtonPrimaryDefault: string;
+    colorFillBgComponentsButtonPrimaryHover: string;
+    colorFillBgComponentsButtonPrimaryActive: string;
+
+    colorFillBgComponentsButtonSecondaryDefault: string;
+    colorFillBgComponentsButtonSecondaryHover: string;
+    colorFillBgComponentsButtonSecondaryActive: string;
+  };
+};
 
 /**
  * Тема Ant Design на литералах из `themeVars` (`design-tokens.ts`).
@@ -14,6 +27,9 @@ export const smartlibAntdTheme: TCustomThemeConfig = {
     colorWarning: themeVars.color.brand.warning,
     colorError: themeVars.color.brand.error,
     colorInfo: themeVars.color.brand.info,
+    // Common colors
+    colorWhite: themeVars.color.common.white,
+    colorLightRed: themeVars.color.common.lightRed,
 
     colorText: themeVars.color.text.primary,
     colorTextSecondary: themeVars.color.text.secondary,
@@ -24,6 +40,14 @@ export const smartlibAntdTheme: TCustomThemeConfig = {
     colorBgContainer: themeVars.color.fill.background.screen.container,
     colorBgLayout: themeVars.color.fill.background.screen.layout,
     colorBgElevated: themeVars.color.fill.background.screen.elevated,
+
+    colorFillBgComponentsButtonPrimaryDefault: themeVars.color.fill.background.components.button.primary.default,
+    colorFillBgComponentsButtonPrimaryHover: themeVars.color.fill.background.components.button.primary.hover,
+    colorFillBgComponentsButtonPrimaryActive: themeVars.color.fill.background.components.button.primary.active,
+
+    colorFillBgComponentsButtonSecondaryDefault: themeVars.color.fill.background.components.button.secondary.default,
+    colorFillBgComponentsButtonSecondaryHover: themeVars.color.fill.background.components.button.secondary.hover,
+    colorFillBgComponentsButtonSecondaryActive: themeVars.color.fill.background.components.button.secondary.active,
 
     colorBorder: themeVars.color.border.primary,
     colorBorderSecondary: themeVars.color.border.secondary,

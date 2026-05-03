@@ -4,7 +4,7 @@ import type { LibraryBranchDetailData } from '@shared-packages/api';
 import { Alert, Descriptions, Typography } from 'antd';
 
 import { AuthStatus } from '@global/auth/enums';
-import { useAuth } from '@global/auth/auth-context';
+import { useAuth } from 'src/global/auth/AuthContext';
 
 type LibraryDetailViewProps = {
   library: LibraryBranchDetailData;
@@ -14,9 +14,7 @@ export function LibraryDetailView({ library }: LibraryDetailViewProps) {
   const { user, status } = useAuth();
   const viewer = status === AuthStatus.Ready ? user : null;
 
-  const fullName = viewer
-    ? [viewer.lastName, viewer.firstName, viewer.patronymic].filter(Boolean).join(' ')
-    : '';
+  const fullName = viewer ? [viewer.lastName, viewer.firstName, viewer.patronymic].filter(Boolean).join(' ') : '';
 
   return (
     <>

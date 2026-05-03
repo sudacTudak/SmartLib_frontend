@@ -13,6 +13,7 @@ import { ProfileIcon } from '@shared-packages/ui/icons';
 import { APP_ROUTES } from 'src/global/routes';
 import { useAuth } from 'src/global/auth';
 import { AuthStatus } from 'src/global/auth/enums';
+import Image from 'next/image';
 
 const { Header: AntHeader } = Layout;
 const { Title, Text } = Typography;
@@ -27,9 +28,15 @@ export function Header() {
   return (
     <AntHeader className={styles.header}>
       <Link href="/" className={styles.logo}>
-        <Title level={4} style={{ margin: 0, color: token.colorPrimary }}>
-          SmartLib
-        </Title>
+        <Image
+          className={styles.logoImage}
+          src="/smartlib-logo-430-80.png"
+          alt="Онлайн-библиотека SmartLib"
+          width={430}
+          height={80}
+          priority
+          unoptimized
+        />
       </Link>
 
       <nav aria-label="Основное меню" className={styles.nav}>
@@ -44,10 +51,7 @@ export function Header() {
         </Suspense>
       </Flex>
 
-      <Link
-        href={showUser ? APP_ROUTES.profile : APP_ROUTES.auth.login}
-        className={styles.profileLink}
-      >
+      <Link href={showUser ? APP_ROUTES.profile : APP_ROUTES.auth.login} className={styles.profileLink}>
         <Flex vertical align="center" gap={2} className={styles.profileLinkInner}>
           <ProfileIcon />
           <Text>{showUser ? user.email : 'Войти'}</Text>

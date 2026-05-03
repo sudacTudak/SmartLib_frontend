@@ -43,6 +43,7 @@ export const WorkList = ({ works, authors, genres }: IWorkListProps) => {
           authorNames={authorNames}
           genreTitles={genreTitles}
           available={isAvailable}
+          rating={work.ratingAvg ?? 0}
           {...work}
         />
       );

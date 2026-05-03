@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { getAuthSession } from '@global/api';
-import { useAuth } from '@global/auth/auth-context';
+import { useAuth } from 'src/global/auth/AuthContext';
 
 import styles from '@shared-packages/components/auth/auth-forms.module.scss';
 

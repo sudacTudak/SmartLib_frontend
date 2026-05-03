@@ -121,9 +121,8 @@
 
 .actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .leftColumn {
@@ -132,31 +131,29 @@
   gap: 20px;
 }
 
-.actions {
-  gap: 10px;
-}
-
 .readOnlineLink {
   width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 10px 14px;
-  border-radius: 8px;
-  background: var(--smartlib-color-fill-background-components-button-primary-default);
+  border-radius: 4px;
+  background: var(--smartlib-color-fill-background-components-button-secondary-default);
   color: var(--smartlib-color-white);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 500;
+  font-size: 16px;
   transition: background 150ms ease;
-  height: 40px;
+  height: 32px;
 }
 
 .readOnlineLink:hover {
-  background: var(--smartlib-color-fill-background-components-button-primary-hover);
+  background: var(--smartlib-color-fill-background-components-button-secondary-hover);
+  color: var(--smartlib-color-white);
 }
 
 .readOnlineLink:active {
-  background: var(--smartlib-color-fill-background-components-button-primary-active);
+  background: var(--smartlib-color-fill-background-components-button-secondary-active);
 }
 
 .sectionTitle {

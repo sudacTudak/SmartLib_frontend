@@ -6,51 +6,17 @@
 
 .reserveButton {
   width: 100%;
-  height: 40px;
-  background: var(--ant-color-fill-background-components-button-primary-default);
-  border-color: var(--ant-color-fill-background-components-button-primary-default);
+  height: 32px;
+  background: var(--ant-color-fill-bg-components-button-primary-default);
+  border-color: var(--ant-color-fill-bg-components-button-primary-default);
   padding: 0 14px;
-  border-radius: var(--ant-border-radius-lg);
+  border-radius: var(--ant-border-radius);
   color: var(--ant-color-white);
-  font-weight: 700;
+  font-weight: 500;
+  font-size: 16px;
 
   &:hover {
-    background: var(--ant-color-fill-background-components-button-primary-hover);
+    background: var(--ant-color-fill-bg-components-button-primary-hover);
+    border-color: var(--ant-color-fill-bg-components-button-primary-hover);
   }
-}
-
-.reserveButton {
-  /* Styling AntD button via className (allowed as a small child component). */
-
-  font-weight: 800;
-  border-radius: 12px;
-  height: 40px;
-}
-
-.reserveButton:hover {
-  background: var(--smartlib-color-fill-background-components-button-secondary-hover);
-  border-color: var(--smartlib-color-fill-background-components-button-secondary-hover);
-}
-
-.reserveButton:active {
-  background: var(--smartlib-color-fill-background-components-button-secondary-active);
-  border-color: var(--smartlib-color-fill-background-components-button-secondary-active);
-}
-
-.readOnlineLink {
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: var(--smartlib-color-fill-background-components-button-primary-default);
-
-  text-decoration: none;
-  font-weight: 700;
-  transition: background 150ms ease;
-  height: 40px;
-}
-
-.readOnlineLink:hover {
 }

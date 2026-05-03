@@ -1,11 +1,12 @@
 'use client';
 
 import { SmartLibConfigProvider } from '@shared-packages/ui';
+import { App } from 'antd';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 
-import { AuthProvider } from '@global/auth/auth-context';
+import { AuthProvider } from 'src/global/auth/AuthContext';
 
 export function Providers({ children }: { children: ReactNode }) {
   const [queryClient] = useState(
@@ -22,9 +23,11 @@ export function Providers({ children }: { children: ReactNode }) {
 
   return (
     <SmartLibConfigProvider>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>{children}</AuthProvider>
-      </QueryClientProvider>
+      <App>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>{children}</AuthProvider>
+        </QueryClientProvider>
+      </App>
     </SmartLibConfigProvider>
   );
 }

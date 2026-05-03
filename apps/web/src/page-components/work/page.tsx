@@ -4,11 +4,12 @@ import styles from './BookDetailPage.module.scss';
 import Image from 'next/image';
 import { IWork } from '@shared-packages/api';
 import { InfoGrid } from '@shared/ui/components';
-import { LibraryAvailabilityCard, ReserveButtonAuthGate } from './components';
+import { LibraryAvailabilityCard, ReserveModalTrigger } from './components';
 import { getGridInfoItems } from './tools';
 import { WORK_CATEGORY_SINGLE_LABELS } from '@shared-packages/enums';
 import { ILibraryBranch } from '@shared-packages/api/domains/libraries';
-import { PrimaryText } from 'src/shared/ui/components/PrimaryText';
+import { PrimaryText } from '@shared/ui/components/PrimaryText';
+import { ToFavoriteButton } from '@features/works/ui';
 
 interface IWorkDetailProps {
   work: IWork;
@@ -48,12 +49,13 @@ export function WorkDetailPage({
                   Читать онлайн
                 </a>
               )}
-              <ReserveButtonAuthGate
+              <ReserveModalTrigger
                 disabled={!isAnywhereAvailable}
                 variant="primary"
                 className={styles.reserveButton}
                 context={{ workId: work.id }}
               />
+              <ToFavoriteButton/>
             </div>
           </div>
 

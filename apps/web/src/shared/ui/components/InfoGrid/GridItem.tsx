@@ -1,6 +1,7 @@
-import styles from './GridItem.module.scss';
+import styles from './InfoGrid.module.scss';
 import classNames from 'classnames';
-import { IInfoGridItem } from '../types';
+import { IInfoGridItem } from './types';
+
 
 type TGridItemProps = IInfoGridItem;
 

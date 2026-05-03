@@ -1,9 +1,6 @@
 'use client';
 
-import {
-  SmartlibPasswordForm,
-  SmartlibPasswordFormVariant,
-} from '@shared-packages/components/auth';
+import { SmartlibPasswordForm, SmartlibPasswordFormVariant } from '@shared-packages/components/auth';
 import authFormStyles from '@shared-packages/components/auth/auth-forms.module.scss';
 import { message, Spin } from 'antd';
 import { useRouter } from 'next/navigation';
@@ -11,7 +8,7 @@ import { useEffect } from 'react';
 
 import { getAuthSession } from '@global/api';
 import { AuthStatus } from '@global/auth/enums';
-import { useAuth } from '@global/auth/auth-context';
+import { useAuth } from 'src/global/auth/AuthContext';
 
 import styles from './change-password-page.module.scss';
 

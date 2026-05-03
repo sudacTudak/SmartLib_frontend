@@ -1,10 +1,12 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Button, Modal } from 'antd';
 import styles from './ReserveModalTrigger.module.scss';
 import classNames from 'classnames';
+import { WithAuthGate } from 'src/global/auth';
 
+const GatedButton = WithAuthGate(Button);
 
 type ReserveModalTriggerProps = {
   disabled?: boolean;
@@ -31,21 +33,17 @@ export function ReserveModalTrigger({
 
   return (
     <>
-      <Button className={classNames(styles.reserveButton, className)} type={variant} disabled={disabled} onClick={() => setOpen(true)}>
-        {label}
-      </Button>
-      <Modal
-        title={title}
-        open={open}
-        onCancel={() => setOpen(false)}
-        footer={null}
-        destroyOnClose
+      <GatedButton
+        className={classNames(styles.reserveButton, className)}
+        type={variant}
+        disabled={disabled}
+        onClick={() => setOpen(true)}
       >
-        <p className={styles.placeholder}>
-          Форма бронирования будет добавлена позже.
-        </p>
+        {label}
+      </GatedButton>
+      <Modal title={title} open={open} onCancel={() => setOpen(false)} footer={null} destroyOnClose>
+        <p className={styles.placeholder}>Форма бронирования будет добавлена позже.</p>
       </Modal>
     </>
   );
 }
-
