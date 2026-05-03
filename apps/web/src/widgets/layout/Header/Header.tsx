@@ -1,11 +1,11 @@
 'use client';
 
-import { Button, Flex, Layout, theme, Typography } from 'antd';
+import { Button, Flex, Layout, Typography } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { SearchBar } from '../search/SearchBar';
-import { Loader } from 'src/shared/ui/components/Loader/Loader';
+import { Loader } from 'src/shared/ui/components/Loader';
 import { Suspense } from 'react';
 
 import styles from './Header.module.scss';
@@ -16,10 +16,9 @@ import { AuthStatus } from 'src/global/auth/enums';
 import Image from 'next/image';
 
 const { Header: AntHeader } = Layout;
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 export function Header() {
-  const { token } = theme.useToken();
   const router = useRouter();
   const { user, status } = useAuth();
 

@@ -3,4 +3,10 @@
   width: var(--ant-button-min-width);
   height: var(--ant-control-height);
   min-height: var(--ant-control-height);
+
+  &.rounded {
+    &:global(.ant-btn) {
+      border-radius: 100%;
+    }
+  }
 }

@@ -45,12 +45,14 @@ export enum InventoryMovementType {
 /** Соответствует `works.enums.WorkCategory` на бэкенде (str в API). */
 export enum WorkCategory {
   Book = 'book',
-  ScientificArticle = 'scientific_article',
-  CollectedArticles = 'collected_articles',
+  ScientificArticle = 'scientificArticle',
+  CollectedArticles = 'collectedArticles',
   Journal = 'journal',
   Comic = 'comic',
-  LectureNotes = 'lecture_notes',
+  LectureNotes = 'lectureNotes',
 }
+
+export const WORK_CATEGORY_SET = new Set(Object.values(WorkCategory));
 
 /** Человекочитаемые названия для UI и отладки. */
 export const WORK_CATEGORY_SINGLE_LABELS: Record<WorkCategory, string> = {
@@ -70,3 +72,12 @@ export const WORK_CATEGORY_MULTI_LABELS: Record<WorkCategory, string> = {
   [WorkCategory.Comic]: 'Комиксы',
   [WorkCategory.LectureNotes]: 'Сборники лекций',
 };
+
+export const CLIENT_WORK_CATEGORY_TO_BACKEND_PARAM = {
+  [WorkCategory.Book]: 'book',
+  [WorkCategory.ScientificArticle]: 'scientific_article',
+  [WorkCategory.CollectedArticles]: 'collected_articles',
+  [WorkCategory.Journal]: 'journal',
+  [WorkCategory.Comic]:'comic',
+  [WorkCategory.LectureNotes]: 'lecture_notes',
+}

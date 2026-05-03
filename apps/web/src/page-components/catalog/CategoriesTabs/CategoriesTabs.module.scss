@@ -1,0 +1,7 @@
+.categoriesTabs {
+    width: fit-content;
+
+    :global(.ant-tabs-tab-btn) {
+        font-weight: 500;
+    }
+}

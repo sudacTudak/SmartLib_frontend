@@ -1,5 +1,5 @@
 import { PageContent } from '@widgets/layout/PageContent/PageContent';
-import { WorkList } from '@features/works/ui/WorkList';
+import { WorkList } from 'src/features/catalog/ui/WorkList';
 import { getSmartlibApi } from '@global/api';
 
 const api = getSmartlibApi();

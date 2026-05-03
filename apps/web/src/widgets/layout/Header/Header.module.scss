@@ -1,11 +1,10 @@
 .header {
   display: flex;
   align-items: center;
-  padding: 4px 8px;
+  padding: 4px 24px;
   gap: 4px;
   height: 52px;
-  background-color: var(--ant-color-white);
-  box-shadow: 0px 1px 10px #ECECEC;
+  background-color: transparent;
 }
 
 .logo {
@@ -28,7 +27,8 @@
 }
 
 .searchBar {
-  flex: 1 0 auto;
+  flex: 1 1 600px;
+  max-width: 600px;
 }
 
 .profileLink {

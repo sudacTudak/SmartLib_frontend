@@ -1,8 +1,8 @@
 'use client';
 
-import { Flex, Input } from 'antd';
+import { ConfigProvider, Flex, Input, ThemeConfig } from 'antd';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useSearchContext } from 'src/global/globalSearch';
 
 import styles from './SearchBar.module.scss';
@@ -27,19 +27,38 @@ export function SearchBar() {
     [router],
   );
 
+  const themeConfig = useMemo(
+    () =>
+      ({
+        components: {
+          Input: {
+            paddingBlockLG: 4,
+            paddingInlineLg: 8,
+          },
+          Button: {
+            controlHeightLg: 32,
+          }
+
+        },
+      }) as ThemeConfig,
+    [],
+  );
+
   return (
-    <Flex className={styles.searchBar}>
-      <Input.Search
-        placeholder="Название, автор, ISBN…"
-        allowClear
-        enterButton="Найти"
-        size="large"
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
-        onSearch={onSearch}
-        aria-label="Поиск по каталогу"
-        className={styles.input}
-      />
-    </Flex>
+    <ConfigProvider theme={themeConfig}>
+      <Flex className={styles.searchBar}>
+        <Input.Search
+          placeholder="Название, автор, ISBN…"
+          allowClear
+          enterButton="Найти"
+          size="large"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+          onSearch={onSearch}
+          aria-label="Поиск по каталогу"
+          className={styles.input}
+        />
+      </Flex>
+    </ConfigProvider>
   );
 }

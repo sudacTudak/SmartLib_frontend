@@ -9,7 +9,8 @@ import { getGridInfoItems } from './tools';
 import { WORK_CATEGORY_SINGLE_LABELS } from '@shared-packages/enums';
 import { ILibraryBranch } from '@shared-packages/api/domains/libraries';
 import { PrimaryText } from '@shared/ui/components/PrimaryText';
-import { ToFavoriteButton } from '@features/works/ui';
+import { ToFavoriteButton } from 'src/features/catalog/ui';
+import { Button } from 'antd';
 
 interface IWorkDetailProps {
   work: IWork;
@@ -38,28 +39,28 @@ export function WorkDetailPage({
   return (
     <PageContent variant="detail">
       <div className={styles.root}>
-        <section className={styles.hero}>
-          <div className={styles.leftColumn}>
-            <div className={styles.cover}>
-              <Image src={COVER_SRC} alt={work.title} fill sizes="280px" className={styles.coverImg} />
-            </div>
-            <div className={styles.actions}>
-              {work.onlineVersionLink && (
-                <a href={work.onlineVersionLink} target="_blank" rel="noreferrer" className={styles.readOnlineLink}>
-                  Читать онлайн
-                </a>
-              )}
-              <ReserveModalTrigger
-                disabled={!isAnywhereAvailable}
-                variant="primary"
-                className={styles.reserveButton}
-                context={{ workId: work.id }}
-              />
-              <ToFavoriteButton/>
-            </div>
+        <section className={styles.previewColumn}>
+          <div className={styles.cover}>
+            <Image src={COVER_SRC} alt={work.title} fill sizes="280px" className={styles.coverImg} />
           </div>
+          <div className={styles.actions}>
+            {work.onlineVersionLink && (
+              <Button type="link" variant="outlined" href={work.onlineVersionLink} target="_blank" rel="noreferrer">
+                Читать онлайн
+              </Button>
+            )}
+            <ReserveModalTrigger
+              disabled={!isAnywhereAvailable}
+              variant="primary"
+              className={styles.reserveButton}
+              context={{ workId: work.id }}
+            />
+            <ToFavoriteButton />
+          </div>
+        </section>
 
-          <div className={styles.meta}>
+        <div className={styles.infoColumn}>
+          <section className={styles.meta}>
             <h1 className={styles.title}>{work.title}</h1>
 
             <div className={styles.subRow}>
@@ -84,24 +85,24 @@ export function WorkDetailPage({
               <h2 className={styles.descriptionTitle}>О книге</h2>
               <p className={styles.description}>{work.description || '—'}</p>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className={styles.slider}>
-          <h2 className={styles.sectionTitle}>
-            В наличии в филиалах <PrimaryText>({libraryIds.length})</PrimaryText>:
-          </h2>
-          <div className={styles.scrollRow}>
-            {libraryIds.map((libraryId) => (
-              <LibraryAvailabilityCard
-                key={libraryId}
-                workId={work.id}
-                library={libraryEntities[libraryId]}
-                availableCount={availabilityByLibrariesMap[libraryId]}
-              />
-            ))}
-          </div>
-        </section>
+          <section className={styles.slider}>
+            <h2 className={styles.sectionTitle}>
+              В наличии в филиалах <PrimaryText>({libraryIds.length})</PrimaryText>:
+            </h2>
+            <div className={styles.scrollRow}>
+              {libraryIds.map((libraryId) => (
+                <LibraryAvailabilityCard
+                  key={libraryId}
+                  workId={work.id}
+                  library={libraryEntities[libraryId]}
+                  availableCount={availabilityByLibrariesMap[libraryId]}
+                />
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
     </PageContent>
   );
