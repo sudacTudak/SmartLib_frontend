@@ -7,10 +7,11 @@ import classNames from 'classnames';
 import styles from './WorkCard.module.scss';
 import { useMemo } from 'react';
 import { themeVars } from '@shared-packages/ui';
+import { workCoverPlaceholder300x430Url } from '@shared-packages/ui';
 import { BOOK_CARD_IMAGE_HEIGHT, BOOK_CARD_WIDTH } from '../WorkList/constants';
 import { APP_ROUTES } from '@global/routes';
-import { TextTag, TextTagColor } from './components';
-import { StarFilled } from '@ant-design/icons';
+import { CoverTagsRow } from './components';
+import { TextTag, TextTagColor } from '@shared/ui/components';
 
 interface IWorkCardProps {
   id: string;
@@ -19,6 +20,7 @@ interface IWorkCardProps {
   genreTitles: string[];
   rating?: number;
   onlineVersionLink: string | null;
+  previewLink?: string | null;
   available: boolean;
   className?: string;
 }
@@ -38,6 +40,7 @@ export const WorkCard = ({
   genreTitles,
   rating,
   onlineVersionLink,
+  previewLink,
   available,
   className,
 }: IWorkCardProps) => {
@@ -66,12 +69,17 @@ export const WorkCard = ({
         <Link href={APP_ROUTES.work(id)}>
           <div className={styles.imageContainer}>
             <Image
-              src={`https://placehold.co/${BOOK_CARD_WIDTH}x${BOOK_CARD_IMAGE_HEIGHT}/png`}
-              alt="Картинка с книгой"
+              src={previewLink || workCoverPlaceholder300x430Url}
+              alt={title}
               width={BOOK_CARD_WIDTH}
               height={BOOK_CARD_IMAGE_HEIGHT}
             />
-            {available && <TextTag className={styles.availableTag} text="В наличии" color={TextTagColor.Green} />}
+            <CoverTagsRow
+              className={styles.coverTagsRow}
+              rating={rating}
+              isAvailable={available}
+              hasOnlineVersion={Boolean(onlineVersionLink)}
+            />
           </div>
           <Flex vertical className={styles.bookCardBody} gap={4}>
             <Title level={3} className={styles.title}>
@@ -89,10 +97,6 @@ export const WorkCard = ({
                 ))}
               </Flex>
             )}
-            <Flex gap={2} className={styles.tags}>
-              {onlineVersionLink && <TextTag text="PDF" color={TextTagColor.Blue} />}
-              {rating && <TextTag text={rating.toString()} color={TextTagColor.Yellow} icon={<StarFilled width={12} height={12}/>} />}
-            </Flex>
           </Flex>
         </Link>
       </Flex>

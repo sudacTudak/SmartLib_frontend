@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="430" viewBox="0 0 300 430" fill="none">
+  <!-- light gray solid background -->
+  <rect width="300" height="430" rx="22" fill="#F2F3F5" />
+
+  <!-- centered camera outline -->
+  <g stroke="#A8ADB5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.95">
+    <!-- body -->
+    <rect x="78" y="170" width="144" height="112" rx="22" />
+    <!-- top hump -->
+    <path d="M110 170 L128 142 H172 L190 170" />
+    <!-- lens -->
+    <circle cx="150" cy="226" r="26" />
+    <!-- shutter button -->
+    <circle cx="200" cy="198" r="6" fill="#A8ADB5" stroke="none" />
+  </g>
+</svg>

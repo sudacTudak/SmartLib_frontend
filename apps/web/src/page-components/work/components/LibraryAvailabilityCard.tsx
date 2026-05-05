@@ -6,6 +6,7 @@ import type { LibraryBranchDetailData } from '@shared-packages/api';
 import { APP_ROUTES } from '@global/routes';
 import styles from './LibraryAvailabilityCard.module.scss';
 import { ReserveModalTrigger } from './ReserveModalTrigger';
+import { workCoverPlaceholder260x140Url } from '@shared-packages/ui';
 
 interface IProps {
   workId: string
@@ -14,7 +15,7 @@ interface IProps {
 };
 
 export function LibraryAvailabilityCard({ workId, library, availableCount }: IProps) {
-  const preview = library.previewLink || `https://placehold.co/600x400/png?text=Library`;
+  const preview = library.previewLink || workCoverPlaceholder260x140Url;
 
   return (
     <div className={styles.card}>

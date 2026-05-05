@@ -25,10 +25,23 @@ const nextConfig: NextConfig = {
     },
   },
   images: {
-    remotePatterns: [{
-      protocol: 'https',
-      hostname: 'placehold.co',
-    }],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
+      // Django media в dev (NEXT_PUBLIC_API_BASE_URL обычно http://127.0.0.1:8000)
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        port: '8000',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '8000',
+      },
+    ],
   }
 };
 

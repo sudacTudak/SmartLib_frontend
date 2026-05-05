@@ -1,11 +1,11 @@
 'use client';
 
-import { CloseIcon } from '@shared-packages/ui/icons';
 import { Drawer } from 'antd';
 import { memo, useCallback, useMemo } from 'react';
 import { CustomForm } from 'src/features/filters/ui';
 import { CatalogFilterName, CatalogFiltersFieldConfigs } from '@features/filters/configs';
 import { useFiltersOptions } from './hooks';
+import { CloseOutlined } from '@ant-design/icons';
 
 interface ICatalogFiltersSidePageProps {
   isOpen: boolean;
@@ -17,7 +17,6 @@ interface IFiltersFormData {
   [CatalogFilterName.LibraryBranch]: number[];
   [CatalogFilterName.Author]: string[];
   [CatalogFilterName.HasOnlineVersion]: boolean;
-  [CatalogFilterName.OnlineOnly]: boolean;
   [CatalogFilterName.InStock]: boolean;
 }
 
@@ -41,19 +40,28 @@ export const CatalogFiltersSidePage = memo(function CatalogFiltersSidePage({
     });
   }, [fieldsOptions]);
 
-  const onFinish = useCallback((formData: IFiltersFormData) => {
-    console.log('formData: ', formData);
-  }, []);
+  const onFinish = useCallback(
+    (formData: IFiltersFormData) => {
+      console.log('formData: ', formData);
+      onClose();
+    },
+    [onClose],
+  );
+
+  const onReset = useCallback(() => {
+    console.log('reset');
+  }, [])
 
   return (
     <Drawer
       open={isOpen}
       onClose={onClose}
-      closeIcon={<CloseIcon width={32} height={32} />}
+      closeIcon={<CloseOutlined style={{ width: 24, height: 24, fontSize: 20 }} />}
       placement="left"
-      // maskClosable
+      mask={{ closable: true }}
+      destroyOnHidden // Временное решение для сброса незасабмиченных значений при закрытии формы
     >
-      <CustomForm<IFiltersFormData> filters={fields} onFinish={onFinish} />
+      <CustomForm<IFiltersFormData> filters={fields} onFinish={onFinish} onReset={onReset} submitButtonText="Принять" resetButtonText='Сбросить' />
     </Drawer>
   );
 });

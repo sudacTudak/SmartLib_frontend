@@ -1,0 +1,30 @@
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+  max-height: 100%;
+}
+
+.title {
+  flex: 0 0 auto;
+}
+
+.customList {
+  display: flex;
+  gap: 12px;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  flex-wrap: wrap;
+}
+
+.verticalList {
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.horizontalList {
+  max-width: 100%;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}

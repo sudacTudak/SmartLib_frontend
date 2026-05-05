@@ -18,3 +18,4 @@ export function SmartLibConfigProvider({ children }: { children: ReactNode }) {
 
 export { smartlibAntdTheme } from './styles/antd-theme';
 export { themeVars, type ThemeVars } from './styles/themeVars';
+export { workCoverPlaceholder300x430Url, workCoverPlaceholder260x140Url } from './assets/placeholders';

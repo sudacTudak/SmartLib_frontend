@@ -49,6 +49,13 @@ export function createWorksApi(client: AxiosInstance) {
         const res = await client.delete<HttpSuccessBody<WorkDeleteData>>(apiPath(detailPath(ApiPaths.works, id)));
         return unwrapData<WorkDeleteData>(res);
       },
+
+      getSimilar: async (id: string) => {
+        const res = await client.get<HttpSuccessBody<WorkListData>>(apiPath(regularPath(ApiPaths.worksSimilar)), {
+          params: { workId: id },
+        });
+        return unwrapData<WorkListData>(res);
+      },
     },
 
     genre: {

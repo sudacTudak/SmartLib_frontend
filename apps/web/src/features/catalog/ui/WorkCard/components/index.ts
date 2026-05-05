@@ -1,2 +1,2 @@
-export * from '../../../../../shared/ui/components/TextTag';
+export * from './CoverTagsRow';
 

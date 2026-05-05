@@ -15,14 +15,17 @@ export interface IWork {
   publisher: string;
   createdYear: number;
   genreIds: string[];
+  volume: number;
   onlineVersionLink: string | null;
-  createdAt: IsoDateTimeString;
-  updatedAt: IsoDateTimeString;
+  /** Абсолютный URL превью (в list/retrieve; при write-ответах может отсутствовать). */
+  previewLink?: string | null;
   /** Агрегат по отзывам (GET list/retrieve; при write-ответах может отсутствовать). */
   ratingAvg?: number | null;
   ratingCount?: number;
   /** Сумма `availableCount` по всем экземплярам книги в филиалах (GET list/retrieve; иначе 0). */
   booksAvailableTotal: number;
+  createdAt: IsoDateTimeString;
+  updatedAt: IsoDateTimeString;
 }
 
 export type WorkListData = IWork[];

@@ -9,8 +9,10 @@ import { getGridInfoItems } from './tools';
 import { WORK_CATEGORY_SINGLE_LABELS } from '@shared-packages/enums';
 import { ILibraryBranch } from '@shared-packages/api/domains/libraries';
 import { PrimaryText } from '@shared/ui/components/PrimaryText';
-import { ToFavoriteButton } from 'src/features/catalog/ui';
+import { ToFavoriteButton } from '@features/catalog/ui';
+import { workCoverPlaceholder300x430Url } from '@shared-packages/ui';
 import { Button } from 'antd';
+import { SimilarWorksWidget } from './components/SimilarWorksWidget';
 
 interface IWorkDetailProps {
   work: IWork;
@@ -21,8 +23,6 @@ interface IWorkDetailProps {
   genreTitles: string[];
   totalAvailableCount: number;
 }
-
-const COVER_SRC = `https://placehold.co/720x960/png?text=Work`;
 
 export function WorkDetailPage({
   work,
@@ -36,12 +36,14 @@ export function WorkDetailPage({
   const gridInfoItems = getGridInfoItems(work);
   const isAnywhereAvailable = totalAvailableCount > 0;
 
+  const coverSrc = work.previewLink ?? workCoverPlaceholder300x430Url;
+
   return (
     <PageContent variant="detail">
       <div className={styles.root}>
         <section className={styles.previewColumn}>
           <div className={styles.cover}>
-            <Image src={COVER_SRC} alt={work.title} fill sizes="280px" className={styles.coverImg} />
+            <Image src={coverSrc} alt={work.title} objectFit='cover' width={300} height={430} className={styles.coverImg} />
           </div>
           <div className={styles.actions}>
             {work.onlineVersionLink && (
@@ -103,6 +105,9 @@ export function WorkDetailPage({
             </div>
           </section>
         </div>
+        <section className={styles.similarWorksWidget}>
+          <SimilarWorksWidget workId={work.id}/>
+        </section>
       </div>
     </PageContent>
   );

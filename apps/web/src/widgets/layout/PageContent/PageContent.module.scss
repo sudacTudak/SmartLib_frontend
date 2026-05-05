@@ -4,7 +4,21 @@
 }
 
 .inner {
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 1.5rem 1rem;
+}
+
+.default {
+  max-width: 1260px;
+  padding: 30px;
+}
+
+.detail {
+  max-width: 100%;
+  padding: 15px;
+}
+
+.content {
+  padding: 15px;
+  border-radius: var(--smartlib-border-radius-lg);
+  background-color: var(--smartlib-color-white);
 }

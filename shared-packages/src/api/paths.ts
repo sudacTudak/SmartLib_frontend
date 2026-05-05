@@ -16,6 +16,7 @@ export const ApiPaths = {
   usersStaff: 'users/staff',
   authors: 'authors',
   works: 'works',
+  worksSimilar: 'works/similar',
   genre: 'works/genre',
   workItems: 'works/work-items',
   workItemsByLibrary: 'works/work-items/by-library',

@@ -6,7 +6,6 @@ export enum CatalogFilterName {
   LibraryBranch = 'library_branch',
   Author = 'author',
   HasOnlineVersion = 'has_online_version',
-  OnlineOnly = 'online_only',
   InStock = 'in_stock'
 }
 
@@ -23,6 +22,5 @@ export const CatalogFiltersFieldConfigs: TFormFilter[] = [
     filterType: FilterType.Checkobx,
     label: 'Есть онлайн-версия',
   },
-  { name: CatalogFilterName.OnlineOnly, filterType: FilterType.Checkobx, label: 'Только онлайн' },
   { name: CatalogFilterName.InStock, filterType: FilterType.Checkobx, label: 'Есть в наличии' },
 ];

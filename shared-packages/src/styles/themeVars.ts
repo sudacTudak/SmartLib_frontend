@@ -72,9 +72,9 @@ export const themeVars = {
   },
   sizes: {
     borderRadius: {
-      small: 2,
-      medium: 4,
-      large: 8,
+      small: d.borderRadiusSM,
+      medium: d.borderRadius,
+      large: d.borderRadiusLG,
     },
   },
 } as const;

@@ -41,7 +41,7 @@ export function ReserveModalTrigger({
       >
         {label}
       </GatedButton>
-      <Modal title={title} open={open} onCancel={() => setOpen(false)} footer={null} destroyOnClose>
+      <Modal title={title} open={open} onCancel={() => setOpen(false)} footer={null} destroyOnHidden>
         <p className={styles.placeholder}>Форма бронирования будет добавлена позже.</p>
       </Modal>
     </>

@@ -14,7 +14,8 @@ import {FormItemProps} from 'antd';
 interface IFilterCommonOptions<TValue> {
   label?: string;
   filterType: FilterType;
-  defaultValue?: TValue
+  defaultValue?: TValue;
+  queryParamName?: string;
 }
 
 interface ICheckboxOptions extends IFilterCommonOptions<boolean>, CheckboxProps {

@@ -4,8 +4,8 @@
  */
 
 export const designTokenLiterals = {
-  // colorPrimaryLight: '#1677ff',
   colorPrimaryLight: '#0092fa',
+  colorPrimaryLightRgb: 'rgb(0, 146, 250)',
   colorSuccessLight: '#52c41a',
   colorWarningLight: '#faad14',
   colorErrorLight: '#ff4d4f',
@@ -46,6 +46,10 @@ export const designTokenLiterals = {
   colorIconPrimaryDefaultLight: '#000000',
   colorIconPrimaryHoverLight: '#e8e2e3',
   colorIconPrimaryActiveLight: '#873212',
+
+  borderRadiusSM: 2,
+  borderRadius: 4,
+  borderRadiusLG: 8
 } as const;
 
 const L = designTokenLiterals;
@@ -54,6 +58,7 @@ const L = designTokenLiterals;
 export function getSmartlibDesignTokensRootCss(): string {
   const decls = [
     `--smartlib-color-primary: ${L.colorPrimaryLight}`,
+    `--smartlib-color-primary-rgb: ${L.colorPrimaryLightRgb}`,
     `--smartlib-color-success: ${L.colorSuccessLight}`,
     `--smartlib-color-warning: ${L.colorWarningLight}`,
     `--smartlib-color-error: ${L.colorErrorLight}`,
@@ -98,7 +103,10 @@ export function getSmartlibDesignTokensRootCss(): string {
     `--smartlib-font-size: 14px`,
     `--smartlib-line-height: 1.5714285714285714`,
 
-    `--smartlib-border-radius: 6px`,
+    `--smartlib-border-radius-sm: ${L.borderRadiusSM}px`,
+    `--smartlib-border-radius: ${L.borderRadius}px`,
+    `--smartlib-border-radius-lg: ${L.borderRadiusLG}px`,
+
     `--smartlib-size-unit: 4px`,
   ];
   return `:root{${decls.join(';')}}`;

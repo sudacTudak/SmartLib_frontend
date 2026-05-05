@@ -1,7 +1,7 @@
 .root {
   display: flex;
   align-items: start;
-  gap: 12px;
+  gap: 20px;
 }
 
 .previewColumn {
@@ -11,7 +11,12 @@
 }
 
 .infoColumn {
-  
+  flex: 1 1 auto;
+}
+
+.similarWorksWidget {
+  flex: 0 0 190px;
+  border-left: 1px solid var(--ant-color-divider);
 }
 
 .cover {

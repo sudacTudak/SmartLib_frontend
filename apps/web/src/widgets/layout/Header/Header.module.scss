@@ -7,9 +7,18 @@
   background-color: transparent;
 }
 
-.logo {
+.navBlock {
   flex: 0 0 auto;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+}
 
+.logoContainer {
+  flex: 0 0 auto;
+}
+
+.logo {
   &:focus-visible {
     outline: 2px solid var(--ant-color-primary);
     outline-offset: 2px;
@@ -26,9 +35,19 @@
   flex: 0 0 auto;
 }
 
+.searchBarContainer {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .searchBar {
-  flex: 1 1 600px;
-  max-width: 600px;
+  width: 600px;
+}
+
+.actionsBar {
+  flex: 0 0 auto;
 }
 
 .profileLink {
@@ -39,9 +58,13 @@
 .profileLinkInner {
   &:hover {
     color: var(--ant-color-primary);
-  }
 
-  :global('.ant-typography') {
-    color: var(--ant-color-primary) !important;
+    :global(.ant-typography) {
+      color: var(--ant-color-primary) !important;
+    }
   }
+}
+
+.userName {
+  max-width: 80px;
 }

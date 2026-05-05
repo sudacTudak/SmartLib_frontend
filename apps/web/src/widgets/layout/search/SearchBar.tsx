@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useSearchContext } from 'src/global/globalSearch';
 
 import styles from './SearchBar.module.scss';
+import { SearchOutlined } from '@ant-design/icons';
 
 export function SearchBar() {
   const router = useRouter();
@@ -37,8 +38,7 @@ export function SearchBar() {
           },
           Button: {
             controlHeightLg: 32,
-          }
-
+          },
         },
       }) as ThemeConfig,
     [],
@@ -50,7 +50,7 @@ export function SearchBar() {
         <Input.Search
           placeholder="Название, автор, ISBN…"
           allowClear
-          enterButton="Найти"
+          enterButton={<SearchOutlined style={{ fontSize: 20, width: 24, height: 24 }} />}
           size="large"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}

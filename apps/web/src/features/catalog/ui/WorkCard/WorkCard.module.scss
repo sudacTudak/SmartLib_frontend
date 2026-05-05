@@ -1,5 +1,5 @@
 .bookCard {
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     border-radius: 8px;
     overflow: hidden;
     max-width: var(--ant-book-card-width);
@@ -19,7 +19,7 @@
     max-height: 220px;
 }
 
-.availableTag {
+.coverTagsRow {
     position: absolute;
     bottom: 4px;
     right: 4px;
