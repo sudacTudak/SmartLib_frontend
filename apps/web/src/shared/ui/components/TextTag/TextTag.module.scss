@@ -1,23 +1,49 @@
 .textTag {
-    display: inline-flex;
+  display: inline-flex;
+  /* Prefer SmartLib design tokens in custom SCSS; they are set from `design-tokens.ts` via DesignTokensRootStyle */
+  background-color: var(--smartlib-color-white);
+  border: 1px solid currentColor;
+
+  &.yellow {
+    color: var(--ant-color-warning);
+  }
+
+  &.green {
+    color: var(--ant-color-success);
+  }
+
+  &.blue {
+    color: var(--ant-color-primary);
+  }
+
+  &.gray {
+    color: var(--ant-color-text-tertiary)
+  }
+
+  &.small {
     padding: 2px 4px;
     border-radius: var(--ant-border-radius);
-    /* Prefer SmartLib design tokens in custom SCSS; they are set from `design-tokens.ts` via DesignTokensRootStyle */
-    background-color: var(--smartlib-color-white);
-    border: 1px solid currentColor;
     font-size: 12px;
     line-height: 1;
+  }
 
-    &.yellow {
-        color: var(--ant-color-warning);
-    }
+  &.medium,
+  &.large {
+background-color: color-mix(in oklab, currentColor 10%, transparent);
+  }
 
-    &.green {
-        color: var(--ant-color-success);
-    }
+  &.medium {
+    padding: 4px 8px;
+    border-radius: var(--ant-border-radius-lg);
+    font-size: 14px;
+    line-height: 1;
+  }
 
-    &.blue {
-        color: var(--ant-color-primary);
-    }
+  &.large {
+    padding: 4px 8px;
+    border-radius: var(--ant-border-radius-lg);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+  }
 }
-

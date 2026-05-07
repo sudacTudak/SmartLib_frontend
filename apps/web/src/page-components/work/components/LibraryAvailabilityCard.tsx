@@ -7,6 +7,7 @@ import { APP_ROUTES } from '@global/routes';
 import styles from './LibraryAvailabilityCard.module.scss';
 import { ReserveModalTrigger } from './ReserveModalTrigger';
 import { workCoverPlaceholder260x140Url } from '@shared-packages/ui';
+import { TextTag, TextTagColor, TextTagSize } from 'src/shared/ui/components';
 
 interface IProps {
   workId: string
@@ -25,7 +26,7 @@ export function LibraryAvailabilityCard({ workId, library, availableCount }: IPr
 
       <div className={styles.body}>
         <p className={styles.address}>{library.address}</p>
-        <div className={styles.badge}>В наличии: {availableCount}</div>
+        <TextTag text={`В наличии: ${availableCount}`} color={TextTagColor.Green} size={TextTagSize.Large}/>
       </div>
 
       <div className={styles.overlay}>

@@ -1,3 +1,5 @@
+'use client'
+
 import { IInfoGridItem } from './types';
 import styles from './InfoGrid.module.scss';
 import { GridItem } from './GridItem';
@@ -16,7 +18,7 @@ export function InfoGrid({ items, className }: IInfoGridProps) {
       {items.map((item, index, arr) => (
         <React.Fragment key={item.id}>
           <GridItem {...item} />
-          {index < arr.length - 1 && <Divider className={styles.divider}  variant="solid" vertical/>}
+          {index < arr.length - 1 && <Divider className={styles.divider} variant="solid" vertical />}
         </React.Fragment>
       ))}
     </div>

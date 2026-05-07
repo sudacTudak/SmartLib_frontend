@@ -20,8 +20,10 @@
 
 .body {
   padding: 0.75rem 0.75rem 0.85rem;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.35rem;
+  align-items: flex-start;
 }
 
 .address {
@@ -34,20 +36,6 @@
 .availability {
   color: var(--smartlib-color-text-secondary);
   font-size: 0.9rem;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--smartlib-color-success) 14%, transparent);
-  border: 1px solid color-mix(in oklab, var(--smartlib-color-success) 22%, transparent);
-  color: var(--smartlib-color-text);
-  font-weight: 800;
-  font-size: 0.85rem;
 }
 
 .overlayReserveButton {

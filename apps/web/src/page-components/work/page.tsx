@@ -3,10 +3,10 @@ import { PageContent } from 'src/widgets/layout';
 import styles from './BookDetailPage.module.scss';
 import Image from 'next/image';
 import { IWork } from '@shared-packages/api';
-import { InfoGrid } from '@shared/ui/components';
+import { InfoGrid, TextTag, TextTagColor, TextTagSize } from '@shared/ui/components';
 import { LibraryAvailabilityCard, ReserveModalTrigger } from './components';
 import { getGridInfoItems } from './tools';
-import { WORK_CATEGORY_SINGLE_LABELS } from '@shared-packages/enums';
+import { WORK_CATEGORY_SINGLE_LABELS, WorkCategory } from '@shared-packages/enums';
 import { ILibraryBranch } from '@shared-packages/api/domains/libraries';
 import { PrimaryText } from '@shared/ui/components/PrimaryText';
 import { ToFavoriteButton } from '@features/catalog/ui';
@@ -43,11 +43,11 @@ export function WorkDetailPage({
       <div className={styles.root}>
         <section className={styles.previewColumn}>
           <div className={styles.cover}>
-            <Image src={coverSrc} alt={work.title} objectFit='cover' width={300} height={430} className={styles.coverImg} />
+            <Image src={coverSrc} alt={work.title} width={300} height={430} className={styles.coverImg} />
           </div>
           <div className={styles.actions}>
             {work.onlineVersionLink && (
-              <Button type="link" variant="outlined" href={work.onlineVersionLink} target="_blank" rel="noreferrer">
+              <Button type="default" href={work.onlineVersionLink} target="_blank" rel="noreferrer">
                 Читать онлайн
               </Button>
             )}
@@ -63,22 +63,30 @@ export function WorkDetailPage({
 
         <div className={styles.infoColumn}>
           <section className={styles.meta}>
-            <h1 className={styles.title}>{work.title}</h1>
-
-            <div className={styles.subRow}>
-              <span className={styles.label}>{authorNames.length > 1 ? 'Авторы:' : 'Автор:'}</span>
-              <span>{authorNames.length ? authorNames.join(', ') : '—'}</span>
-            </div>
-
-            <div className={styles.subRow}>
-              <span className={`${styles.pill} ${styles.pillPrimary}`}>
-                {WORK_CATEGORY_SINGLE_LABELS[work.category]}
-              </span>
-              {genreTitles.slice(0, 3).map((t) => (
-                <span key={t} className={styles.pill}>
-                  {t}
-                </span>
-              ))}
+            <div className={styles.contentHeader}>
+              <h1 className={styles.title}>{work.title}</h1>
+              <div className={styles.infoRows}>
+                <div className={styles.subRow}>
+                  <span className={styles.label}>{authorNames.length > 1 ? 'Авторы:' : 'Автор:'}</span>
+                  <span>{authorNames.length ? authorNames.join(', ') : '—'}</span>
+                </div>
+                <div className={styles.subRow}>
+                  <span className={styles.label}>Издательство:</span>
+                  <span>{work.publisher}</span>
+                </div>
+                <div className={styles.subRow}>
+                  {work.category !== WorkCategory.Book && (
+                    <TextTag
+                      text={WORK_CATEGORY_SINGLE_LABELS[work.category]}
+                      color={TextTagColor.Gray}
+                      size={TextTagSize.Medium}
+                    />
+                  )}
+                  {genreTitles.slice(0, 3).map((genre) => (
+                    <TextTag key={genre} text={genre} color={TextTagColor.Blue} size={TextTagSize.Medium} />
+                  ))}
+                </div>
+              </div>
             </div>
 
             <InfoGrid items={gridInfoItems} />
@@ -106,7 +114,7 @@ export function WorkDetailPage({
           </section>
         </div>
         <section className={styles.similarWorksWidget}>
-          <SimilarWorksWidget workId={work.id}/>
+          <SimilarWorksWidget workId={work.id} />
         </section>
       </div>
     </PageContent>

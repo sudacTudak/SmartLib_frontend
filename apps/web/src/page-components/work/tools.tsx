@@ -19,9 +19,6 @@ export function getGridInfoItems(work: IWork) {
     { id: 'volume', label: 'Страниц', value: work.volume },
     { id: 'year', label: 'Год', value: work.createdYear },
   ] as IInfoGridItem[];
-
-  if (work.publisher) {
-    gridInfoItems.push({ id: 'publisher', label: 'Издательство', value: work.publisher });
-  }
+  
   return gridInfoItems;
 }

@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 
   @media (max-width: 900px) {
     gap: 4px;
@@ -13,8 +13,9 @@
   }
 
   .divider {
-    height: 100%;
+    height: auto !important;
     border-inline-start-width: 2px;
+    align-self: stretch;
   }
 }
 
