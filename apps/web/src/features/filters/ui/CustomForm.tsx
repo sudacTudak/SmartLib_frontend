@@ -3,6 +3,7 @@
 import { memo, useMemo } from 'react';
 import { Button, ConfigProvider, Flex, Form, ThemeConfig, Typography } from 'antd';
 import { FilterComponentsByType } from '../configsHelpers';
+import { FilterType } from '../enums';
 import { TFormFilter } from '../types';
 
 import styles from './CustomForm.module.scss';
@@ -33,12 +34,21 @@ function CustomFormLocal<TFormData extends object>({
 
   const fields = useMemo(() => {
     return filters.map((filter) => {
-      const { filterType, ...props } = filter;
-      const FilterComponent = FilterComponentsByType[filterType] as React.FunctionComponent<typeof props>;
+      const { filterType, name, label, ...componentProps } = filter;
+
+      const FilterComponent = FilterComponentsByType[filterType] as React.FunctionComponent<object>;
+
+      const selectMode =
+        filterType === FilterType.MultiSelect ? { mode: 'multiple' as const } : {};
 
       return (
-        <Form.Item key={props.name} label={props.label}>
-          <FilterComponent {...props} />
+        <Form.Item
+          key={String(name)}
+          name={name}
+          label={label}
+          {...(filterType === FilterType.Checkobx ? { valuePropName: 'checked' as const } : {})}
+        >
+          <FilterComponent {...componentProps} {...selectMode} />
         </Form.Item>
       );
     });
@@ -68,11 +78,20 @@ function CustomFormLocal<TFormData extends object>({
         </Form>
         <Flex justify="flex-end" align="center" gap={8}>
           {shouldDisplayReset && (
-            <Button type="default" htmlType="reset">
+            <Button
+              type="default"
+              onClick={() => {
+                if (onReset) {
+                  onReset();
+                } else {
+                  form.resetFields();
+                }
+              }}
+            >
               {resetButtonText}
             </Button>
           )}
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" onClick={() => form.submit()}>
             {submitButtonText ?? 'OK'}
           </Button>
         </Flex>

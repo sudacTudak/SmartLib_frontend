@@ -1,31 +1,20 @@
 'use client';
 
 import { ConfigProvider, Flex, Input, ThemeConfig } from 'antd';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useSearchContext } from 'src/global/globalSearch';
 
 import styles from './SearchBar.module.scss';
 import { SearchOutlined } from '@ant-design/icons';
 
 export function SearchBar() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const { searchValue, setSearchValue } = useSearchContext();
-
-  useEffect(() => {
-    setSearchValue(searchParams.get('q') ?? '');
-  }, [searchParams, setSearchValue]);
+  const { searchValue, setSearchValue, submitSearch } = useSearchContext();
 
   const onSearch = useCallback(
     (value: string) => {
-      const q = value.trim();
-      const params = new URLSearchParams();
-      if (q) params.set('q', q);
-      const suffix = params.toString() ? `?${params.toString()}` : '';
-      router.push(`/catalog${suffix}`);
+      submitSearch(value);
     },
-    [router],
+    [submitSearch],
   );
 
   const themeConfig = useMemo(

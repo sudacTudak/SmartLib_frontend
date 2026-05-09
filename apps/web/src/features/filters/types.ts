@@ -1,21 +1,23 @@
-import {
-  CheckboxProps,
-  DatePickerProps,
-  InputProps,
-  RadioProps,
-  SelectProps,
-} from 'antd';
+import { CheckboxProps, DatePickerProps, InputProps, RadioProps, SelectProps } from 'antd';
 import { Dayjs } from 'dayjs';
 import { FilterType } from './enums';
-import {FormItemProps} from 'antd';
-
-
+import { FormItemProps } from 'antd';
 
 interface IFilterCommonOptions<TValue> {
   label?: string;
   filterType: FilterType;
   defaultValue?: TValue;
-  queryParamName?: string;
+}
+
+enum QueryParamType {
+  String = 'string',
+  Boolean = 'boolean',
+  Array = 'array'
+}
+
+interface IQueryParamFilterMixin {
+  queryParamName: string;
+  queryParamType: QueryParamType
 }
 
 interface ICheckboxOptions extends IFilterCommonOptions<boolean>, CheckboxProps {
@@ -53,4 +55,5 @@ export type TFilter =
   | IMultiSelectOptions
   | IDateRangeOptions;
 
-export type TFormFilter = TFilter & FormItemProps
+export type TFormFilter = TFilter & FormItemProps;
+export type TQueryParamFormFilter = TFormFilter & IQueryParamFilterMixin;

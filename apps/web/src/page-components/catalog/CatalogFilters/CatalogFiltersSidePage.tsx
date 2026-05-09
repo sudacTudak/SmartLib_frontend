@@ -3,7 +3,9 @@
 import { Drawer } from 'antd';
 import { memo, useCallback, useMemo } from 'react';
 import { CustomForm } from 'src/features/filters/ui';
-import { CatalogFilterName, CatalogFiltersFieldConfigs } from '@features/filters/configs';
+import { CatalogFiltersFieldConfigs } from '@features/filters/configs';
+import type { ICatalogFiltersFormState } from '@global/globalSearch';
+import { useSearchContext } from '@global/globalSearch';
 import { useFiltersOptions } from './hooks';
 import { CloseOutlined } from '@ant-design/icons';
 
@@ -12,18 +14,12 @@ interface ICatalogFiltersSidePageProps {
   setIsOpen: (value: boolean) => void;
 }
 
-interface IFiltersFormData {
-  [CatalogFilterName.Genre]: number[];
-  [CatalogFilterName.LibraryBranch]: number[];
-  [CatalogFilterName.Author]: string[];
-  [CatalogFilterName.HasOnlineVersion]: boolean;
-  [CatalogFilterName.InStock]: boolean;
-}
-
 export const CatalogFiltersSidePage = memo(function CatalogFiltersSidePage({
   isOpen,
   setIsOpen,
 }: ICatalogFiltersSidePageProps) {
+  const { applyCatalogFilters, resetCatalogFilters, catalogFilters } = useSearchContext();
+
   const onClose = useCallback(() => {
     setIsOpen(false);
   }, [setIsOpen]);
@@ -41,16 +37,17 @@ export const CatalogFiltersSidePage = memo(function CatalogFiltersSidePage({
   }, [fieldsOptions]);
 
   const onFinish = useCallback(
-    (formData: IFiltersFormData) => {
-      console.log('formData: ', formData);
+    (formData: ICatalogFiltersFormState) => {
+      applyCatalogFilters(formData);
       onClose();
     },
-    [onClose],
+    [applyCatalogFilters, onClose],
   );
 
   const onReset = useCallback(() => {
-    console.log('reset');
-  }, [])
+    resetCatalogFilters();
+    onClose();
+  }, [onClose, resetCatalogFilters]);
 
   return (
     <Drawer
@@ -61,7 +58,14 @@ export const CatalogFiltersSidePage = memo(function CatalogFiltersSidePage({
       mask={{ closable: true }}
       destroyOnHidden // Временное решение для сброса незасабмиченных значений при закрытии формы
     >
-      <CustomForm<IFiltersFormData> filters={fields} onFinish={onFinish} onReset={onReset} submitButtonText="Принять" resetButtonText='Сбросить' />
+      <CustomForm<ICatalogFiltersFormState>
+        filters={fields}
+        initialValues={catalogFilters}
+        onFinish={onFinish}
+        onReset={onReset}
+        submitButtonText="Принять"
+        resetButtonText="Сбросить"
+      />
     </Drawer>
   );
 });

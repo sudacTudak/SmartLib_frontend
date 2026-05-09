@@ -1,3 +1,5 @@
+import { Gender } from "@shared-packages/enums";
+
 export type LoginBody = { email: string; password: string };
 
 /** Как `RegisterUserSerializer` + `BaseAuthSerializer`. */
@@ -7,7 +9,7 @@ export type RegisterBody = {
   firstName: string;
   lastName: string;
   patronymic?: string;
-  gender: 'male' | 'female';
+  gender: Gender;
 };
 
 export type LogoutBody = { refresh: string };

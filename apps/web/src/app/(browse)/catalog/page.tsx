@@ -1,18 +1,22 @@
+import { Suspense } from 'react';
+import { Spin } from 'antd';
 import { PageContent } from '@widgets/layout/PageContent/PageContent';
-import { WorkList } from 'src/features/catalog/ui/WorkList';
-import { getSmartlibApi } from '@global/api';
-import { WorkListVariant } from 'src/features/catalog/ui/WorkList/enums';
+import { CatalogWorksSection } from 'src/page-components/catalog/CatalogWorksSection';
 
-const api = getSmartlibApi();
+function CatalogWorksFallback() {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: 48 }}>
+      <Spin size="large" />
+    </div>
+  );
+}
 
-export default async function CatalogPage() {
-  const works = await api.works.works.list();
-  const authors = await api.authors.list();
-  const genres = await api.works.genre.list();
-
+export default function CatalogPage() {
   return (
     <PageContent>
-      <WorkList works={works} authors={authors} genres={genres} variant={WorkListVariant.Masonry}/>
+      <Suspense fallback={<CatalogWorksFallback />}>
+        <CatalogWorksSection />
+      </Suspense>
     </PageContent>
   );
 }

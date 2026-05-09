@@ -31,8 +31,20 @@ export interface IWork {
 export type WorkListData = IWork[];
 export type WorkDetailData = IWork;
 
-/** GET `works/` — query. */
-export type WorkListParams = { onlyAvailable?: boolean; category?: WorkCategory };
+/** GET `works/` — query (согласовано с `WorkListQueryParams` на бэке). */
+export type WorkListParams = {
+  /** Текстовый поиск (alias `q`). */
+  q?: string;
+  /** Сортировка по рейтингу (как вкладка «Популярные»). */
+  popular?: boolean;
+  onlyAvailable?: boolean;
+  hasOnlineVersion?: boolean;
+  /** Значение как в API (`book`, `scientific_article`, …). */
+  category?: string;
+  authors?: string;
+  genres?: string;
+  libraryBranch?: string;
+};
 export type WorkCreateBody = Partial<
   Pick<
     IWork,
