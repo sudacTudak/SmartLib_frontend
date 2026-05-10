@@ -1,0 +1,26 @@
+.menuItem {
+  --item-width: 60px;
+
+  width: var(--item-width);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--smartlib-color-text);
+  background-color: transparent;
+
+  &:hover {
+    color: var(--smartlib-color-primary);
+  }
+}
+
+.menuItemTitle {
+  display: inline-block;
+  font-size: 12px;
+  line-height: calc(14px / 12px);
+  max-width: var(--item-width);
+  text-overflow: ellipsis;
+  white-space: pre;
+  overflow: hidden;
+  color: inherit;
+}

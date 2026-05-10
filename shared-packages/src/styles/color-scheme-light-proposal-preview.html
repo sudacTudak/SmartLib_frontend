@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartLib — палитра Light (preview)</title>
+  <style>
+    :root {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --page-bg: #f6f8fb;
+      --card: #fff;
+      --muted: #64748b;
+    }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: var(--page-bg);
+      color: #0f172a;
+      line-height: 1.5;
+    }
+    h1 { font-size: 1.35rem; margin: 0 0 8px; }
+    h2 { font-size: 1.05rem; margin: 28px 0 12px; color: #334155; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; }
+    p.lead { margin: 0 0 20px; color: var(--muted); max-width: 72ch; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .swatch {
+      background: var(--card);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 2px rgb(15 23 42 / 4%);
+    }
+    .chip {
+      height: 56px;
+      display: flex;
+      align-items: flex-end;
+      padding: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 1px 2px rgb(0 0 0 / 35%);
+    }
+    .chip.light-text { color: #0f172a; text-shadow: none; }
+    .meta { padding: 10px 12px; font-size: 12px; }
+    .meta code { font-size: 11px; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; }
+    .meta .hex { font-weight: 600; margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      background: var(--card);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+    th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #f1f5f9; }
+    th { background: #f8fafc; font-weight: 600; color: #475569; }
+    tr:last-child td { border-bottom: none; }
+    .note { margin-top: 16px; padding: 12px 14px; background: #eff6ff; border-radius: 8px; border: 1px solid #bfdbfe; font-size: 13px; color: #1e3a5f; }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; background: #e0f2fe; color: #0369a1; margin-left: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Палитра светлой темы</h1>
+  <p class="lead">
+    Синхронизировано с <code>design-tokens.ts</code>. Базовый бренд: <strong>#0092fa</strong>.
+    Акценты: белый, жёлтый <code>#ffb122</code>, коралл <code>#F95849</code> (UI), отдельно семантический красный ошибки <code>#e53935</code>.
+    Суффикс <span class="pill">Light</span> для будущих тем.
+  </p>
+
+  <h2>Бренд (Ant Design: colorPrimary, colorSuccess, …)</h2>
+  <div class="grid">
+    <div class="swatch"><div class="chip" style="background:#0092fa">Primary</div><div class="meta"><code>colorPrimaryLight</code><div class="hex">#0092fa</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#52c41a">Success</div><div class="meta"><code>colorSuccessLight</code><div class="hex">#52c41a</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#ffb122;color:#3d2f00">Warning</div><div class="meta"><code>colorWarningLight</code><div class="hex">#ffb122</div><div style="color:var(--muted);margin-top:4px">Совпадает с colorYellow</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#e53935">Error</div><div class="meta"><code>colorErrorLight</code><div class="hex">#e53935</div><div style="color:var(--muted);margin-top:4px">AntD / формы</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#007fd6">Info</div><div class="meta"><code>colorInfoLight</code><div class="hex">#007fd6</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#F95849">Light red</div><div class="meta"><code>colorLightRed</code><div class="hex">#F95849</div><div style="color:var(--muted);margin-top:4px">Избранное и др.</div></div></div>
+  </div>
+
+  <h2>Color / Background / Screen</h2>
+  <div class="grid">
+    <div class="swatch"><div class="chip light-text" style="background:#ffffff;border-bottom:1px solid #eee">Base</div><div class="meta"><code>colorBackgroundScreenBaseLight</code><div class="hex">#ffffff</div><div style="color:var(--muted);margin-top:4px"><code>--smartlib-color-background-screen-base</code>, алиас <code>--smartlib-color-bg</code></div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#ffffff">Container</div><div class="meta"><code>colorBackgroundScreenContainerLight</code><div class="hex">#ffffff</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#f0f6fc">Layout</div><div class="meta"><code>colorBackgroundScreenLayoutLight</code><div class="hex">#f0f6fc</div></div></div>
+  </div>
+
+  <h2>Color / Background / Components · elevated</h2>
+  <p class="lead" style="margin-bottom:12px;font-size:13px">Поднимаемые поверхности (AntD <code>colorBgElevated</code>). Не входит в Screen.</p>
+  <div class="grid">
+    <div class="swatch"><div class="chip light-text" style="background:#ffffff">Elevated</div><div class="meta"><code>colorBackgroundComponentsElevatedLight</code><div class="hex">#ffffff</div></div></div>
+  </div>
+
+  <h2>Color / Background / Components (Primary · Secondary · Tertiary)</h2>
+  <p class="lead" style="margin-bottom:12px;font-size:13px">Три уровня «силы» тинта primary: от самого заметного (Primary) до почти нейтрального (Tertiary). Подходит для строк таблиц, выделений, input hover и т.д.</p>
+  <div class="grid">
+    <div class="swatch"><div class="chip light-text" style="background:#bfe4ff">P · default</div><div class="meta"><code>colorBackgroundComponentsPrimaryDefaultLight</code><div class="hex">#bfe4ff</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#8fd0ff">P · hover</div><div class="meta"><code>colorBackgroundComponentsPrimaryHoverLight</code><div class="hex">#8fd0ff</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#5cbbff">P · active</div><div class="meta"><code>colorBackgroundComponentsPrimaryActiveLight</code><div class="hex">#5cbbff</div></div></div>
+
+    <div class="swatch"><div class="chip light-text" style="background:#dff0ff">S · default</div><div class="meta"><code>colorBackgroundComponentsSecondaryDefaultLight</code><div class="hex">#dff0ff</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#cfe8ff">S · hover</div><div class="meta"><code>colorBackgroundComponentsSecondaryHoverLight</code><div class="hex">#cfe8ff</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#bedfff">S · active</div><div class="meta"><code>colorBackgroundComponentsSecondaryActiveLight</code><div class="hex">#bedfff</div></div></div>
+
+    <div class="swatch"><div class="chip light-text" style="background:#f2f8fd">T · default</div><div class="meta"><code>colorBackgroundComponentsTertiaryDefaultLight</code><div class="hex">#f2f8fd</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#e8f3fb">T · hover</div><div class="meta"><code>colorBackgroundComponentsTertiaryHoverLight</code><div class="hex">#e8f3fb</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#deedfa">T · active</div><div class="meta"><code>colorBackgroundComponentsTertiaryActiveLight</code><div class="hex">#deedfa</div></div></div>
+  </div>
+
+  <h2>Color / Background / Components / Button</h2>
+  <div class="grid">
+    <div class="swatch"><div class="chip" style="background:#0092fa">Pri · default</div><div class="meta"><code>colorBackgroundComponentsButtonPrimaryDefaultLight</code><div class="hex">#0092fa</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#007fd6">Pri · hover</div><div class="meta"><code>colorBackgroundComponentsButtonPrimaryHoverLight</code><div class="hex">#007fd6</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#006bb8">Pri · active</div><div class="meta"><code>colorBackgroundComponentsButtonPrimaryActiveLight</code><div class="hex">#006bb8</div></div></div>
+
+    <div class="swatch"><div class="chip light-text" style="background:#ffffff;border:1px solid #e8edf5">Sec · default</div><div class="meta"><code>colorBackgroundComponentsButtonSecondaryDefaultLight</code><div class="hex">#ffffff</div><div style="color:var(--muted);margin-top:4px">Нейтральная шкала белый → серый</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#f3f4f6">Sec · hover</div><div class="meta"><code>colorBackgroundComponentsButtonSecondaryHoverLight</code><div class="hex">#f3f4f6</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#e8eaef">Sec · active</div><div class="meta"><code>colorBackgroundComponentsButtonSecondaryActiveLight</code><div class="hex">#e8eaef</div></div></div>
+  </div>
+
+  <h2>Текст основной (Color / Text / Primary &amp; Secondary)</h2>
+  <p class="lead" style="margin-bottom:12px;font-size:13px">Для обычного текста hover/active чаще совпадают с default; для интерактива (ссылки) — заметный сдвиг к primary. Ниже — отдельные токены на будущее.</p>
+  <div class="grid">
+    <div class="swatch"><div class="chip light-text" style="background:#f8fafc"><span style="color:rgba(15,23,42,0.92)">Aa 主要</span></div><div class="meta"><code>colorTextPrimaryDefaultLight</code><div class="hex">rgba(15,23,42,0.92)</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#f8fafc"><span style="color:#007fd6">Aa 主要</span></div><div class="meta"><code>colorTextPrimaryHoverLight</code><div class="hex">#007fd6</div><div style="color:var(--muted);margin-top:4px">Как hover ссылок</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#f8fafc"><span style="color:#006bb8">Aa 主要</span></div><div class="meta"><code>colorTextPrimaryActiveLight</code><div class="hex">#006bb8</div></div></div>
+
+    <div class="swatch"><div class="chip light-text" style="background:#f8fafc"><span style="color:rgba(51,65,85,0.82)">Aa 次要</span></div><div class="meta"><code>colorTextSecondaryDefaultLight</code><div class="hex">rgba(51,65,85,0.82)</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#f8fafc"><span style="color:rgba(30,41,59,0.9)">Aa 次要</span></div><div class="meta"><code>colorTextSecondaryHoverLight</code><div class="hex">rgba(30,41,59,0.9)</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#f8fafc"><span style="color:rgba(15,23,42,0.95)">Aa 次要</span></div><div class="meta"><code>colorTextSecondaryActiveLight</code><div class="hex">rgba(15,23,42,0.95)</div></div></div>
+  </div>
+  <p class="lead" style="font-size:12px;margin-top:8px">Совместимость с AntD: текущие <code>colorTextLight</code> / <code>colorTextSecondaryLight</code> можно маппить на …Default, не ломая API.</p>
+
+  <h2>Текст кнопок (Color / Text / Button / Primary &amp; Secondary)</h2>
+  <div class="grid">
+    <div class="swatch"><div class="chip light-text" style="background:#e2e8f0"><span style="color:#0092fa">Label</span></div><div class="meta"><code>colorTextButtonPrimaryDefaultLight</code><div class="hex">#0092fa</div><div style="color:var(--muted);margin-top:4px">Ghost / link-кнопка</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#e2e8f0"><span style="color:#007fd6">Label</span></div><div class="meta"><code>colorTextButtonPrimaryHoverLight</code><div class="hex">#007fd6</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#e2e8f0"><span style="color:#006bb8">Label</span></div><div class="meta"><code>colorTextButtonPrimaryActiveLight</code><div class="hex">#006bb8</div></div></div>
+
+    <div class="swatch"><div class="chip light-text" style="background:#e2e8f0"><span style="color:#334155">Label</span></div><div class="meta"><code>colorTextButtonSecondaryDefaultLight</code><div class="hex">#334155</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#e2e8f0"><span style="color:#1e293b">Label</span></div><div class="meta"><code>colorTextButtonSecondaryHoverLight</code><div class="hex">#1e293b</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#e2e8f0"><span style="color:#0f172a">Label</span></div><div class="meta"><code>colorTextButtonSecondaryActiveLight</code><div class="hex">#0f172a</div></div></div>
+  </div>
+  <p class="lead" style="font-size:12px;margin-top:8px">Для <strong>залитой</strong> primary-кнопки подпись: <code>colorWhite</code> (<code>#ffffff</code>). Для текста отмены/опасности — прежняя ось от <code>#F95849</code> (default → hover/active темнее).</p>
+
+  <h2>Borders · Primary / Secondary (default · hover · active)</h2>
+  <div class="grid">
+    <div class="swatch"><div class="chip light-text" style="background:#cfd8e6">P def</div><div class="meta"><code>colorBorderPrimaryDefaultLight</code><div class="hex">#cfd8e6</div><div style="color:var(--muted);margin-top:4px">алиас <code>--smartlib-color-border</code></div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#aebccf">P hov</div><div class="meta"><code>colorBorderPrimaryHoverLight</code><div class="hex">#aebccf</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#92a4bd">P act</div><div class="meta"><code>colorBorderPrimaryActiveLight</code><div class="hex">#92a4bd</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#e8edf5">S def</div><div class="meta"><code>colorBorderSecondaryDefaultLight</code><div class="hex">#e8edf5</div><div style="color:var(--muted);margin-top:4px">алиас <code>--smartlib-color-border-secondary</code></div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#dde3ee">S hov</div><div class="meta"><code>colorBorderSecondaryHoverLight</code><div class="hex">#dde3ee</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#d0d8e6">S act</div><div class="meta"><code>colorBorderSecondaryActiveLight</code><div class="hex">#d0d8e6</div></div></div>
+  </div>
+
+  <h2>Иконки · Primary / Secondary (одиночные)</h2>
+  <div class="grid">
+    <div class="swatch"><div class="chip light-text" style="background:#f1f5f9"><span style="color:#475569">icon</span></div><div class="meta"><code>colorIconPrimaryDefaultLight</code><div class="hex">#475569</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#f1f5f9"><span style="color:#0092fa">icon</span></div><div class="meta"><code>colorIconPrimaryHoverLight</code><div class="hex">#0092fa</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#f1f5f9"><span style="color:#006bb8">icon</span></div><div class="meta"><code>colorIconPrimaryActiveLight</code><div class="hex">#006bb8</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#f1f5f9"><span style="color:#94a3b8">icon</span></div><div class="meta"><code>colorIconSecondaryDefaultLight</code><div class="hex">#94a3b8</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#f1f5f9"><span style="color:#64748b">icon</span></div><div class="meta"><code>colorIconSecondaryHoverLight</code><div class="hex">#64748b</div></div></div>
+    <div class="swatch"><div class="chip light-text" style="background:#f1f5f9"><span style="color:#475569">icon</span></div><div class="meta"><code>colorIconSecondaryActiveLight</code><div class="hex">#475569</div></div></div>
+  </div>
+
+  <h2>Сводная таблица (как в design-tokens.ts)</h2>
+  <table>
+    <thead><tr><th>Токен (суффикс Light)</th><th>Значение</th></tr></thead>
+    <tbody>
+      <tr><td colspan="2"><strong>Бренд + common</strong></td></tr>
+      <tr><td>colorPrimaryLight / Rgb</td><td>#0092fa / rgb(0, 146, 250)</td></tr>
+      <tr><td>colorSuccessLight</td><td>#52c41a</td></tr>
+      <tr><td>colorWarningLight · colorYellow</td><td>#ffb122</td></tr>
+      <tr><td>colorErrorLight (семантика)</td><td>#e53935</td></tr>
+      <tr><td>colorLightRed (UI, избранное)</td><td>#F95849</td></tr>
+      <tr><td>colorInfoLight</td><td>#007fd6</td></tr>
+      <tr><td colspan="2"><strong>Background / Screen</strong></td></tr>
+      <tr><td>colorBackgroundScreenBaseLight</td><td>#ffffff</td></tr>
+      <tr><td>colorBackgroundScreenContainerLight</td><td>#ffffff</td></tr>
+      <tr><td>colorBackgroundScreenLayoutLight</td><td>#f0f6fc</td></tr>
+      <tr><td colspan="2"><strong>Background / Components</strong></td></tr>
+      <tr><td>colorBackgroundComponentsElevatedLight → AntD colorBgElevated</td><td>#ffffff</td></tr>
+      <tr><td>Components Primary def / hover / active</td><td>#bfe4ff / #8fd0ff / #5cbbff</td></tr>
+      <tr><td>Components Secondary …</td><td>#dff0ff / #cfe8ff / #bedfff</td></tr>
+      <tr><td>Components Tertiary …</td><td>#f2f8fd / #e8f3fb / #deedfa</td></tr>
+      <tr><td colspan="2"><strong>Background / Components / Button</strong></td></tr>
+      <tr><td>Button Primary …</td><td>#0092fa / #007fd6 / #006bb8</td></tr>
+      <tr><td>Button Secondary …</td><td>#ffffff / #f3f4f6 / #e8eaef</td></tr>
+      <tr><td colspan="2"><strong>Border · default / hover / active</strong></td></tr>
+      <tr><td>colorBorderPrimary*</td><td>#cfd8e6 / #aebccf / #92a4bd</td></tr>
+      <tr><td>colorBorderSecondary*</td><td>#e8edf5 / #dde3ee / #d0d8e6</td></tr>
+      <tr><td colspan="2"><strong>Icons</strong></td></tr>
+      <tr><td>Primary icon def / hover / active</td><td>#475569 / #0092fa / #006bb8</td></tr>
+      <tr><td>Secondary icon def / hover / active</td><td>#94a3b8 / #64748b / #475569</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Контраст.</strong> Вторичная кнопка на светлой теме — белый/светло-серый фон; подпись и иконку берите из <code>--smartlib-color-text</code> и при необходимости добавьте <code>--smartlib-color-border-secondary-default</code> на outline.<br /><br />
+    CSS-алиасы сохранены: <code>--smartlib-color-bg*</code>, <code>--smartlib-color-border</code> без суффикса (default). Переменная <code>--smartlib-color-bg-elevated</code> удалена — используйте <code>--smartlib-color-background-components-elevated</code>. Старые <code>--smartlib-color-fill-background-components-button-*</code> не генерируются; актуально <code>--smartlib-color-background-components-button-*</code>.<br /><br />
+    Откройте этот файл в браузере для визуального превью.
+  </div>
+</body>
+</html>

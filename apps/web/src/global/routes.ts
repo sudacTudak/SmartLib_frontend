@@ -4,6 +4,8 @@ export const APP_ROUTES = {
   libraries: '/libraries',
   libraryBranch: (id: string) => `/library/${id}`,
   profile: '/profile',
+  favorite: '/profile/favorite',
+  reservations: '/profile/reservations',
   auth: {
     login: '/login',
     register: '/register',

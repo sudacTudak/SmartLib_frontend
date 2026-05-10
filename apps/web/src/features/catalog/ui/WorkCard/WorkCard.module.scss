@@ -1,17 +1,35 @@
 .bookCard {
-    border: 2px solid transparent;
-    border-radius: 8px;
-    overflow: hidden;
+    position: relative;
     max-width: var(--ant-book-card-width);
-    background-color: var(--ant-color-white);
+    border: 1px solid var(--smartlib-color-border-secondary-default);
+    border-radius: var(--smartlib-border-radius-lg);
+    background-color: var(--smartlib-color-white);
+    box-shadow: var(--smartlib-shadow-card-default);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 
     &:hover {
-        border-color: var(--ant-color-primary);
+        border-color: var(--smartlib-color-primary);
+        box-shadow: var(--smartlib-shadow-card-hover);
+        transform: translateY(-2px);
+    }
+
+    /*
+      Обрезаем скругление под обложку внутри ссылки — иначе `overflow` на самой карточке глушит тень.
+    */
+    & > :global(a) {
+        display: block;
+        border-radius: inherit;
+        overflow: hidden;
+        color: inherit;
+        text-decoration: none;
     }
 }
 
 .bookCardBody {
-    padding: 4px;
+    padding: 4px 8px 8px;
 }
 
 .imageContainer {

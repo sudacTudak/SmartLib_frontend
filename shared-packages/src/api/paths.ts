@@ -12,7 +12,7 @@ export const ApiPaths = {
   usersAuthRegister: 'users/auth/register',
   usersAuthLogout: 'users/auth/logout',
   usersAuthResetPassword: 'users/auth/reset-password',
-  usersProfile: 'users/profile',
+  usersProfile: 'users/profile/get-profile',
   usersStaff: 'users/staff',
   authors: 'authors',
   works: 'works',

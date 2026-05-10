@@ -3,6 +3,7 @@
   /* Prefer SmartLib design tokens in custom SCSS; they are set from `design-tokens.ts` via DesignTokensRootStyle */
   background-color: var(--smartlib-color-white);
   border: 1px solid currentColor;
+  font-weight: 500;
 
   &.yellow {
     color: var(--ant-color-warning);

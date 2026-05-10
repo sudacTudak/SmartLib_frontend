@@ -1,7 +1,16 @@
 .root {
   display: flex;
+  gap: 15px;
+}
+
+.bookContent {
+  display: flex;
   align-items: start;
-  gap: 20px;
+  gap: 30px;
+  background-color: var(--smartlib-color-background-screen-container);
+  flex: 1 1 auto;
+  padding: 15px;
+  border-radius: var(--smartlib-border-radius-lg);
 }
 
 .previewColumn {
@@ -21,11 +30,14 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  padding-top: 15px;
 }
 
-.similarWorksWidget {
-  flex: 0 0 190px;
-  border-left: 1px solid var(--ant-color-divider);
+.similarWorksSection {
+  flex: 0 0 220px;
+  padding: 15px;
+  border-radius: var(--smartlib-border-radius-lg);
+  background-color: var(--smartlib-color-background-screen-container);
 }
 
 .cover {
@@ -133,22 +145,25 @@
   justify-content: center;
   padding: 10px 14px;
   border-radius: 4px;
-  background: var(--smartlib-color-fill-background-components-button-secondary-default);
-  color: var(--smartlib-color-white);
+  border: 1px solid var(--smartlib-color-border-secondary-default);
+  background: var(--smartlib-color-background-components-button-secondary-default);
+  color: var(--smartlib-color-text);
   text-decoration: none;
   font-weight: 500;
   font-size: 16px;
-  transition: background 150ms ease;
+  transition: background 150ms ease, border-color 150ms ease;
   height: 32px;
 }
 
 .readOnlineLink:hover {
-  background: var(--smartlib-color-fill-background-components-button-secondary-hover);
-  color: var(--smartlib-color-white);
+  background: var(--smartlib-color-background-components-button-secondary-hover);
+  border-color: var(--smartlib-color-border-secondary-hover);
+  color: var(--smartlib-color-text);
 }
 
 .readOnlineLink:active {
-  background: var(--smartlib-color-fill-background-components-button-secondary-active);
+  background: var(--smartlib-color-background-components-button-secondary-active);
+  border-color: var(--smartlib-color-border-secondary-active);
 }
 
 .sectionTitle {
@@ -166,9 +181,8 @@
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(240px, 260px);
-  gap: 0.75rem;
+  gap: 12px;
   overflow-x: auto;
-  padding-bottom: 0.5rem;
   scroll-snap-type: x mandatory;
 }
 

@@ -37,22 +37,37 @@ export const themeVars = {
     fill: {
       background: {
         screen: {
-          base: d.colorBgLight,
-          container: d.colorBgContainerLight,
-          layout: d.colorBgLayoutLight,
-          elevated: d.colorBgElevatedLight,
+          base: d.colorBackgroundScreenBaseLight,
+          container: d.colorBackgroundScreenContainerLight,
+          layout: d.colorBackgroundScreenLayoutLight,
         },
         components: {
+          elevated: d.colorBackgroundComponentsElevatedLight,
+          primary: {
+            default: d.colorBackgroundComponentsPrimaryDefaultLight,
+            hover: d.colorBackgroundComponentsPrimaryHoverLight,
+            active: d.colorBackgroundComponentsPrimaryActiveLight,
+          },
+          secondary: {
+            default: d.colorBackgroundComponentsSecondaryDefaultLight,
+            hover: d.colorBackgroundComponentsSecondaryHoverLight,
+            active: d.colorBackgroundComponentsSecondaryActiveLight,
+          },
+          tertiary: {
+            default: d.colorBackgroundComponentsTertiaryDefaultLight,
+            hover: d.colorBackgroundComponentsTertiaryHoverLight,
+            active: d.colorBackgroundComponentsTertiaryActiveLight,
+          },
           button: {
             primary: {
-              default: d.colorFillBackgroundComponentsButtonPrimaryDefaultLight,
-              hover: d.colorFillBackgroundComponentsButtonPrimaryHoverLight,
-              active: d.colorFillBackgroundComponentsButtonPrimaryActiveLight,
+              default: d.colorBackgroundComponentsButtonPrimaryDefaultLight,
+              hover: d.colorBackgroundComponentsButtonPrimaryHoverLight,
+              active: d.colorBackgroundComponentsButtonPrimaryActiveLight,
             },
             secondary: {
-              default: d.colorFillBackgroundComponentsButtonSecondaryDefaultLight,
-              hover: d.colorFillBackgroundComponentsButtonSecondaryHoverLight,
-              active: d.colorFillBackgroundComponentsButtonSecondaryActiveLight,
+              default: d.colorBackgroundComponentsButtonSecondaryDefaultLight,
+              hover: d.colorBackgroundComponentsButtonSecondaryHoverLight,
+              active: d.colorBackgroundComponentsButtonSecondaryActiveLight,
             },
           },
         },
@@ -64,10 +79,23 @@ export const themeVars = {
         hover: d.colorIconPrimaryHoverLight,
         active: d.colorIconPrimaryActiveLight,
       },
+      secondary: {
+        default: d.colorIconSecondaryDefaultLight,
+        hover: d.colorIconSecondaryHoverLight,
+        active: d.colorIconSecondaryActiveLight,
+      },
     },
     border: {
-      primary: d.colorBorderLight,
-      secondary: d.colorBorderSecondaryLight,
+      primary: {
+        default: d.colorBorderPrimaryDefaultLight,
+        hover: d.colorBorderPrimaryHoverLight,
+        active: d.colorBorderPrimaryActiveLight,
+      },
+      secondary: {
+        default: d.colorBorderSecondaryDefaultLight,
+        hover: d.colorBorderSecondaryHoverLight,
+        active: d.colorBorderSecondaryActiveLight,
+      },
     },
   },
   sizes: {
@@ -75,6 +103,12 @@ export const themeVars = {
       small: d.borderRadiusSM,
       medium: d.borderRadius,
       large: d.borderRadiusLG,
+    },
+  },
+  shadow: {
+    card: {
+      default: d.shadowCardDefaultLight,
+      hover: d.shadowCardHoverLight,
     },
   },
 } as const;

@@ -19,11 +19,11 @@ export const CatalogFiltersSidePage = memo(function CatalogFiltersSidePage({
   setIsOpen,
 }: ICatalogFiltersSidePageProps) {
   const { applyCatalogFilters, resetCatalogFilters, catalogFilters } = useSearchContext();
+  const fieldsOptions = useFiltersOptions();
 
   const onClose = useCallback(() => {
     setIsOpen(false);
   }, [setIsOpen]);
-  const fieldsOptions = useFiltersOptions();
 
   const fields = useMemo(() => {
     return CatalogFiltersFieldConfigs.map((config) => {

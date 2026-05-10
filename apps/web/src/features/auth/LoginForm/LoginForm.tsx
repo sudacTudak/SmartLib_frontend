@@ -8,6 +8,7 @@ import { getAuthSession } from '@global/api';
 import { useAuth } from 'src/global/auth/AuthContext';
 
 import styles from '@shared-packages/components/auth/auth-forms.module.scss';
+import { APP_ROUTES } from 'src/global/routes';
 
 export function LoginForm() {
   const router = useRouter();
@@ -21,9 +22,10 @@ export function LoginForm() {
         </Link>
       }
       onSubmit={async (values) => {
+        console.log('submit');
         await getAuthSession().login(values);
         await refreshUser();
-        router.push('/profile');
+        router.push(APP_ROUTES.catalog);
       }}
       footer={
         <p className={styles.footer}>

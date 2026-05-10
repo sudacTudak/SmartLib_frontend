@@ -1,51 +1,86 @@
-/**
- * Единый SSOT: литералы для JS (themeVars, Ant) и строка `:root` для глобальных `--smartlib-*`.
- * Без шага генерации: CSS-переменные вставляются через `<style>` в layout (SSR с первого байта HTML).
- */
-
 export const designTokenLiterals = {
   colorPrimaryLight: '#0092fa',
   colorPrimaryLightRgb: 'rgb(0, 146, 250)',
   colorSuccessLight: '#52c41a',
-  colorWarningLight: '#faad14',
-  colorErrorLight: '#ff4d4f',
-  colorInfoLight: '#1677ff',
+  colorWarningLight: '#ffb122',
+  /** Семантическая ошибка (формы, AntD colorError); отличается от «мягкого» colorLightRed для избранного и т.п. */
+  colorErrorLight: '#e53935',
+  colorInfoLight: '#007fd6',
 
+  colorGreen: '#52c41a',
   colorWhite: '#ffffff',
   colorYellow: '#ffb122',
-  // colorLightRed: '#E83035',
+  /** Коралловый акцент (избранное, мягкие деструктивные действия); не смешивать с семантическим colorErrorLight. */
   colorLightRed: '#F95849',
+
+  colorGreenTransparent: 'rgba(82, 196, 26, 18%)',
+  colorYellowTransparent: 'rgb(255, 177, 34, 18%)',
+  colorLightRedTransparent: 'rgb(249, 88, 73, 18%)',
 
   colorTextLight: 'rgba(0, 0, 0, 0.88)',
   colorTextSecondaryLight: 'rgba(0, 0, 0, 0.65)',
   colorTextTertiaryLight: 'rgba(0, 0, 0, 0.45)',
   colorTextQuaternaryLight: 'rgba(0, 0, 0, 0.25)',
 
-  textButtonDefaultLight: '#47536b',
-  textButtonHoverLight: '#226dc3',
-  textButtonActiveLight: '#1e61ae',
-  textButtonCancelDefaultLight: '#f01400',
-  textButtonCancelHoverLight: '#d61200',
-  textButtonCancelActiveLight: '#bd1000',
+  textButtonDefaultLight: '#334155',
+  textButtonHoverLight: '#0092fa',
+  textButtonActiveLight: '#006bb8',
+  textButtonCancelDefaultLight: '#e53935',
+  textButtonCancelHoverLight: '#c62828',
+  textButtonCancelActiveLight: '#b71c1c',
 
-  colorBgLight: '#ffffff',
-  colorBgContainerLight: '#ffffff',
-  colorBgLayoutLight: '#f5f5f5',
-  colorBgElevatedLight: '#ffffff',
+  /** Color / Background / Screen — глобальные фоны страниц и крупных виджетов. */
+  colorBackgroundScreenBaseLight: '#ffffff',
+  colorBackgroundScreenContainerLight: '#ffffff',
+  colorBackgroundScreenLayoutLight: '#f0f6fc',
 
-  colorFillBackgroundComponentsButtonPrimaryDefaultLight: '#2679d9',
-  colorFillBackgroundComponentsButtonPrimaryHoverLight: '#226dc3',
-  colorFillBackgroundComponentsButtonPrimaryActiveLight: '#1e61ae',
-  colorFillBackgroundComponentsButtonSecondaryDefaultLight: '#47536b',
-  colorFillBackgroundComponentsButtonSecondaryHoverLight: '#3d475c',
-  colorFillBackgroundComponentsButtonSecondaryActiveLight: '#333b4d',
+  /**
+   * Color / Background / Components — поверхности модалок, поповеров и т.д. (раньше colorBgElevated).
+   * Допускается совпадение с screen/container.
+   */
+  colorBackgroundComponentsElevatedLight: '#ffffff',
 
-  colorBorderLight: '#d9d9d9',
-  colorBorderSecondaryLight: '#f0f0f0',
+  /** Тинты под выделения, строки таблиц, нейтральные «слои» (пересечения с кнопками допустимы). */
+  colorBackgroundComponentsPrimaryDefaultLight: '#bfe4ff',
+  colorBackgroundComponentsPrimaryHoverLight: '#8fd0ff',
+  colorBackgroundComponentsPrimaryActiveLight: '#5cbbff',
+  colorBackgroundComponentsSecondaryDefaultLight: '#dff0ff',
+  colorBackgroundComponentsSecondaryHoverLight: '#cfe8ff',
+  colorBackgroundComponentsSecondaryActiveLight: '#bedfff',
+  colorBackgroundComponentsTertiaryDefaultLight: '#f2f8fd',
+  colorBackgroundComponentsTertiaryHoverLight: '#e8f3fb',
+  colorBackgroundComponentsTertiaryActiveLight: '#deedfa',
 
-  colorIconPrimaryDefaultLight: '#000000',
-  colorIconPrimaryHoverLight: '#e8e2e3',
-  colorIconPrimaryActiveLight: '#873212',
+  /** Color / Background / Components / Button */
+  colorBackgroundComponentsButtonPrimaryDefaultLight: '#0092fa',
+  colorBackgroundComponentsButtonPrimaryHoverLight: '#007fd6',
+  colorBackgroundComponentsButtonPrimaryActiveLight: '#006bb8',
+  /** Вторичная заливка: от белого к светло-серому (нейтральная, без тёмного slate). */
+  colorBackgroundComponentsButtonSecondaryDefaultLight: '#ffffff',
+  colorBackgroundComponentsButtonSecondaryHoverLight: '#f3f4f6',
+  colorBackgroundComponentsButtonSecondaryActiveLight: '#e8eaef',
+
+  /** Одиночные иконки; для текста можно брать те же значения, но токены разделены осознанно. */
+  colorIconPrimaryDefaultLight: '#475569',
+  colorIconPrimaryHoverLight: '#0092fa',
+  colorIconPrimaryActiveLight: '#006bb8',
+  colorIconSecondaryDefaultLight: '#94a3b8',
+  colorIconSecondaryHoverLight: '#64748b',
+  colorIconSecondaryActiveLight: '#475569',
+
+  colorBorderPrimaryDefaultLight: '#cfd8e6',
+  colorBorderPrimaryHoverLight: '#aebccf',
+  colorBorderPrimaryActiveLight: '#92a4bd',
+  colorBorderSecondaryDefaultLight: '#e8edf5',
+  colorBorderSecondaryHoverLight: '#dde3ee',
+  colorBorderSecondaryActiveLight: '#d0d8e6',
+
+  /**
+   * Тени (CSS: `--smartlib-shadow-*`). Hover: нейтральный подъём + 1px кольцо rgba под colorPrimary (#0092fa ~22%).
+   */
+  shadowCardDefaultLight: '0 1px 2px rgba(15, 23, 42, 0.05)',
+  shadowCardHoverLight:
+    '0 4px 14px rgba(15, 23, 42, 0.1), 0 0 0 1px rgba(0, 146, 250, 0.22)',
 
   borderRadiusSM: 2,
   borderRadius: 4,
@@ -67,6 +102,11 @@ export function getSmartlibDesignTokensRootCss(): string {
     `--smartlib-color-white: ${L.colorWhite}`,
     `--smartlib-color-yellow: ${L.colorYellow}`,
     `--smartlib-color-light-red: ${L.colorLightRed}`,
+    `--smartlib-color-green: ${L.colorGreen}`,
+
+    `--smartlib-color-yellow-transparent: ${L.colorYellowTransparent}`,
+    `--smartlib-color-light-red-transparent: ${L.colorLightRedTransparent}`,
+    `--smartlib-color-green-transparent: ${L.colorGreenTransparent}`,
 
     `--smartlib-color-text: ${L.colorTextLight}`,
     `--smartlib-color-text-secondary: ${L.colorTextSecondaryLight}`,
@@ -83,21 +123,49 @@ export function getSmartlibDesignTokensRootCss(): string {
     `--smartlib-color-icon-primary: ${L.colorIconPrimaryDefaultLight}`,
     `--smartlib-color-icon-primary-hover: ${L.colorIconPrimaryHoverLight}`,
     `--smartlib-color-icon-primary-active: ${L.colorIconPrimaryActiveLight}`,
+    `--smartlib-color-icon-secondary: ${L.colorIconSecondaryDefaultLight}`,
+    `--smartlib-color-icon-secondary-hover: ${L.colorIconSecondaryHoverLight}`,
+    `--smartlib-color-icon-secondary-active: ${L.colorIconSecondaryActiveLight}`,
 
-    `--smartlib-color-bg: ${L.colorBgLight}`,
-    `--smartlib-color-bg-container: ${L.colorBgContainerLight}`,
-    `--smartlib-color-bg-layout: ${L.colorBgLayoutLight}`,
-    `--smartlib-color-bg-elevated: ${L.colorBgElevatedLight}`,
+    `--smartlib-color-background-screen-base: ${L.colorBackgroundScreenBaseLight}`,
+    `--smartlib-color-background-screen-container: ${L.colorBackgroundScreenContainerLight}`,
+    `--smartlib-color-background-screen-layout: ${L.colorBackgroundScreenLayoutLight}`,
 
-    `--smartlib-color-fill-background-components-button-primary-default: ${L.colorFillBackgroundComponentsButtonPrimaryDefaultLight}`,
-    `--smartlib-color-fill-background-components-button-primary-hover: ${L.colorFillBackgroundComponentsButtonPrimaryHoverLight}`,
-    `--smartlib-color-fill-background-components-button-primary-active: ${L.colorFillBackgroundComponentsButtonPrimaryActiveLight}`,
-    `--smartlib-color-fill-background-components-button-secondary-default: ${L.colorFillBackgroundComponentsButtonSecondaryDefaultLight}`,
-    `--smartlib-color-fill-background-components-button-secondary-hover: ${L.colorFillBackgroundComponentsButtonSecondaryHoverLight}`,
-    `--smartlib-color-fill-background-components-button-secondary-active: ${L.colorFillBackgroundComponentsButtonSecondaryActiveLight}`,
+    `--smartlib-color-background-components-elevated: ${L.colorBackgroundComponentsElevatedLight}`,
+    `--smartlib-color-background-components-primary-default: ${L.colorBackgroundComponentsPrimaryDefaultLight}`,
+    `--smartlib-color-background-components-primary-hover: ${L.colorBackgroundComponentsPrimaryHoverLight}`,
+    `--smartlib-color-background-components-primary-active: ${L.colorBackgroundComponentsPrimaryActiveLight}`,
+    `--smartlib-color-background-components-secondary-default: ${L.colorBackgroundComponentsSecondaryDefaultLight}`,
+    `--smartlib-color-background-components-secondary-hover: ${L.colorBackgroundComponentsSecondaryHoverLight}`,
+    `--smartlib-color-background-components-secondary-active: ${L.colorBackgroundComponentsSecondaryActiveLight}`,
+    `--smartlib-color-background-components-tertiary-default: ${L.colorBackgroundComponentsTertiaryDefaultLight}`,
+    `--smartlib-color-background-components-tertiary-hover: ${L.colorBackgroundComponentsTertiaryHoverLight}`,
+    `--smartlib-color-background-components-tertiary-active: ${L.colorBackgroundComponentsTertiaryActiveLight}`,
 
-    `--smartlib-color-border: ${L.colorBorderLight}`,
-    `--smartlib-color-border-secondary: ${L.colorBorderSecondaryLight}`,
+    `--smartlib-color-background-components-button-primary-default: ${L.colorBackgroundComponentsButtonPrimaryDefaultLight}`,
+    `--smartlib-color-background-components-button-primary-hover: ${L.colorBackgroundComponentsButtonPrimaryHoverLight}`,
+    `--smartlib-color-background-components-button-primary-active: ${L.colorBackgroundComponentsButtonPrimaryActiveLight}`,
+    `--smartlib-color-background-components-button-secondary-default: ${L.colorBackgroundComponentsButtonSecondaryDefaultLight}`,
+    `--smartlib-color-background-components-button-secondary-hover: ${L.colorBackgroundComponentsButtonSecondaryHoverLight}`,
+    `--smartlib-color-background-components-button-secondary-active: ${L.colorBackgroundComponentsButtonSecondaryActiveLight}`,
+
+    `--smartlib-color-border-primary-default: ${L.colorBorderPrimaryDefaultLight}`,
+    `--smartlib-color-border-primary-hover: ${L.colorBorderPrimaryHoverLight}`,
+    `--smartlib-color-border-primary-active: ${L.colorBorderPrimaryActiveLight}`,
+    `--smartlib-color-border-secondary-default: ${L.colorBorderSecondaryDefaultLight}`,
+    `--smartlib-color-border-secondary-hover: ${L.colorBorderSecondaryHoverLight}`,
+    `--smartlib-color-border-secondary-active: ${L.colorBorderSecondaryActiveLight}`,
+
+    `--smartlib-shadow-card-default: ${L.shadowCardDefaultLight}`,
+    `--smartlib-shadow-card-hover: ${L.shadowCardHoverLight}`,
+
+    /** Совместимость: короткие алиасы под существующие SCSS. */
+    `--smartlib-color-bg: ${L.colorBackgroundScreenBaseLight}`,
+    `--smartlib-color-bg-container: ${L.colorBackgroundScreenContainerLight}`,
+    `--smartlib-color-bg-layout: ${L.colorBackgroundScreenLayoutLight}`,
+
+    `--smartlib-color-border: ${L.colorBorderPrimaryDefaultLight}`,
+    `--smartlib-color-border-secondary: ${L.colorBorderSecondaryDefaultLight}`,
 
     `--smartlib-font-family: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, 'Noto Sans', sans-serif`,
     `--smartlib-font-size: 14px`,

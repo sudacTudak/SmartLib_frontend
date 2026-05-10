@@ -15,7 +15,7 @@ export function PageContent({ children, variant = 'default' }: PageContentProps)
       {variant === 'default' && <div className={classNames(styles.inner, styles.default)}>{children}</div>}
       {variant === 'detail' && (
         <div className={classNames(styles.inner, styles.detail)}>
-          <div className={styles.content}>{children}</div>
+          {children}
         </div>
       )}
     </div>
