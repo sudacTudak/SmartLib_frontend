@@ -4,5 +4,6 @@
 
 .similarWorksWidget {
   position: sticky;
-  height: calc(100vh - 30px - var(--ant-header-height));
+  top: 0;
+  left: 0;
 }

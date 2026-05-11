@@ -12,8 +12,9 @@ import { PrimaryText } from '@shared/ui/components/PrimaryText';
 import { ToFavoriteButton } from '@features/catalog/ui';
 import { workCoverPlaceholder300x430Url } from '@shared-packages/ui';
 import { Button } from 'antd';
-import { SimilarWorksWidget } from './components/SimilarWorksWidget';
-import { SimilarWorksSection } from './components/SimilarWorksWidget/SimilarWorksSection';
+import { SimilarWorksSection } from './components/SimilarWorksWidget';
+import { FeedbackForm } from 'src/features/feedback/ui';
+import { WorkFeedbackForm } from './components/WorkFeedbackForm';
 
 interface IWorkDetailProps {
   work: IWork;
@@ -119,6 +120,7 @@ export function WorkDetailPage({
               <h2 className={styles.sectionTitle}>
                 Отзывы <PrimaryText>(10)</PrimaryText>:
               </h2>
+              <WorkFeedbackForm workId={work.id} />
             </section>
           </div>
         </div>

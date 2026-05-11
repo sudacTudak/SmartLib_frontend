@@ -45,3 +45,8 @@ export type CreateSmartlibHttpClientOptions = {
 
 /** Query для DRF list (`?page=`, фильтры и т.д.). */
 export type ResourceListParams = Record<string, string | number | boolean | undefined>;
+
+/** Общие опции для API-запросов (AbortController и т.д.). */
+export type RequestOptions = {
+  signal?: AbortSignal;
+};

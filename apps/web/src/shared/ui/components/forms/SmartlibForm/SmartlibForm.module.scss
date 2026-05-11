@@ -1,4 +1,8 @@
-.form {
+.wrapper {
+  position: relative;
+}
+
+.smartlibForm {
   :global(.ant-form-item-vertical .ant-form-item-row):has(:global( .ant-checkbox-wrapper)) {
     flex-direction: row-reverse;
     gap: 4px;

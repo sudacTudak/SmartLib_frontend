@@ -1,7 +1,7 @@
 import type { AxiosInstance } from 'axios';
 import { apiPath } from '../../apiPath';
 import { ApiPaths, detailPath } from '../../paths';
-import type { HttpSuccessBody } from '../../types';
+import type { HttpSuccessBody, RequestOptions } from '../../types';
 import { unwrapData } from '../../unwrap';
 import type {
   IBookBasisFeedbackParentParams,
@@ -19,15 +19,13 @@ import type {
   TLibraryBranchFeedbackPatchBody,
 } from './types';
 
-const BOOK_BASIS_FEEDBACKS = `${ApiPaths.feedbackWorks}/feedbacks`;
-const LIB_BRANCH_FEEDBACKS = `${ApiPaths.feedbackLibs}/feedbacks`;
 
 function bookBasisByUserPath(): string {
-  return `${BOOK_BASIS_FEEDBACKS}/by-user/`;
+  return `${ApiPaths.feedbackWorks}/by-user/`;
 }
 
 function libraryBranchByUserPath(): string {
-  return `${LIB_BRANCH_FEEDBACKS}/by-user/`;
+  return `${ApiPaths.feedbackLibs}/by-user/`;
 }
 
 function mergeParams(parent: object, extra?: object) {
@@ -43,34 +41,34 @@ export function createFeedbackApi(client: AxiosInstance) {
   return {
     works: {
       list: async (parent: IBookBasisFeedbackParentParams) => {
-        const res = await client.get<HttpSuccessBody<TBookBasisFeedbackListData>>(apiPath(`${BOOK_BASIS_FEEDBACKS}/`), {
+        const res = await client.get<HttpSuccessBody<TBookBasisFeedbackListData>>(apiPath(`${ApiPaths.feedbackWorks}/`), {
           params: parent,
         });
         return unwrapData<TBookBasisFeedbackListData>(res);
       },
-      byUser: async (parent: IBookBasisFeedbackParentParams, params?: IFeedbackByUserParams) => {
+      byUser: async (parent: IBookBasisFeedbackParentParams, params?: IFeedbackByUserParams, options?: RequestOptions) => {
         const res = await client.get<HttpSuccessBody<TBookBasisFeedbackByUserData>>(
           apiPath(bookBasisByUserPath()),
-          { params: mergeParams(parent, params) },
+          { params: mergeParams(parent, params), signal: options?.signal },
         );
         return unwrapData<TBookBasisFeedbackByUserData>(res);
       },
       create: async (body: TBookBasisFeedbackCreateBody) => {
         const res = await client.post<HttpSuccessBody<TBookBasisFeedbackDetailData>>(
-          apiPath(`${BOOK_BASIS_FEEDBACKS}/`),
+          apiPath(`${ApiPaths.feedbackWorks}/`),
           body,
         );
         return unwrapData<TBookBasisFeedbackDetailData>(res);
       },
       partialUpdate: async (feedbackId: string | number, body: TBookBasisFeedbackPatchBody) => {
         const res = await client.patch<HttpSuccessBody<TBookBasisFeedbackDetailData>>(
-          apiPath(detailPath(BOOK_BASIS_FEEDBACKS, feedbackId)),
+          apiPath(detailPath(ApiPaths.feedbackWorks, feedbackId)),
           body,
         );
         return unwrapData<TBookBasisFeedbackDetailData>(res);
       },
       delete: async (feedbackId: string | number) => {
-        const res = await client.delete<HttpSuccessBody<null>>(apiPath(detailPath(BOOK_BASIS_FEEDBACKS, feedbackId)));
+        const res = await client.delete<HttpSuccessBody<null>>(apiPath(detailPath(ApiPaths.feedbackWorks, feedbackId)));
         return unwrapData<null>(res);
       },
     },
@@ -78,7 +76,7 @@ export function createFeedbackApi(client: AxiosInstance) {
     libraryBranches: {
       list: async (parent: ILibraryBranchFeedbackParentParams) => {
         const res = await client.get<HttpSuccessBody<TLibraryBranchFeedbackListData>>(
-          apiPath(`${LIB_BRANCH_FEEDBACKS}/`),
+          apiPath(`${ApiPaths.feedbackLibs}/`),
           { params: parent },
         );
         return unwrapData<TLibraryBranchFeedbackListData>(res);
@@ -92,20 +90,20 @@ export function createFeedbackApi(client: AxiosInstance) {
       },
       create: async (body: TLibraryBranchFeedbackCreateBody) => {
         const res = await client.post<HttpSuccessBody<TLibraryBranchFeedbackDetailData>>(
-          apiPath(`${LIB_BRANCH_FEEDBACKS}/`),
+          apiPath(`${ApiPaths.feedbackLibs}/`),
           body,
         );
         return unwrapData<TLibraryBranchFeedbackDetailData>(res);
       },
       partialUpdate: async (feedbackId: string | number, body: TLibraryBranchFeedbackPatchBody) => {
         const res = await client.patch<HttpSuccessBody<TLibraryBranchFeedbackDetailData>>(
-          apiPath(detailPath(LIB_BRANCH_FEEDBACKS, feedbackId)),
+          apiPath(detailPath(ApiPaths.feedbackLibs, feedbackId)),
           body,
         );
         return unwrapData<TLibraryBranchFeedbackDetailData>(res);
       },
       delete: async (feedbackId: string | number) => {
-        const res = await client.delete<HttpSuccessBody<null>>(apiPath(detailPath(LIB_BRANCH_FEEDBACKS, feedbackId)));
+        const res = await client.delete<HttpSuccessBody<null>>(apiPath(detailPath(ApiPaths.feedbackLibs, feedbackId)));
         return unwrapData<null>(res);
       },
     },

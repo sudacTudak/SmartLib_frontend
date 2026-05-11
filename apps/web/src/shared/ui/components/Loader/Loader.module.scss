@@ -1,0 +1,31 @@
+.loader {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid var(--ant-color-border);
+  border-top-color: var(--ant-color-primary);
+  animation: spin 0.7s linear infinite;
+}
+
+.small {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+.medium {
+  width: 24px;
+  height: 24px;
+  border-width: 2.5px;
+}
+
+.large {
+  width: 36px;
+  height: 36px;
+  border-width: 3px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
