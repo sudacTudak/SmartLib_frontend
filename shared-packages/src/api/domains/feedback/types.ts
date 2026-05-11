@@ -1,10 +1,9 @@
 import type { IsoDateTimeString } from '../../types';
 
 /**
- * `BookBasisFeedback` / `LibraryBranchFeedback` на бэке.
- * JSON отдаётся в camelCase (`clientId`, `bookBasisId`, `libraryBranchId`, ...).
+ * `WorkFeedback` / `LibraryBranchFeedback` на бэке.
  */
-export interface IBookBasisFeedback {
+export interface IWorkFeedback {
   id: string;
   workId: string;
   clientId: string;
@@ -24,17 +23,17 @@ export interface ILibraryBranchFeedback {
   updatedAt: IsoDateTimeString;
 }
 
-export type TBookBasisFeedbackListData = IBookBasisFeedback[];
-export type TBookBasisFeedbackDetailData = IBookBasisFeedback;
-export type TBookBasisFeedbackByUserData = IBookBasisFeedback[];
+export type TWorkFeedbackListData = IWorkFeedback[];
+export type TWorkFeedbackDetailData = IWorkFeedback;
+export type TWorkFeedbackByUserData = IWorkFeedback[];
 export type TLibraryBranchFeedbackListData = ILibraryBranchFeedback[];
 export type TLibraryBranchFeedbackDetailData = ILibraryBranchFeedback;
 export type TLibraryBranchFeedbackByUserData = ILibraryBranchFeedback[];
 
-export type TBookBasisFeedbackCreateBody = Pick<IBookBasisFeedback, 'workId' | 'score'> & {
+export type TWorkFeedbackCreateBody = Pick<IWorkFeedback, 'workId' | 'score'> & {
   comment?: string | null;
 };
-export type TBookBasisFeedbackPatchBody = Partial<Pick<IBookBasisFeedback, 'score'>> & { comment?: string | null };
+export type TWorkFeedbackPatchBody = Partial<Pick<IWorkFeedback, 'score'>> & { comment?: string | null };
 
 export type TLibraryBranchFeedbackCreateBody = Pick<ILibraryBranchFeedback, 'libraryBranchId' | 'score'> & {
   comment?: string | null;
@@ -49,7 +48,7 @@ export interface IFeedbackByUserParams {
 }
 
 /** Query: опциональная фильтрация list / by-user по книге / филиалу. */
-export interface IBookBasisFeedbackParentParams {
+export interface IWorkFeedbackParentParams {
   workId?: string;
 }
 export interface ILibraryBranchFeedbackParentParams {

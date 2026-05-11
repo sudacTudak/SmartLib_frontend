@@ -11,7 +11,6 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "src/*": ["./src/*"],
       "@global/*": ["./src/global/*"],
       "@features/*": ["./src/features/*"],
       "@entities/*": ["./src/entities/*"],
@@ -22,8 +21,6 @@
     }
   },
   "include": [
-    // "../../shared-packages/src/ui/icons/CloseIcon.tsx",
-    // "../../shared-packages/src/ui/icons/index.ts",
     "next-env.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx",

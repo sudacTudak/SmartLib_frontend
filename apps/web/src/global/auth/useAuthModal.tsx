@@ -33,7 +33,7 @@ export function useAuthModal(): UseAuthModalReturn {
   );
 
   const modalNode = (
-    <Modal open={open} onCancel={() => setOpen(false)} footer={null} destroyOnClose>
+    <Modal open={open} onCancel={() => setOpen(false)} footer={null} destroyOnHidden>
       <LoginForm />
     </Modal>
   );

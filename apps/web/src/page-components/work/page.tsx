@@ -2,7 +2,7 @@ import { PageContent } from 'src/widgets/layout';
 
 import styles from './BookDetailPage.module.scss';
 import Image from 'next/image';
-import { IWork } from '@shared-packages/api';
+import { IWorkFeedback, IWork } from '@shared-packages/api';
 import { InfoGrid, TextTag, TextTagColor, TextTagSize } from '@shared/ui/components';
 import { LibraryAvailabilityCard, ReserveModalTrigger } from './components';
 import { getGridInfoItems } from './tools';
@@ -13,12 +13,12 @@ import { ToFavoriteButton } from '@features/catalog/ui';
 import { workCoverPlaceholder300x430Url } from '@shared-packages/ui';
 import { Button } from 'antd';
 import { SimilarWorksSection } from './components/SimilarWorksWidget';
-import { FeedbackForm } from 'src/features/feedback/ui';
 import { WorkFeedbackForm } from './components/WorkFeedbackForm';
 
 interface IWorkDetailProps {
   work: IWork;
   libraryEntities: Record<string, ILibraryBranch>;
+  feedbacks: IWorkFeedback[];
   libraryIds: ILibraryBranch['id'][];
   availabilityByLibrariesMap: Record<string, number>;
   authorNames: string[];
@@ -29,6 +29,7 @@ interface IWorkDetailProps {
 export function WorkDetailPage({
   work,
   libraryEntities,
+  feedbacks,
   libraryIds,
   availabilityByLibrariesMap,
   authorNames,
@@ -116,9 +117,9 @@ export function WorkDetailPage({
               </div>
             </section>
 
-            <section className={styles.commentsSection}>
+            <section className={styles.feedbackSection}>
               <h2 className={styles.sectionTitle}>
-                Отзывы <PrimaryText>(10)</PrimaryText>:
+                Отзывы <PrimaryText>({feedbacks.length})</PrimaryText>:
               </h2>
               <WorkFeedbackForm workId={work.id} />
             </section>

@@ -40,6 +40,12 @@
   background-color: var(--smartlib-color-background-screen-container);
 }
 
+.feedbackSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .cover {
   position: relative;
   width: 100%;

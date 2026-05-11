@@ -35,6 +35,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
     const authors = await api.authors.list();
     const genres = await api.works.genre.list();
     const work = await loadWorkDetail(workId);
+    const workFeedbacks = await api.feedback.works.list({ workId });
 
     const { availableByLibraryBranchIds: availableByLibraryBranchIds, totalAvailableCount } =
       await api.works.workItems.availabilityByWork({
@@ -53,6 +54,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
       <WorkDetailPage
         work={work}
         libraryEntities={normalizedLibraries.entities}
+        feedbacks={workFeedbacks}
         libraryIds={normalizedLibraries.ids}
         availabilityByLibrariesMap={availableByLibraryBranchIds}
         genreTitles={genreTitles}

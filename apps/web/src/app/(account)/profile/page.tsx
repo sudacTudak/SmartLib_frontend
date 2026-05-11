@@ -7,10 +7,9 @@ import { useEffect } from 'react';
 
 import { FormFooterDivider } from '@shared-packages/components/form-footer-divider';
 
-import { AuthStatus } from 'src/lib/auth/enums';
-import { useAuth } from 'src/lib/auth/auth-context';
-
 import styles from './profile-page.module.scss';
+import { useAuth } from '@global/auth';
+import { AuthStatus } from '@global/auth/enums';
 
 export default function ProfilePage() {
   const router = useRouter();

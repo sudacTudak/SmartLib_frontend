@@ -3,14 +3,13 @@ import { ApiResource } from '../../api-resource';
 import { ApiPaths } from '../../paths';
 import type { RequestOptions } from '../../types';
 import type {
-  IBookBasisFeedbackParentParams,
+  IWorkFeedbackParentParams,
   IFeedbackByUserParams,
   ILibraryBranchFeedbackParentParams,
-  TBookBasisFeedbackByUserData,
-  TBookBasisFeedbackCreateBody,
-  TBookBasisFeedbackDetailData,
-  TBookBasisFeedbackListData,
-  TBookBasisFeedbackPatchBody,
+  TWorkFeedbackCreateBody,
+  TWorkFeedbackDetailData,
+  TWorkFeedbackListData,
+  TWorkFeedbackPatchBody,
   TLibraryBranchFeedbackByUserData,
   TLibraryBranchFeedbackCreateBody,
   TLibraryBranchFeedbackDetailData,
@@ -20,10 +19,10 @@ import type {
 
 export function createFeedbackApi(client: AxiosInstance) {
   const worksResource = new ApiResource<
-    TBookBasisFeedbackListData,
-    TBookBasisFeedbackDetailData,
-    TBookBasisFeedbackCreateBody,
-    TBookBasisFeedbackPatchBody,
+    TWorkFeedbackListData,
+    TWorkFeedbackDetailData,
+    TWorkFeedbackCreateBody,
+    TWorkFeedbackPatchBody,
     null
   >(client, ApiPaths.feedbackWorks);
 
@@ -37,16 +36,12 @@ export function createFeedbackApi(client: AxiosInstance) {
 
   return {
     works: {
-      list: (parent: IBookBasisFeedbackParentParams, options?: RequestOptions) =>
+      list: (parent: IWorkFeedbackParentParams, options?: RequestOptions) =>
         worksResource.list(parent as Record<string, unknown>, options),
-      byUser: (parent: IBookBasisFeedbackParentParams, params?: IFeedbackByUserParams, options?: RequestOptions) =>
-        worksResource.customGet<TBookBasisFeedbackByUserData>('by-user', { ...parent, ...params }, options),
-      create: (body: TBookBasisFeedbackCreateBody, options?: RequestOptions) =>
-        worksResource.create(body, options),
-      partialUpdate: (feedbackId: string | number, body: TBookBasisFeedbackPatchBody, options?: RequestOptions) =>
+      create: (body: TWorkFeedbackCreateBody, options?: RequestOptions) => worksResource.create(body, options),
+      partialUpdate: (feedbackId: string | number, body: TWorkFeedbackPatchBody, options?: RequestOptions) =>
         worksResource.partialUpdate(feedbackId, body, options),
-      delete: (feedbackId: string | number, options?: RequestOptions) =>
-        worksResource.delete(feedbackId, options),
+      delete: (feedbackId: string | number, options?: RequestOptions) => worksResource.delete(feedbackId, options),
     },
 
     libraryBranches: {
@@ -54,11 +49,10 @@ export function createFeedbackApi(client: AxiosInstance) {
         libsResource.list(parent as Record<string, unknown>, options),
       byUser: (parent: ILibraryBranchFeedbackParentParams, params?: IFeedbackByUserParams, options?: RequestOptions) =>
         libsResource.customGet<TLibraryBranchFeedbackByUserData>('by-user', { ...parent, ...params }, options),
-      create: (body: TLibraryBranchFeedbackCreateBody, options?: RequestOptions) =>
-        libsResource.create(body, options),
+      create: (body: TLibraryBranchFeedbackCreateBody, options?: RequestOptions) => libsResource.create(body, options),
       partialUpdate: (feedbackId: string | number, body: TLibraryBranchFeedbackPatchBody, options?: RequestOptions) =>
         libsResource.partialUpdate(feedbackId, body, options),
-      delete: (feedbackId: string | number, options?: RequestOptions) =>
-        libsResource.delete(feedbackId, options),   },
+      delete: (feedbackId: string | number, options?: RequestOptions) => libsResource.delete(feedbackId, options),
+    },
   };
 }

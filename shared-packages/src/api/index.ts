@@ -84,19 +84,19 @@ export type {
 } from './domains/works';
 
 export type {
-  IBookBasisFeedback,
+  IWorkFeedback,
   ILibraryBranchFeedback,
   IFeedbackByUserParams,
-  IBookBasisFeedbackParentParams,
+  IWorkFeedbackParentParams,
   ILibraryBranchFeedbackParentParams,
-  TBookBasisFeedbackListData,
-  TBookBasisFeedbackDetailData,
-  TBookBasisFeedbackByUserData,
+  TWorkFeedbackListData,
+  TWorkFeedbackDetailData,
+  TWorkFeedbackByUserData,
   TLibraryBranchFeedbackListData,
   TLibraryBranchFeedbackDetailData,
   TLibraryBranchFeedbackByUserData,
-  TBookBasisFeedbackCreateBody,
-  TBookBasisFeedbackPatchBody,
+  TWorkFeedbackCreateBody,
+  TWorkFeedbackPatchBody,
   TLibraryBranchFeedbackCreateBody,
   TLibraryBranchFeedbackPatchBody,
 } from './domains/feedback';
