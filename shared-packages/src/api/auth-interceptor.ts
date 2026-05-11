@@ -1,10 +1,9 @@
 import axios, { type AxiosError, type AxiosInstance, type InternalAxiosRequestConfig } from 'axios';
-import { apiPath } from './apiPath';
-import { ApiPaths, regularPath } from './paths';
+import { ApiPaths } from './paths';
 import type { HttpSuccessBody, TokenPayload, TokenStorage } from './types';
 import { isHttpFailureBody, unwrapBody } from './unwrap';
 
-const REFRESH_RELATIVE = regularPath(ApiPaths.usersAuthTokenRefresh);
+const REFRESH_PATH = `/api/v1/${ApiPaths.usersAuthTokenRefresh}/`;
 
 const REFRESH_AXIOS_CONFIG = {
   headers: { 'Content-Type': 'application/json' },
@@ -22,7 +21,7 @@ export async function refreshTokensWithStorage(
 ): Promise<string | null> {
   const refreshFromStorage = await storage.getRefreshToken();
   const baseURL = baseOrigin.replace(/\/$/, '');
-  const url = `${baseURL}${apiPath(REFRESH_RELATIVE)}`;
+  const url = `${baseURL}${REFRESH_PATH}`;
 
   try {
     const { data } = refreshFromStorage

@@ -1,8 +1,7 @@
 /**
  * Сегменты путей под `api/v1` (как в smartlib_backend).
- * Сборка: `apiPath(listPath(ApiPaths.users))`, `apiPath(detailPath(ApiPaths.genre, id))` и т.д.
+ * Используются в ApiResource: `new ApiResource(client, ApiPaths.works)`.
  */
-
 export const ApiPaths = {
   users: 'users',
   usersAuth: 'users/auth',
@@ -31,22 +30,6 @@ export const ApiPaths = {
   suppliers: 'suppliers',
   amenities: 'amenities',
   amenityVendors: 'amenities/vendors',
-  /** Отзывы: `api/v1/feedback/...` (см. `feedback/urls.py` на бэке). */
   feedbackWorks: 'feedback/works',
   feedbackLibs: 'feedback/libs',
 } as const;
-
-/** DRF collection list: `segment/` */
-export function regularPath(segment: string): string {
-  return `${segment}/`;
-}
-
-/** DRF detail: `segment/id/` */
-export function detailPath(segment: string, id: string | number): string {
-  return `${segment}/${id}/`;
-}
-
-/** Кастомное действие на объекте: `segment/id/action/` */
-export function actionPath(segment: string, id: string | number, action: string): string {
-  return `${segment}/${id}/${action}/`;
-}

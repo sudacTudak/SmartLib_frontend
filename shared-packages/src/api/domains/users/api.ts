@@ -1,33 +1,19 @@
 import type { AxiosInstance } from 'axios';
-import { apiPath } from '../../apiPath';
-import { ApiPaths, detailPath, regularPath } from '../../paths';
-import type { HttpSuccessBody } from '../../types';
+import { ApiResource } from '../../api-resource';
+import { ApiPaths } from '../../paths';
+import type { RequestOptions } from '../../types';
 import { unwrapData } from '../../unwrap';
 import type { UsersDetailData, UsersListData, UsersListParams } from './types';
 
-/** Публичные клиенты (читатели), `UsersViewSet`. */
 export function createUsersApi(client: AxiosInstance) {
+  const resource = new ApiResource<UsersListData, UsersDetailData>(client, ApiPaths.users);
+
   return {
-    list: async (params?: UsersListParams) => {
-      const res = await client.get<HttpSuccessBody<UsersListData>>(
-        apiPath(regularPath(ApiPaths.users)),
-        { params },
-      );
-      return unwrapData<UsersListData>(res);
-    },
+    list: (params?: UsersListParams, options?: RequestOptions) => resource.list(params, options),
+    get: (id: string | number, options?: RequestOptions) => resource.get(id, options),
 
-    get: async (id: string | number) => {
-      const res = await client.get<HttpSuccessBody<UsersDetailData>>(
-        apiPath(detailPath(ApiPaths.users, id)),
-      );
-      return unwrapData<UsersDetailData>(res);
-    },
-
-    /** Текущий пользователь по `Authorization: Bearer` (ожидается `GET users/me/` на бэкенде). */
-    profile: async () => {
-      const res = await client.get<HttpSuccessBody<UsersDetailData>>(
-        apiPath(regularPath(ApiPaths.usersProfile)),
-      );
+    profile: async (options?: RequestOptions): Promise<UsersDetailData> => {
+      const res = await client.get(`/api/v1/${ApiPaths.usersProfile}/`, { signal: options?.signal });
       return unwrapData<UsersDetailData>(res);
     },
   };

@@ -1,51 +1,17 @@
 import type { AxiosInstance } from 'axios';
-import { apiPath } from '../../apiPath';
-import { ApiPaths, detailPath, regularPath } from '../../paths';
-import type { HttpSuccessBody } from '../../types';
-import { unwrapData } from '../../unwrap';
+import { ApiResource } from '../../api-resource';
+import { ApiPaths } from '../../paths';
 import type {
   SupplierCreateBody,
   SupplierDeleteData,
   SupplierDetailData,
   SupplierListData,
-  SupplierListParams,
   SupplierPatchBody,
 } from './types';
 
 export function createSuppliersApi(client: AxiosInstance) {
-  return {
-    list: async (params?: SupplierListParams) => {
-      const res = await client.get<HttpSuccessBody<SupplierListData>>(
-        apiPath(regularPath(ApiPaths.suppliers)),
-        { params },
-      );
-      return unwrapData<SupplierListData>(res);
-    },
-    get: async (id: string | number) => {
-      const res = await client.get<HttpSuccessBody<SupplierDetailData>>(
-        apiPath(detailPath(ApiPaths.suppliers, id)),
-      );
-      return unwrapData<SupplierDetailData>(res);
-    },
-    create: async (body: SupplierCreateBody) => {
-      const res = await client.post<HttpSuccessBody<SupplierDetailData>>(
-        apiPath(regularPath(ApiPaths.suppliers)),
-        body,
-      );
-      return unwrapData<SupplierDetailData>(res);
-    },
-    partialUpdate: async (id: string | number, body: SupplierPatchBody) => {
-      const res = await client.patch<HttpSuccessBody<SupplierDetailData>>(
-        apiPath(detailPath(ApiPaths.suppliers, id)),
-        body,
-      );
-      return unwrapData<SupplierDetailData>(res);
-    },
-    delete: async (id: string | number) => {
-      const res = await client.delete<HttpSuccessBody<SupplierDeleteData>>(
-        apiPath(detailPath(ApiPaths.suppliers, id)),
-      );
-      return unwrapData<SupplierDeleteData>(res);
-    },
-  };
+  return new ApiResource<SupplierListData, SupplierDetailData, SupplierCreateBody, SupplierPatchBody, SupplierDeleteData>(
+    client,
+    ApiPaths.suppliers,
+  );
 }

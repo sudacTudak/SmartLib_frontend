@@ -1,8 +1,7 @@
 import type { AxiosInstance } from 'axios';
-import { apiPath } from '../../apiPath';
-import { ApiPaths, detailPath, regularPath } from '../../paths';
-import type { HttpSuccessBody } from '../../types';
-import { unwrapData } from '../../unwrap';
+import { ApiResource } from '../../api-resource';
+import { ApiPaths } from '../../paths';
+import type { RequestOptions } from '../../types';
 import type {
   WorkCreateBody,
   WorkDeleteData,
@@ -25,94 +24,45 @@ import type {
   IAvailabilityByWorkResponse,
 } from './types';
 
-/** `works`, `genre`, `work-items` + `by-library`. */
 export function createWorksApi(client: AxiosInstance) {
+  const worksResource = new ApiResource<WorkListData, WorkDetailData, WorkCreateBody, WorkPatchBody, WorkDeleteData>(
+    client,
+    ApiPaths.works,
+  );
+  const genreResource = new ApiResource<GenreListData, GenreDetailData, GenreCreateBody, GenrePatchBody, GenreDeleteData>(
+    client,
+    ApiPaths.genre,
+  );
+  const similarResource = new ApiResource(client, ApiPaths.worksSimilar);
+  const workItemsResource = new ApiResource<unknown, WorkItemDetailData>(client, ApiPaths.workItems);
+
   return {
     works: {
-      list: async (params?: WorkListParams) => {
-        const res = await client.get<HttpSuccessBody<WorkListData>>(apiPath(regularPath(ApiPaths.works)), { params });
-        return unwrapData<WorkListData>(res);
-      },
-      get: async (id: string | number) => {
-        const res = await client.get<HttpSuccessBody<WorkDetailData>>(apiPath(detailPath(ApiPaths.works, id)));
-        return unwrapData<WorkDetailData>(res);
-      },
-      create: async (body: WorkCreateBody) => {
-        const res = await client.post<HttpSuccessBody<WorkDetailData>>(apiPath(regularPath(ApiPaths.works)), body);
-        return unwrapData<WorkDetailData>(res);
-      },
-      partialUpdate: async (id: string | number, body: WorkPatchBody) => {
-        const res = await client.patch<HttpSuccessBody<WorkDetailData>>(apiPath(detailPath(ApiPaths.works, id)), body);
-        return unwrapData<WorkDetailData>(res);
-      },
-      delete: async (id: string | number) => {
-        const res = await client.delete<HttpSuccessBody<WorkDeleteData>>(apiPath(detailPath(ApiPaths.works, id)));
-        return unwrapData<WorkDeleteData>(res);
-      },
-
-      getSimilar: async (id: string) => {
-        const res = await client.get<HttpSuccessBody<WorkListData>>(apiPath(regularPath(ApiPaths.worksSimilar)), {
-          params: { workId: id },
-        });
-        return unwrapData<WorkListData>(res);
-      },
+      list: (params?: WorkListParams, options?: RequestOptions) => worksResource.list(params as Record<string, unknown>, options),
+      get: (id: string | number, options?: RequestOptions) => worksResource.get(id, options),
+      create: (body: WorkCreateBody, options?: RequestOptions) => worksResource.create(body, options),
+      partialUpdate: (id: string | number, body: WorkPatchBody, options?: RequestOptions) => worksResource.partialUpdate(id, body, options),
+      delete: (id: string | number, options?: RequestOptions) => worksResource.delete(id, options),
+      getSimilar: (id: string, options?: RequestOptions) =>
+        similarResource.list({ workId: id }, options) as Promise<WorkListData>,
     },
 
     genre: {
-      list: async (params?: WorksListQueryParams) => {
-        const res = await client.get<HttpSuccessBody<GenreListData>>(apiPath(regularPath(ApiPaths.genre)), { params });
-        return unwrapData<GenreListData>(res);
-      },
-      get: async (id: string | number) => {
-        const res = await client.get<HttpSuccessBody<GenreDetailData>>(apiPath(detailPath(ApiPaths.genre, id)));
-        return unwrapData<GenreDetailData>(res);
-      },
-      create: async (body: GenreCreateBody) => {
-        const res = await client.post<HttpSuccessBody<GenreDetailData>>(apiPath(regularPath(ApiPaths.genre)), body);
-        return unwrapData<GenreDetailData>(res);
-      },
-      partialUpdate: async (id: string | number, body: GenrePatchBody) => {
-        const res = await client.patch<HttpSuccessBody<GenreDetailData>>(apiPath(detailPath(ApiPaths.genre, id)), body);
-        return unwrapData<GenreDetailData>(res);
-      },
-      delete: async (id: string | number) => {
-        const res = await client.delete<HttpSuccessBody<GenreDeleteData>>(apiPath(detailPath(ApiPaths.genre, id)));
-        return unwrapData<GenreDeleteData>(res);
-      },
+      list: (params?: WorksListQueryParams, options?: RequestOptions) => genreResource.list(params as Record<string, unknown>, options),
+      get: (id: string | number, options?: RequestOptions) => genreResource.get(id, options),
+      create: (body: GenreCreateBody, options?: RequestOptions) => genreResource.create(body, options),
+      partialUpdate: (id: string | number, body: GenrePatchBody, options?: RequestOptions) => genreResource.partialUpdate(id, body, options),
+      delete: (id: string | number, options?: RequestOptions) => genreResource.delete(id, options),
     },
 
     workItems: {
-      get: async (id: string | number) => {
-        const res = await client.get<HttpSuccessBody<WorkItemDetailData>>(apiPath(detailPath(ApiPaths.workItems, id)));
-        return unwrapData<WorkItemDetailData>(res);
-      },
-
-      /** GET `works/work-items/by-library/?library=&title=` */
-      listByLibrary: async (params: WorkItemsByLibraryParams) => {
-        const res = await client.get<HttpSuccessBody<WorkItemsByLibraryListData>>(
-          apiPath(regularPath(ApiPaths.workItemsByLibrary)),
-          { params },
-        );
-        return unwrapData<WorkItemsByLibraryListData>(res);
-      },
-
-      /** GET `works/work-items/by-work/?work=&onlyAvailable=` */
-      listByWork: async (params: WorkItemsByWorkParams) => {
-        const res = await client.get<HttpSuccessBody<WorkItemsByWorkListData>>(
-          apiPath(regularPath(ApiPaths.workItemsByWork)),
-          { params },
-        );
-        return unwrapData<WorkItemsByWorkListData>(res);
-      },
-
-      availabilityByWork: async (params: IAvailabilityByWorkParams) => {
-        const res = await client.get<HttpSuccessBody<IAvailabilityByWorkResponse>>(
-          apiPath(regularPath(ApiPaths.workItemsAvailabilityByWork)),
-          { params },
-        );
-        console.log('res: ', res);
-        return unwrapData<IAvailabilityByWorkResponse>(res);
-      },
+      get: (id: string | number, options?: RequestOptions) => workItemsResource.get(id, options),
+      listByLibrary: (params: WorkItemsByLibraryParams, options?: RequestOptions) =>
+        workItemsResource.customGet<WorkItemsByLibraryListData>('by-library', params as unknown as Record<string, unknown>, options),
+      listByWork: (params: WorkItemsByWorkParams, options?: RequestOptions) =>
+        workItemsResource.customGet<WorkItemsByWorkListData>('by-work', params as unknown as Record<string, unknown>, options),
+      availabilityByWork: (params: IAvailabilityByWorkParams, options?: RequestOptions) =>
+        workItemsResource.customGet<IAvailabilityByWorkResponse>('availability-by-work', params as unknown as Record<string, unknown>, options),
     },
   };
 }

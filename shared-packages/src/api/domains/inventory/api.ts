@@ -1,8 +1,7 @@
 import type { AxiosInstance } from 'axios';
-import { apiPath } from '../../apiPath';
-import { ApiPaths, regularPath } from '../../paths';
-import type { HttpSuccessBody } from '../../types';
-import { unwrapData } from '../../unwrap';
+import { ApiResource } from '../../api-resource';
+import { ApiPaths } from '../../paths';
+import type { RequestOptions } from '../../types';
 import type {
   InventoryMovementCreateBody,
   InventoryMovementCreateResponseData,
@@ -10,25 +9,14 @@ import type {
   InventoryMovementListParams,
 } from './types';
 
-/**
- * `InventoryMovementViewSet`: только list и create (кастомный create).
- * GET/PATCH/DELETE по id нет.
- */
 export function createInventoryApi(client: AxiosInstance) {
+  const resource = new ApiResource<InventoryMovementListData, InventoryMovementCreateResponseData, InventoryMovementCreateBody>(
+    client,
+    ApiPaths.inventoryMovements,
+  );
+
   return {
-    list: async (params?: InventoryMovementListParams) => {
-      const res = await client.get<HttpSuccessBody<InventoryMovementListData>>(
-        apiPath(regularPath(ApiPaths.inventoryMovements)),
-        { params },
-      );
-      return unwrapData<InventoryMovementListData>(res);
-    },
-    create: async (body: InventoryMovementCreateBody) => {
-      const res = await client.post<HttpSuccessBody<InventoryMovementCreateResponseData>>(
-        apiPath(regularPath(ApiPaths.inventoryMovements)),
-        body,
-      );
-      return unwrapData<InventoryMovementCreateResponseData>(res);
-    },
+    list: (params?: InventoryMovementListParams, options?: RequestOptions) => resource.list(params as Record<string, unknown>, options),
+    create: (body: InventoryMovementCreateBody, options?: RequestOptions) => resource.create(body, options),
   };
 }

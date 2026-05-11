@@ -2,7 +2,7 @@
 
 import { Drawer } from 'antd';
 import { memo, useCallback, useMemo } from 'react';
-import { CustomForm } from 'src/features/filters/ui';
+import { CustomFilterForm } from 'src/features/filters/ui';
 import { CatalogFiltersFieldConfigs } from '@features/filters/configs';
 import type { ICatalogFiltersFormState } from '@global/globalSearch';
 import { useSearchContext } from '@global/globalSearch';
@@ -58,7 +58,7 @@ export const CatalogFiltersSidePage = memo(function CatalogFiltersSidePage({
       mask={{ closable: true }}
       destroyOnHidden // Временное решение для сброса незасабмиченных значений при закрытии формы
     >
-      <CustomForm<ICatalogFiltersFormState>
+      <CustomFilterForm<ICatalogFiltersFormState>
         filters={fields}
         initialValues={catalogFilters}
         onFinish={onFinish}

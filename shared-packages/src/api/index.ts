@@ -1,6 +1,6 @@
-export { API_PATH_PREFIX, apiPath } from './apiPath';
+export { ApiPaths } from './paths';
 
-export { ApiPaths, regularPath as listPath, detailPath, actionPath } from './paths';
+export { ApiResource } from './api-resource';
 
 export type {
   TokenStorage,
@@ -10,6 +10,7 @@ export type {
   HttpSuccessBody,
   HttpFailureBody,
   ResourceListParams,
+  RequestOptions,
   IsoDateTimeString,
   IsoDateString,
 } from './types';

@@ -3,7 +3,7 @@ import { attachAuthInterceptors } from './auth-interceptor';
 import type { CreateSmartlibHttpClientOptions } from './types';
 
 /**
- * HTTP-клиент: `baseURL` = origin (без `/api/v1`); пути через `apiPath(...)`.
+ * HTTP-клиент: `baseURL` = origin (без `/api/v1`); пути строятся внутри `ApiResource`.
  * При переданном `tokenStorage` — Authorization и refresh при 401.
  */
 export function createSmartlibHttpClient(

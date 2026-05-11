@@ -1,52 +1,26 @@
 import type { AxiosInstance } from 'axios';
-import { apiPath } from '../../apiPath';
-import { actionPath, ApiPaths, regularPath } from '../../paths';
-import type { EmptySuccessData, HttpSuccessBody, TokenPayload } from '../../types';
-import { unwrapData } from '../../unwrap';
+import { ApiResource } from '../../api-resource';
+import { ApiPaths } from '../../paths';
+import type { EmptySuccessData, RequestOptions, TokenPayload } from '../../types';
 import type { ChangePasswordBody, LoginBody, LogoutBody, RegisterBody, ResetPasswordBody } from './types';
 
 export function createAuthApi(client: AxiosInstance) {
+  const resource = new ApiResource(client, ApiPaths.usersAuth);
+
   return {
-    login: async (body: LoginBody): Promise<TokenPayload> => {
-      const res = await client.post<HttpSuccessBody<TokenPayload>>(
-        apiPath(regularPath(ApiPaths.usersAuthLogin)),
-        body,
-      );
-      return unwrapData<TokenPayload>(res);
-    },
+    login: (body: LoginBody, options?: RequestOptions) =>
+      resource.customPost<TokenPayload>('login', body, options),
 
-    register: async (body: RegisterBody): Promise<EmptySuccessData> => {
-      const res = await client.post<HttpSuccessBody<EmptySuccessData>>(
-        apiPath(regularPath(ApiPaths.usersAuthRegister)),
-        body,
-      );
-      return unwrapData<EmptySuccessData>(res);
-    },
+    register: (body: RegisterBody, options?: RequestOptions) =>
+      resource.customPost<EmptySuccessData>('register', body, options),
 
-    logout: async (body: LogoutBody): Promise<EmptySuccessData> => {
-      const res = await client.post<HttpSuccessBody<EmptySuccessData>>(
-        apiPath(regularPath(ApiPaths.usersAuthLogout)),
-        body,
-      );
-      return unwrapData<EmptySuccessData>(res);
-    },
+    logout: (body: LogoutBody, options?: RequestOptions) =>
+      resource.customPost<EmptySuccessData>('logout', body, options),
 
-    /** POST `users/auth/{userId}/change-password/` — только для авторизованного пользователя (свой id). */
-    changePassword: async (userId: string | number, body: ChangePasswordBody): Promise<EmptySuccessData> => {
-      const res = await client.post<HttpSuccessBody<EmptySuccessData>>(
-        apiPath(actionPath(ApiPaths.usersAuth, userId, 'change-password')),
-        body,
-      );
-      return unwrapData<EmptySuccessData>(res);
-    },
+    changePassword: (userId: string | number, body: ChangePasswordBody, options?: RequestOptions) =>
+      resource.customPost<EmptySuccessData>(`${userId}/change-password`, body, options),
 
-    /** POST `users/auth/reset-password/` — без авторизации, в теле email + пароли. */
-    resetPassword: async (body: ResetPasswordBody): Promise<EmptySuccessData> => {
-      const res = await client.post<HttpSuccessBody<EmptySuccessData>>(
-        apiPath(regularPath(ApiPaths.usersAuthResetPassword)),
-        body,
-      );
-      return unwrapData<EmptySuccessData>(res);
-    },
+    resetPassword: (body: ResetPasswordBody, options?: RequestOptions) =>
+      resource.customPost<EmptySuccessData>('reset-password', body, options),
   };
 }

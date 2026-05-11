@@ -1,52 +1,29 @@
 import type { AxiosInstance } from 'axios';
-import { apiPath } from '../../apiPath';
-import { ApiPaths, detailPath, regularPath } from '../../paths';
-import type { HttpSuccessBody } from '../../types';
-import { unwrapData } from '../../unwrap';
+import { ApiResource } from '../../api-resource';
+import { ApiPaths } from '../../paths';
+import type { RequestOptions } from '../../types';
 import type {
   PositionCreateBody,
   PositionDeleteData,
   PositionDetailData,
   PositionListData,
-  PositionListParams,
   PositionPatchBody,
   PositionWriteResponseData,
 } from './types';
 
 export function createPositionsApi(client: AxiosInstance) {
+  const resource = new ApiResource<PositionListData, PositionDetailData, PositionCreateBody, PositionPatchBody, PositionDeleteData>(
+    client,
+    ApiPaths.positions,
+  );
+
   return {
-    list: async (params?: PositionListParams) => {
-      const res = await client.get<HttpSuccessBody<PositionListData>>(
-        apiPath(regularPath(ApiPaths.positions)),
-        { params },
-      );
-      return unwrapData<PositionListData>(res);
-    },
-    get: async (id: string | number) => {
-      const res = await client.get<HttpSuccessBody<PositionDetailData>>(
-        apiPath(detailPath(ApiPaths.positions, id)),
-      );
-      return unwrapData<PositionDetailData>(res);
-    },
-    create: async (body: PositionCreateBody) => {
-      const res = await client.post<HttpSuccessBody<PositionWriteResponseData>>(
-        apiPath(regularPath(ApiPaths.positions)),
-        body,
-      );
-      return unwrapData<PositionWriteResponseData>(res);
-    },
-    partialUpdate: async (id: string | number, body: PositionPatchBody) => {
-      const res = await client.patch<HttpSuccessBody<PositionWriteResponseData>>(
-        apiPath(detailPath(ApiPaths.positions, id)),
-        body,
-      );
-      return unwrapData<PositionWriteResponseData>(res);
-    },
-    delete: async (id: string | number) => {
-      const res = await client.delete<HttpSuccessBody<PositionDeleteData>>(
-        apiPath(detailPath(ApiPaths.positions, id)),
-      );
-      return unwrapData<PositionDeleteData>(res);
-    },
+    list: (params?: Record<string, unknown>, options?: RequestOptions) => resource.list(params, options),
+    get: (id: string | number, options?: RequestOptions) => resource.get(id, options),
+    create: (body: PositionCreateBody, options?: RequestOptions) =>
+      resource.create(body, options) as unknown as Promise<PositionWriteResponseData>,
+    partialUpdate: (id: string | number, body: PositionPatchBody, options?: RequestOptions) =>
+      resource.partialUpdate(id, body, options) as unknown as Promise<PositionWriteResponseData>,
+    delete: (id: string | number, options?: RequestOptions) => resource.delete(id, options),
   };
 }

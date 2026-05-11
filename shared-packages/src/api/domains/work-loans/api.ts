@@ -1,8 +1,7 @@
 import type { AxiosInstance } from 'axios';
-import { apiPath } from '../../apiPath';
-import { ApiPaths, actionPath, detailPath, regularPath } from '../../paths';
-import type { HttpSuccessBody } from '../../types';
-import { unwrapData } from '../../unwrap';
+import { ApiResource } from '../../api-resource';
+import { ApiPaths } from '../../paths';
+import type { RequestOptions } from '../../types';
 import type {
   WorkLoanCreateBody,
   WorkLoanCreateResponseData,
@@ -13,41 +12,18 @@ import type {
   WorkLoanProlongData,
 } from './types';
 
-/**
- * `WorkLoanViewSet`: list, retrieve, create, prolong.
- * PATCH/DELETE на бэкенде нет.
- */
 export function createWorkLoansApi(client: AxiosInstance) {
-  return {
-    list: async (params?: WorkLoanListParams) => {
-      const res = await client.get<HttpSuccessBody<WorkLoanListData>>(
-        apiPath(regularPath(ApiPaths.workLoans)),
-        { params },
-      );
-      return unwrapData<WorkLoanListData>(res);
-    },
-    get: async (id: string | number) => {
-      const res = await client.get<HttpSuccessBody<WorkLoanDetailData>>(
-        apiPath(detailPath(ApiPaths.workLoans, id)),
-      );
-      return unwrapData<WorkLoanDetailData>(res);
-    },
-    create: async (body: WorkLoanCreateBody) => {
-      const res = await client.post<HttpSuccessBody<WorkLoanCreateResponseData>>(
-        apiPath(regularPath(ApiPaths.workLoans)),
-        body,
-      );
-      return unwrapData<WorkLoanCreateResponseData>(res);
-    },
+  const resource = new ApiResource<WorkLoanListData, WorkLoanDetailData, WorkLoanCreateBody>(
+    client,
+    ApiPaths.workLoans,
+  );
 
-    /** POST `work-loans/{id}/prolong/` */
-    prolong: async (id: string | number, body?: WorkLoanProlongBody) => {
-      const res = await client.post<HttpSuccessBody<WorkLoanProlongData>>(
-        apiPath(actionPath(ApiPaths.workLoans, id, 'prolong')),
-        body ?? {},
-      );
-      return unwrapData<WorkLoanProlongData>(res);
-    },
+  return {
+    list: (params?: WorkLoanListParams, options?: RequestOptions) => resource.list(params as Record<string, unknown>, options),
+    get: (id: string | number, options?: RequestOptions) => resource.get(id, options),
+    create: (body: WorkLoanCreateBody, options?: RequestOptions) =>
+      resource.create(body, options) as unknown as Promise<WorkLoanCreateResponseData>,
+    prolong: (id: string | number, body?: WorkLoanProlongBody, options?: RequestOptions) =>
+      resource.customPost<WorkLoanProlongData>(`${id}/prolong`, body ?? {}, options),
   };
 }
-

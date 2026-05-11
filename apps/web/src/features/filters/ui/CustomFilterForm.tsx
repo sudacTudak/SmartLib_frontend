@@ -5,13 +5,12 @@ import { Button, ConfigProvider, Flex, Form, ThemeConfig, Typography } from 'ant
 import { FilterComponentsByType } from '../configsHelpers';
 import { FilterType } from '../enums';
 import { TFormFilter } from '../types';
-
-import styles from './CustomForm.module.scss';
+import { SmartlibForm } from 'src/shared/ui/components/forms';
 
 const { useForm } = Form;
 const { Title } = Typography;
 
-interface CustomFormLocal<TFormData extends object> {
+interface ICustomFilterFormLocal<TFormData extends object> {
   title?: string;
   filters: TFormFilter[];
   onFinish: ((formData: TFormData) => void) | ((formData: TFormData) => Promise<void>);
@@ -21,7 +20,7 @@ interface CustomFormLocal<TFormData extends object> {
   resetButtonText?: string;
 }
 
-function CustomFormLocal<TFormData extends object>({
+function CustomFilterFormLocal<TFormData extends object>({
   title,
   filters,
   initialValues,
@@ -29,7 +28,7 @@ function CustomFormLocal<TFormData extends object>({
   resetButtonText,
   onFinish,
   onReset,
-}: CustomFormLocal<TFormData>) {
+}: ICustomFilterFormLocal<TFormData>) {
   const [form] = useForm<TFormData>();
 
   const fields = useMemo(() => {
@@ -38,8 +37,7 @@ function CustomFormLocal<TFormData extends object>({
 
       const FilterComponent = FilterComponentsByType[filterType] as React.FunctionComponent<object>;
 
-      const selectMode =
-        filterType === FilterType.MultiSelect ? { mode: 'multiple' as const } : {};
+      const selectMode = filterType === FilterType.MultiSelect ? { mode: 'multiple' as const } : {};
 
       return (
         <Form.Item
@@ -73,9 +71,9 @@ function CustomFormLocal<TFormData extends object>({
     <ConfigProvider theme={themeConfig}>
       <Flex vertical gap={10}>
         {title && <Title level={2}>{title}</Title>}
-        <Form className={styles.form} form={form} initialValues={initialValues} onFinish={onFinish} layout="vertical">
+        <SmartlibForm form={form} initialValues={initialValues} onFinish={onFinish} layout="vertical">
           {fields}
-        </Form>
+        </SmartlibForm>
         <Flex justify="flex-end" align="center" gap={8}>
           {shouldDisplayReset && (
             <Button
@@ -100,4 +98,4 @@ function CustomFormLocal<TFormData extends object>({
   );
 }
 
-export const CustomForm = memo(CustomFormLocal) as typeof CustomFormLocal;
+export const CustomFilterForm = memo(CustomFilterFormLocal) as typeof CustomFilterFormLocal;
