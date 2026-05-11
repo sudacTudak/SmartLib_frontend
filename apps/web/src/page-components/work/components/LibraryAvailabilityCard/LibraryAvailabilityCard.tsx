@@ -11,11 +11,12 @@ import { TextTag, TextTagColor, TextTagSize } from 'src/shared/ui/components';
 
 interface IProps {
   workId: string;
+  workTitle: string;
   library: LibraryBranchDetailData;
   availableCount: number;
 }
 
-export function LibraryAvailabilityCard({ workId, library, availableCount }: IProps) {
+export function LibraryAvailabilityCard({ workId, workTitle, library, availableCount }: IProps) {
   const preview = library.previewLink || workCoverPlaceholder260x140Url;
 
   return (
@@ -39,7 +40,9 @@ export function LibraryAvailabilityCard({ workId, library, availableCount }: IPr
             disabled={availableCount <= 0}
             variant="default"
             className={styles.overlayReserveButton}
-            context={{ workId, libraryBranchId: library.id }}
+            workId={workId}
+            workTitle={workTitle}
+            context={{ libraryBranchId: library.id }}
           />
         </div>
       </div>

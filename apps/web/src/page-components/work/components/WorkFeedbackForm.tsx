@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { IWork } from '@shared-packages/api';
 import { ICommonFeedbackData } from 'src/features/feedback/model';
 import { FeedbackForm } from 'src/features/feedback/ui';
@@ -10,6 +10,7 @@ import { useAuth } from '@global/auth';
 import { AuthStatus } from '@global/auth/enums';
 import { getSmartlibApi } from '@global/api';
 import { ActionOverlay, ActionOverlayStatus } from '@shared/ui/components';
+import { ConfigProvider, ThemeConfig } from 'antd';
 
 interface IWorkFeedbackFormProps {
   workId: IWork['id'];
@@ -31,11 +32,7 @@ export const WorkFeedbackForm = memo(function WorkFeedbackForm({ workId }: IWork
 
     async function fetchExisting() {
       try {
-        const feedbacks = await getSmartlibApi().feedback.works.byUser(
-          { workId },
-          undefined,
-          { signal: abortController.signal },
-        );
+        const feedbacks = await getSmartlibApi().feedback.works.list({ workId }, { signal: abortController.signal });
         if (!feedbacks.length) return;
 
         const existing = feedbacks[0];
@@ -50,7 +47,9 @@ export const WorkFeedbackForm = memo(function WorkFeedbackForm({ workId }: IWork
     }
 
     void fetchExisting();
-    return () => { abortController.abort(); };
+    return () => {
+      abortController.abort();
+    };
   }, [workId, user, status]);
 
   const submitFeedback = useCallback(

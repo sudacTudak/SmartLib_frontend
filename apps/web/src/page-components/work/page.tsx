@@ -59,7 +59,8 @@ export function WorkDetailPage({
                 disabled={!isAnywhereAvailable}
                 variant="primary"
                 className={styles.reserveButton}
-                context={{ workId: work.id }}
+                workId={work.id}
+                workTitle={work.title}
               />
               <ToFavoriteButton />
             </div>
@@ -110,6 +111,7 @@ export function WorkDetailPage({
                   <LibraryAvailabilityCard
                     key={libraryId}
                     workId={work.id}
+                    workTitle={work.title}
                     library={libraryEntities[libraryId]}
                     availableCount={availabilityByLibrariesMap[libraryId]}
                   />

@@ -89,7 +89,7 @@ export function ActionOverlay({
 
       {isResult && (
         <div className={styles.content}>
-          <span className={isSuccess ? styles.successText : styles.errorText}>
+          <span className={classNames(styles.messageText, isSuccess ? styles.successText : styles.errorText)}>
             {isSuccess ? successMessage : errorMessage}
           </span>
 
@@ -98,7 +98,7 @@ export function ActionOverlay({
             percent={percent}
             size={40}
             strokeColor={strokeColor}
-            trailColor="var(--ant-color-border)"
+            railColor="var(--ant-color-border)"
             format={() => <span className={styles.countdownText}>{secondsLeft}</span>}
           />
         </div>

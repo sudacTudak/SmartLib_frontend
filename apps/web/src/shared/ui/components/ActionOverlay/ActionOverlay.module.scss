@@ -49,24 +49,28 @@
   gap: 12px;
 }
 
-.successText {
+.messageText {
+  max-width: 90%;
+
   padding: 6px 14px;
   border-radius: var(--ant-border-radius);
   font-size: 14px;
   font-weight: 500;
+
+  border: 1px solid transparent;
+  text-align: center;
+}
+
+.successText {
   color: var(--ant-color-success);
   background: var(--ant-color-success-bg);
-  border: 1px solid var(--ant-color-success-border);
+  border-color: var(--ant-color-success-border);
 }
 
 .errorText {
-  padding: 6px 14px;
-  border-radius: var(--ant-border-radius);
-  font-size: 14px;
-  font-weight: 500;
   color: var(--ant-color-error);
   background: var(--ant-color-error-bg);
-  border: 1px solid var(--ant-color-error-border);
+  border-color: var(--ant-color-error-border);
 }
 
 .countdownText {

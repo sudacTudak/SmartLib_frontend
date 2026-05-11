@@ -4,7 +4,9 @@ import React, { useMemo, useState } from 'react';
 import { Button, Modal } from 'antd';
 import styles from './ReserveModalTrigger.module.scss';
 import classNames from 'classnames';
-import { WithAuthGate } from 'src/global/auth';
+import { WithAuthGate } from '@global/auth';
+import { ReservationForm } from '@features/reservation/ui';
+import { IWorkReservationContext } from '@features/reservation/model';
 
 const GatedButton = WithAuthGate(Button);
 
@@ -12,15 +14,18 @@ type ReserveModalTriggerProps = {
   disabled?: boolean;
   label?: string;
   variant?: 'primary' | 'default';
+  workId: string;
+  workTitle: string;
   className?: string;
-  /** Для будущей формы: workItemId/workId + libraryBranchId. */
-  context?: { workItemId?: string; workId?: string; libraryBranchId?: string };
+  context?: IWorkReservationContext;
 };
 
 export function ReserveModalTrigger({
   disabled,
   label = 'Забронировать',
   variant = 'primary',
+  workId,
+  workTitle,
   className,
   context,
 }: ReserveModalTriggerProps) {
@@ -42,7 +47,9 @@ export function ReserveModalTrigger({
         {label}
       </GatedButton>
       <Modal title={title} open={open} onCancel={() => setOpen(false)} footer={null} destroyOnHidden>
-        <p className={styles.placeholder}>Форма бронирования будет добавлена позже.</p>
+        <div style={{paddingTop: 8}}>
+          <ReservationForm workId={workId} workTitle={workTitle} context={context}/>
+        </div>
       </Modal>
     </>
   );
