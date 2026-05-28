@@ -22,6 +22,9 @@
   "engines": {
     "node": ">=20"
   },
+  "overrides": {
+    "pdfjs-dist": "5.3.93"
+  },
   "dependencies": {
     "@ant-design/icons": "^6.2.2"
   }

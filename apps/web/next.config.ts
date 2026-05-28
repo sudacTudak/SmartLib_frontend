@@ -8,12 +8,18 @@ const srcRoot = path.join(__dirname, 'src');
 
 const nextConfig: NextConfig = {
   transpilePackages: ['@smartlib/shared-packages'],
-  webpack: (config) => {
+  webpack: (config, { dev, isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
       src: srcRoot,
       '@shared-packages': sharedPackagesSrc,
     };
+
+    // pdfjs-dist + eval-* devtool → Object.defineProperty called on non-object
+    if (dev && !isServer) {
+      config.devtool = 'source-map';
+    }
+
     return config;
   },
   experimental: {
@@ -30,7 +36,6 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'placehold.co',
       },
-      // Django media в dev (NEXT_PUBLIC_API_BASE_URL обычно http://127.0.0.1:8000)
       {
         protocol: 'http',
         hostname: '127.0.0.1',
@@ -42,7 +47,7 @@ const nextConfig: NextConfig = {
         port: '8000',
       },
     ],
-  }
+  },
 };
 
 export default nextConfig;
