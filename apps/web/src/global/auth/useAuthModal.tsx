@@ -15,7 +15,7 @@ interface UseAuthModalReturn {
  * Хук, возвращающий модальное окно логина и функцию-«guard»:
  * если пользователь не авторизован — открывает модалку, иначе — вызывает переданный action.
  */
-export function useAuthModal(): UseAuthModalReturn {
+export function useAuthGuard(): UseAuthModalReturn {
   const { user, status } = useAuth();
   const [open, setOpen] = useState(false);
 

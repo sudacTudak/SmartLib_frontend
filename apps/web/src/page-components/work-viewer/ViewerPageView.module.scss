@@ -1,0 +1,18 @@
+.root {
+  --viewer-section-height: calc(100vh - var(--ant-main-header-height));
+  --viewer-body-height: calc(100vh - var(--ant-main-header-height) - var(--ant-upper-panel-height));
+
+  height: var(--viewer-section-height);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.loading {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  max-height: var(--viewer-body-height);
+}

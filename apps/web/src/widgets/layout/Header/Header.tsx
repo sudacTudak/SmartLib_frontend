@@ -1,6 +1,6 @@
 'use client';
 
-import { Layout, Typography } from 'antd';
+import { Layout } from 'antd';
 import Link from 'next/link';
 
 import { SearchBar } from '../search/SearchBar';
@@ -12,7 +12,7 @@ import { APP_ROUTES } from 'src/global/routes';
 import { useAuth } from 'src/global/auth';
 import { AuthStatus } from 'src/global/auth/enums';
 import Image from 'next/image';
-import { AuditOutlined, BookOutlined, HeartOutlined, UserOutlined } from '@ant-design/icons';
+import { BookOutlined, UserOutlined } from '@ant-design/icons';
 import { LinkButton } from 'src/shared/ui/components/LinkButton';
 import {
   HeaderMenuItem,

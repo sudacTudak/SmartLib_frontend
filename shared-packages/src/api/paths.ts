@@ -24,6 +24,7 @@ export const ApiPaths = {
   libs: 'libs',
   libBranch: 'libs/branch',
   workLoans: 'work-loans',
+  workReservations: 'work-reservations',
   positions: 'positions',
   inventory: 'inventory',
   inventoryMovements: 'inventory/movements',

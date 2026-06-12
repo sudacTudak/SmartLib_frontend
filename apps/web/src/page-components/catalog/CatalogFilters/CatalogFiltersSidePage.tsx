@@ -54,6 +54,7 @@ export const CatalogFiltersSidePage = memo(function CatalogFiltersSidePage({
       open={isOpen}
       onClose={onClose}
       closeIcon={<CloseOutlined style={{ width: 24, height: 24, fontSize: 20 }} />}
+      title='Фильтры'
       placement="left"
       mask={{ closable: true }}
       destroyOnHidden // Временное решение для сброса незасабмиченных значений при закрытии формы

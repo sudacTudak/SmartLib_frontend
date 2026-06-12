@@ -3,6 +3,7 @@ import { createAmenitiesApi } from './domains/amenities';
 import { createAuthorsApi } from './domains/authors';
 import { createAuthApi } from './domains/auth';
 import { createWorkLoansApi } from './domains/work-loans';
+import { createWorkReservationsApi } from './domains/work-reservations';
 import { createWorksApi } from './domains/works';
 import { createFeedbackApi } from './domains/feedback';
 import { createInventoryApi } from './domains/inventory';
@@ -22,6 +23,7 @@ export function createSmartlibApi(client: AxiosInstance) {
     works: createWorksApi(client),
     libraries: createLibrariesApi(client),
     workLoans: createWorkLoansApi(client),
+    workReservations: createWorkReservationsApi(client),
     feedback: createFeedbackApi(client),
     positions: createPositionsApi(client),
     inventory: createInventoryApi(client),

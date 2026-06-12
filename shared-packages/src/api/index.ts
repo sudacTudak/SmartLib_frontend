@@ -42,6 +42,7 @@ export { createAuthorsApi } from './domains/authors';
 export { createWorksApi } from './domains/works';
 export { createLibrariesApi } from './domains/libraries';
 export { createWorkLoansApi } from './domains/work-loans';
+export { createWorkReservationsApi } from './domains/work-reservations';
 export { createFeedbackApi } from './domains/feedback';
 export { createPositionsApi } from './domains/positions';
 export { createInventoryApi } from './domains/inventory';
@@ -135,6 +136,21 @@ export type {
   WorkLoanProlongBody,
   WorkLoanProlongData,
 } from './domains/work-loans';
+
+export type {
+  IWorkReservation,
+  IClientWorkReservation,
+  IStaffWorkReservation,
+  IWorkReservationListParams,
+  IWorkReservationCreateBody,
+  IWorkReservationStatusBody,
+  IWorkReservationProlongBody,
+  TWorkReservationListData,
+  TWorkReservationDetailData,
+  TWorkReservationCreateResponseData,
+  TWorkReservationStatusData,
+  TWorkReservationProlongData,
+} from './domains/work-reservations';
 
 export type {
   Position,

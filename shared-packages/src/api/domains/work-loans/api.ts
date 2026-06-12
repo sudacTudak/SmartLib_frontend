@@ -24,6 +24,6 @@ export function createWorkLoansApi(client: AxiosInstance) {
     create: (body: WorkLoanCreateBody, options?: RequestOptions) =>
       resource.create(body, options) as unknown as Promise<WorkLoanCreateResponseData>,
     prolong: (id: string | number, body?: WorkLoanProlongBody, options?: RequestOptions) =>
-      resource.customPost<WorkLoanProlongData>(`${id}/prolong`, body ?? {}, options),
+      resource.customPatch<WorkLoanProlongData>(`${id}/prolong`, body ?? {}, options),
   };
 }

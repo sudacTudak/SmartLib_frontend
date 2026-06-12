@@ -37,6 +37,13 @@ export enum BookLoanStatus {
   Closed = 1,
 }
 
+export enum WorkReservationStatus {
+  Open = 0,
+  Closed = 1,
+  ClientDeclined = 2,
+  StaffDeclined = 3,
+}
+
 export enum InventoryMovementType {
   In = 'in',
   Out = 'out',

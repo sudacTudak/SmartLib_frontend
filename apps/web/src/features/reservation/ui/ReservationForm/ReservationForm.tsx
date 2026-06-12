@@ -4,7 +4,7 @@ import { IWorkReservationContext } from '@features/reservation/model';
 import { IWork } from '@shared-packages/api';
 import { ActionOverlay, ActionOverlayStatus } from '@shared/ui/components';
 import { SmartlibForm } from '@shared/ui/components/forms';
-import { Button, ConfigProvider, DatePicker, Flex, Form, Select, ThemeConfig, Typography } from 'antd';
+import { Button, ConfigProvider, DatePicker, Flex, Form, Input, Select, ThemeConfig, Typography } from 'antd';
 import dayjs, { Dayjs } from 'dayjs';
 import { useCallback, useMemo, useState } from 'react';
 

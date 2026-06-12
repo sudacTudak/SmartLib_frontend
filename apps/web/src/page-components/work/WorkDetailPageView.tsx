@@ -1,7 +1,6 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import Image from 'next/image';
 import { Button } from 'antd';
 import { IWorkFeedback, IWork } from '@shared-packages/api';
@@ -12,13 +11,7 @@ import { PrimaryText } from '@shared/ui/components/PrimaryText';
 import { ToFavoriteButton } from '@features/catalog/ui';
 import { workCoverPlaceholder300x430Url } from '@shared-packages/ui';
 import { PageContent } from 'src/widgets/layout';
-import { resolveOnlinePdfUrl } from '@features/online-reading/lib/resolveOnlinePdfUrl';
-
-const WorkOnlineReader = dynamic(
-  () => import('@features/online-reading/ui/WorkOnlineReader').then((mod) => mod.WorkOnlineReader),
-  { ssr: false },
-);
-
+import { APP_ROUTES } from 'src/global/routes';
 import { LibraryAvailabilityCard, ReserveModalTrigger } from './components';
 import { SimilarWorksSection } from './components/SimilarWorksWidget';
 import { WorkFeedbackForm } from './components/WorkFeedbackForm';
@@ -46,31 +39,12 @@ export function WorkDetailPageView({
   genreTitles,
   totalAvailableCount,
 }: IWorkDetailPageViewProps) {
-  const [isReadingOnline, setIsReadingOnline] = useState(false);
-
   const gridInfoItems = getGridInfoItems(work);
   const isAnywhereAvailable = totalAvailableCount > 0;
   const coverSrc = work.previewLink ?? workCoverPlaceholder300x430Url;
 
-  const pdfUrl = useMemo(() => {
-    if (!work.onlineVersionLink) {
-      return null;
-    }
-    return resolveOnlinePdfUrl(work.onlineVersionLink);
-  }, [work.onlineVersionLink]);
-
-  if (isReadingOnline && pdfUrl) {
-    return (
-      <PageContent variant="detail">
-        <WorkOnlineReader
-          workId={work.id}
-          workTitle={work.title}
-          pdfUrl={pdfUrl}
-          onClose={() => setIsReadingOnline(false)}
-        />
-      </PageContent>
-    );
-  }
+  const hasOnlineVersion = Boolean(work.onlineVersionLink);
+  const viewerHref = useMemo(() => APP_ROUTES.workViewer(work.id), [work.id]);
 
   return (
     <PageContent variant="detail">
@@ -81,8 +55,8 @@ export function WorkDetailPageView({
               <Image src={coverSrc} alt={work.title} width={300} height={430} className={styles.coverImg} />
             </div>
             <div className={styles.actions}>
-              {pdfUrl && (
-                <Button type="default" block onClick={() => setIsReadingOnline(true)}>
+              {hasOnlineVersion && (
+                <Button variant="link" href={viewerHref} block>
                   Читать онлайн
                 </Button>
               )}
@@ -93,7 +67,7 @@ export function WorkDetailPageView({
                 workId={work.id}
                 workTitle={work.title}
               />
-              <ToFavoriteButton />
+              <ToFavoriteButton workId={work.id}/>
             </div>
           </section>
 
