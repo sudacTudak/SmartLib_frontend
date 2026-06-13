@@ -7,12 +7,7 @@ import classNames from 'classnames';
 import { Loader } from '../Loader';
 
 import styles from './ActionOverlay.module.scss';
-
-export enum ActionOverlayStatus {
-  Loading = 'loading',
-  Success = 'success',
-  Error = 'error',
-}
+import { ActionOverlayStatus } from './enums';
 
 export interface IActionOverlayProps {
   status: ActionOverlayStatus;
@@ -36,19 +31,25 @@ export function ActionOverlay({
   const totalSeconds = Math.ceil(autoCloseDuration / 1000);
   const [secondsLeft, setSecondsLeft] = useState(totalSeconds);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const wasStartedRef = useRef<boolean>(false);
 
   const isResult = status === ActionOverlayStatus.Success || status === ActionOverlayStatus.Error;
   const isSuccess = status === ActionOverlayStatus.Success;
+
+  const handleClose = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    onClose();
+  }, [onClose]);
 
   useEffect(() => {
     if (!isResult) return;
 
     setSecondsLeft(totalSeconds);
+    wasStartedRef.current = true;
 
     intervalRef.current = setInterval(() => {
       setSecondsLeft((prev) => {
         if (prev <= 1) {
-          onClose();
           return 0;
         }
         return prev - 1;
@@ -60,10 +61,11 @@ export function ActionOverlay({
     };
   }, [isResult, totalSeconds, onClose]);
 
-  const handleClose = useCallback(() => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    onClose();
-  }, [onClose]);
+  useEffect(() => {
+    if (secondsLeft === 0 && wasStartedRef.current) {
+      handleClose()
+    }
+  }, [handleClose, secondsLeft]);
 
   const percent = Math.round((secondsLeft / totalSeconds) * 100);
   const strokeColor = isSuccess ? 'var(--ant-color-success)' : 'var(--ant-color-error)';

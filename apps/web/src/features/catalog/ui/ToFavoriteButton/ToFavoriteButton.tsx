@@ -25,7 +25,7 @@ export function ToFavoriteButton({ className, workId, variant }: IToFavoriteButt
 
   const handleClick = useCallback(() => {
     guardAction(() => console.log('Hello from ToFavoriteButton: ', workId));
-  }, [guardAction]);
+  }, [guardAction, workId]);
 
   const themeConig = useMemo(
     () =>
@@ -40,7 +40,7 @@ export function ToFavoriteButton({ className, workId, variant }: IToFavoriteButt
           },
         },
       }) as ThemeConfig,
-    [],
+    [isIcon],
   );
 
   const componentInner = useMemo(() => {

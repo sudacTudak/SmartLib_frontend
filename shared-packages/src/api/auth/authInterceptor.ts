@@ -1,7 +1,8 @@
-import axios, { type AxiosError, type AxiosInstance, type InternalAxiosRequestConfig } from 'axios';
-import { ApiPaths } from './paths';
-import type { HttpSuccessBody, TokenPayload, TokenStorage } from './types';
-import { isHttpFailureBody, unwrapBody } from './unwrap';
+import axios, { type AxiosInstance, type InternalAxiosRequestConfig } from 'axios';
+import { ApiPaths } from '../paths';
+import type { HttpSuccessBody, TokenPayload, TokenStorage } from '../types';
+import { isHttpFailureBody, unwrapBody } from '../unwrap';
+import { SmartlibApiError } from '@shared-packages/api/errors';
 
 const REFRESH_PATH = `/api/v1/${ApiPaths.usersAuthTokenRefresh}/`;
 
@@ -25,11 +26,7 @@ export async function refreshTokensWithStorage(
 
   try {
     const { data } = refreshFromStorage
-      ? await axios.post<HttpSuccessBody<TokenPayload>>(
-          url,
-          { refresh: refreshFromStorage },
-          REFRESH_AXIOS_CONFIG,
-        )
+      ? await axios.post<HttpSuccessBody<TokenPayload>>(url, { refresh: refreshFromStorage }, REFRESH_AXIOS_CONFIG)
       : await axios.post<HttpSuccessBody<TokenPayload>>(url, {}, REFRESH_AXIOS_CONFIG);
 
     if (isHttpFailureBody(data)) {
@@ -65,7 +62,7 @@ function isAuthFreeRequest(config: InternalAxiosRequestConfig): boolean {
  * Request: Authorization: Bearer access.
  * Response 401: один refresh + повтор запроса; параллельные 401 ждут один refresh.
  */
-export function attachAuthInterceptors(
+export function createAuthInterceptors(
   client: AxiosInstance,
   storage: TokenStorage,
   onAuthFailure?: () => void | Promise<void>,
@@ -88,15 +85,10 @@ export function attachAuthInterceptors(
 
   client.interceptors.response.use(
     (res) => res,
-    async (error: AxiosError) => {
+    async (error: SmartlibApiError) => {
       const original = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
 
-      if (
-        error.response?.status !== 401 ||
-        !original ||
-        original._retry ||
-        isAuthFreeRequest(original)
-      ) {
+      if (error.response?.status !== 401 || !original || original._retry || isAuthFreeRequest(original)) {
         return Promise.reject(error);
       }
 

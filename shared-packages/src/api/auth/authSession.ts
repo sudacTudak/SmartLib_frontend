@@ -1,9 +1,9 @@
 import type { AxiosInstance } from 'axios';
 
-import { refreshTokensWithStorage } from './auth-interceptor';
-import { createAuthApi } from './domains/auth';
-import type { ChangePasswordBody, LoginBody, RegisterBody, ResetPasswordBody } from './domains/auth/types';
-import type { EmptySuccessData, TokenPayload, TokenStorage } from './types';
+import { refreshTokensWithStorage } from '.';
+import { createAuthApi } from '../domains/auth';
+import type { ChangePasswordBody, LoginBody, RegisterBody, ResetPasswordBody } from '../domains/auth/types';
+import type { EmptySuccessData, TokenPayload, TokenStorage } from '../types';
 
 export type CreateSmartlibAuthSessionOptions = {
   client: AxiosInstance;

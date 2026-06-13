@@ -17,7 +17,7 @@ export type {
 
 export { unwrapBody, unwrapData, isHttpSuccessBody, isHttpFailureBody } from './unwrap';
 
-export { createSmartlibHttpClient, createClient } from './create-client';
+export { createSmartlibHttpClient } from './create-client';
 
 export { createSmartlibApi, type SmartlibApi } from './create-api';
 
@@ -27,13 +27,11 @@ export { createMemoryTokenStorage } from './token-storage-memory';
 
 export { TokenApi, SMARTLIB_REFRESH_TOKEN_STORAGE_KEY } from './token-api';
 
-export { refreshTokensWithStorage } from './auth-interceptor';
-
 export {
   createSmartlibAuthSession,
   type SmartlibAuthSession,
   type CreateSmartlibAuthSessionOptions,
-} from './auth-session';
+} from './auth/authSession';
 
 export { createAuthApi } from './domains/auth';
 export { createUsersApi } from './domains/users';
@@ -198,3 +196,5 @@ export type {
   AmenityVendorWriteResponse,
   AmenityVendorDeleteData,
 } from './domains/amenities';
+
+export * from './statusCodes';

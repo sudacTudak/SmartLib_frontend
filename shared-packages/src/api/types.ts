@@ -49,4 +49,5 @@ export type ResourceListParams = Record<string, string | number | boolean | unde
 /** Общие опции для API-запросов (AbortController и т.д.). */
 export type RequestOptions = {
   signal?: AbortSignal;
+  timeout?: number;
 };
