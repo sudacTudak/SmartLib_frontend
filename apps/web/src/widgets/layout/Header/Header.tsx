@@ -5,45 +5,26 @@ import Link from 'next/link';
 
 import { SearchBar } from '../search/SearchBar';
 import { Loader } from 'src/shared/ui/components/Loader';
-import { Suspense, useMemo } from 'react';
+import { memo, Suspense } from 'react';
 
 import styles from './Header.module.scss';
 import { APP_ROUTES } from 'src/global/routes';
-import { useAuth } from 'src/global/auth';
-import { AuthStatus } from 'src/global/auth/enums';
 import Image from 'next/image';
-import { BookOutlined, UserOutlined } from '@ant-design/icons';
 import { LinkButton } from 'src/shared/ui/components/LinkButton';
-import {
-  HeaderMenuItem,
-  HeaderMenuItemType,
-  HeaderSubmenuItemType,
-  THeaderSubmenuItem,
-} from './components/HeaderMenuItem';
+import { HeaderVariant } from '@widgets/layout/Header/enums';
+import { useAuthContext } from '@global/auth';
+import { UserStatusDropdown, ActionsBar } from './components';
 
 const { Header: AntHeader } = Layout;
+const MemoizedActionsBar = memo(ActionsBar);
+const MemoizedUserStatusDropdown = memo(UserStatusDropdown);
 
-export function Header() {
-  const { user, status, logoutLocal } = useAuth();
+interface IHeaderProps {
+  variant: HeaderVariant;
+}
 
-  const showUser = user && status === AuthStatus.Ready;
-
-  const profileMenuItems = useMemo(
-    () =>
-      [
-        { title: 'Профиль', itemType: HeaderSubmenuItemType.Link, href: APP_ROUTES.profile },
-        { title: 'Выйти', itemType: HeaderSubmenuItemType.Action, onClick: logoutLocal },
-      ] as THeaderSubmenuItem[],
-    [logoutLocal],
-  ) as THeaderSubmenuItem[];
-
-  const booksMenuItems = useMemo(
-    () => [
-      { title: 'Избранное', itemType: HeaderSubmenuItemType.Link, href: APP_ROUTES.favorite },
-      { title: 'Бронирования', itemType: HeaderSubmenuItemType.Link, href: APP_ROUTES.reservations },
-    ],
-    [],
-  ) as THeaderSubmenuItem[];
+export function Header({ variant }: IHeaderProps) {
+  const { user, logoutLocal } = useAuthContext();
 
   return (
     <AntHeader className={styles.header}>
@@ -66,7 +47,7 @@ export function Header() {
           <LinkButton activatable href={APP_ROUTES.catalog}>
             Каталог
           </LinkButton>
-          <LinkButton activatable href={APP_ROUTES.libraries}>
+          <LinkButton activatable href={APP_ROUTES.library.index}>
             Библиотеки
           </LinkButton>
         </nav>
@@ -80,31 +61,10 @@ export function Header() {
         </div>
       </div>
 
-      <div className={styles.actionsBar}>
-        <HeaderMenuItem
-          itemType={HeaderMenuItemType.Submenu}
-          title="Мои книги"
-          items={booksMenuItems}
-          menuTitle='Мои книги'
-          icon={<BookOutlined style={{ fontSize: 20 }} />}
-        />
-        {showUser ? (
-          <HeaderMenuItem
-            itemType={HeaderMenuItemType.Submenu}
-            title={user.email}
-            items={profileMenuItems}
-            menuTitle={user.email}
-            icon={<UserOutlined style={{ width: 20, height: 20, fontSize: 20 }} />}
-          />
-        ) : (
-          <HeaderMenuItem
-            itemType={HeaderMenuItemType.Link}
-            title="Профиль"
-            href={APP_ROUTES.auth.login}
-            icon={<UserOutlined style={{ width: 20, height: 20, fontSize: 20 }} />}
-          />
-        )}
-      </div>
+      {variant === HeaderVariant.Full && <MemoizedActionsBar />}
+      {variant === HeaderVariant.Short && user && (
+        <MemoizedUserStatusDropdown userName={user.email ?? ''} logout={logoutLocal} />
+      )}
     </AntHeader>
   );
 }

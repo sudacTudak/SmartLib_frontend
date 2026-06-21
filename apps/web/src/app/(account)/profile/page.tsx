@@ -8,12 +8,12 @@ import { useEffect } from 'react';
 import { FormFooterDivider } from '@shared-packages/components/form-footer-divider';
 
 import styles from './profile-page.module.scss';
-import { useAuth } from '@global/auth';
+import { useAuthContext } from '@global/auth';
 import { AuthStatus } from '@global/auth/enums';
 
 export default function ProfilePage() {
   const router = useRouter();
-  const { user, status } = useAuth();
+  const { user, status } = useAuthContext();
 
   useEffect(() => {
     if (status === AuthStatus.Ready && !user) {

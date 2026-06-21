@@ -43,7 +43,7 @@ export function CatalogWorksSection() {
     return (
       <Alert
         type="error"
-        message="Не удалось загрузить каталог"
+        title="Не удалось загрузить каталог"
         description={error instanceof Error ? error.message : undefined}
       />
     );

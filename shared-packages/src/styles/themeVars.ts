@@ -1,4 +1,4 @@
-import { designTokenLiterals as d } from './design-tokens';
+import { designTokenLiterals as d } from './themeTokens';
 
 /**
  * Семантическая карта поверх литералов из `design-tokens.ts` (тот же SSOT, что и `:root` в `DesignTokensRootStyle`).
@@ -9,6 +9,7 @@ export const themeVars = {
       white: d.colorWhite,
       yellow: d.colorYellow,
       lightRed: d.colorLightRed,
+      transparent: d.colorTransparent,
     },
     brand: {
       primary: d.colorPrimaryLight,

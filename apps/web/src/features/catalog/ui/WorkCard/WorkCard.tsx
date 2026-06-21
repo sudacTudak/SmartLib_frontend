@@ -66,7 +66,7 @@ export const WorkCard = ({
   return (
     <ConfigProvider theme={themeConfig}>
       <Flex vertical className={classNames(styles.bookCard, className)}>
-        <Link href={APP_ROUTES.work(id)}>
+        <Link href={APP_ROUTES.work.index(id)}>
           <div className={styles.imageContainer}>
             <Image
               src={previewLink || workCoverPlaceholder300x430Url}

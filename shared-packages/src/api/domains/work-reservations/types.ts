@@ -47,6 +47,6 @@ export interface IWorkReservationProlongBody {
 }
 
 export interface IWorkReservationListParams {
-  clientId?: string;
+  clientId?: string; // Только для передачи менеджером
   status?: WorkReservationStatus;
 }

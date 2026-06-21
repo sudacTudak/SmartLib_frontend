@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { usePathname } from 'next/navigation';
 import { Header } from '../Header';
@@ -7,6 +7,7 @@ import { CategoriesTabs } from 'src/page-components/catalog/CategoriesTabs';
 import { APP_ROUTES } from 'src/global/routes';
 
 import styles from './HeaderPanel.module.scss';
+import { HeaderVariant } from '@widgets/layout/Header/enums';
 
 export function HeaderPanel() {
   const pathname = usePathname();
@@ -14,7 +15,7 @@ export function HeaderPanel() {
 
   return (
     <div className={styles.headerPanel}>
-      <Header />
+      <Header variant={HeaderVariant.Full} />
       <div className={styles.filtersPanel}>
         {shouldShowFilterButton && (
           <div className={styles.filtersBtnContainer}>

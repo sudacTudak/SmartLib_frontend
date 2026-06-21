@@ -32,7 +32,7 @@ export function LibraryAvailabilityCard({ workId, workTitle, library, availableC
 
       <div className={styles.overlay}>
         <div className={styles.overlayInner}>
-          <Link className={styles.overlayAction} href={APP_ROUTES.libraryBranch(library.id)}>
+          <Link className={styles.overlayAction} href={APP_ROUTES.library.libraryBranch(library.id)}>
             Перейти
           </Link>
 

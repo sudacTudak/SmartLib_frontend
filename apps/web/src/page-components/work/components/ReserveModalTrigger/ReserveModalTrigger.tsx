@@ -1,14 +1,12 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Button, Modal } from 'antd';
 import styles from './ReserveModalTrigger.module.scss';
 import classNames from 'classnames';
-import { WithAuthGate } from '@global/auth';
+import { useAuthGuard } from '@global/auth';
 import { ReservationForm } from '@features/reservation/ui';
 import { IWorkReservationContext } from '@features/reservation/model';
-
-const GatedButton = WithAuthGate(Button);
 
 type ReserveModalTriggerProps = {
   disabled?: boolean;
@@ -30,25 +28,32 @@ export function ReserveModalTrigger({
   context,
 }: ReserveModalTriggerProps) {
   const [open, setOpen] = useState(false);
+  const { modalNode, guardAction } = useAuthGuard();
 
   const title = useMemo(() => {
     if (context?.libraryBranchId) return 'Бронирование в филиале';
     return 'Бронирование';
   }, [context?.libraryBranchId]);
 
+  const handleButtonClick = useCallback(
+    () => guardAction(() => setOpen(true)),
+    [guardAction],
+  );
+
   return (
     <>
-      <GatedButton
+      {modalNode}
+      <Button
         className={classNames(styles.reserveButton, className)}
         type={variant}
         disabled={disabled}
-        onClick={() => setOpen(true)}
+        onClick={handleButtonClick}
       >
         {label}
-      </GatedButton>
+      </Button>
       <Modal title={title} open={open} onCancel={() => setOpen(false)} footer={null} destroyOnHidden>
-        <div style={{paddingTop: 8}}>
-          <ReservationForm workId={workId} workTitle={workTitle} context={context}/>
+        <div style={{ paddingTop: 8 }}>
+          <ReservationForm workId={workId} workTitle={workTitle} context={context} />
         </div>
       </Modal>
     </>

@@ -6,7 +6,7 @@ import { ICommonFeedbackData } from 'src/features/feedback/model';
 import { FeedbackForm } from 'src/features/feedback/ui';
 import { FeedbackFormMode } from 'src/features/feedback/model';
 import { useAuthGuard } from '@global/auth';
-import { useAuth } from '@global/auth';
+import { useAuthContext } from '@global/auth';
 import { AuthStatus } from '@global/auth/enums';
 import { getSmartlibApi } from '@global/api';
 import { ActionOverlay, ActionOverlayStatus } from '@shared/ui/components';
@@ -18,7 +18,7 @@ interface IWorkFeedbackFormProps {
 
 export const WorkFeedbackForm = memo(function WorkFeedbackForm({ workId }: IWorkFeedbackFormProps) {
   const { modalNode, guardAction } = useAuthGuard();
-  const { user, status } = useAuth();
+  const { user, status } = useAuthContext();
 
   const [mode, setMode] = useState(FeedbackFormMode.Create);
   const [initialValues, setInitialValues] = useState<Partial<ICommonFeedbackData> | undefined>();

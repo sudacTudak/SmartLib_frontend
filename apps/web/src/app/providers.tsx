@@ -8,6 +8,8 @@ import { useState } from 'react';
 
 import { AuthProvider } from 'src/global/auth/AuthContext';
 
+import styles from './layout.module.scss';
+
 export function Providers({ children }: { children: ReactNode }) {
   const [queryClient] = useState(
     () =>
@@ -23,7 +25,7 @@ export function Providers({ children }: { children: ReactNode }) {
 
   return (
     <SmartLibConfigProvider>
-      <App>
+      <App className={styles.app}>
         <QueryClientProvider client={queryClient}>
           <AuthProvider>{children}</AuthProvider>
         </QueryClientProvider>

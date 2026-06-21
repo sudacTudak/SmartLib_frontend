@@ -12,6 +12,7 @@ export const designTokenLiterals = {
   colorYellow: '#ffb122',
   /** Коралловый акцент (избранное, мягкие деструктивные действия); не смешивать с семантическим colorErrorLight. */
   colorLightRed: '#F95849',
+  colorTransparent: 'transparent',
 
   colorGreenTransparent: 'rgba(82, 196, 26, 18%)',
   colorYellowTransparent: 'rgb(255, 177, 34, 18%)',
@@ -103,6 +104,7 @@ export function getSmartlibDesignTokensRootCss(): string {
     `--smartlib-color-yellow: ${L.colorYellow}`,
     `--smartlib-color-light-red: ${L.colorLightRed}`,
     `--smartlib-color-green: ${L.colorGreen}`,
+    `--smartlib-color-transparent: ${L.colorTransparent}`,
 
     `--smartlib-color-yellow-transparent: ${L.colorYellowTransparent}`,
     `--smartlib-color-light-red-transparent: ${L.colorLightRedTransparent}`,

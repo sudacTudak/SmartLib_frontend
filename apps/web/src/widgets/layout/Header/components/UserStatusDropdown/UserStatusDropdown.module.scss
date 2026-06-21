@@ -1,0 +1,23 @@
+.userNameBtn {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: calc(20px / 16px);
+
+  &:hover,
+  &.open {
+    .icon {
+      transform: rotate(90deg);
+    }
+  }
+
+  &.open {
+    &:global(.ant-btn) {
+      color: var(--ant-button-text-text-active-color);
+    }
+  }
+}
+
+.icon {
+  font-size: 12px;
+  transition: transform 0.3s ease-in-out;
+}

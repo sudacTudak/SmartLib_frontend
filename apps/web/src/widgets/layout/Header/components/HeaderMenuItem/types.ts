@@ -5,6 +5,7 @@ interface IHeaderSubmenuItemCommon {
     key: string;
     title: string;
     itemType: HeaderSubmenuItemType;
+    suffix?: ReactNode;
 }
 
 export interface IHeaderSubmenuItemAction extends IHeaderSubmenuItemCommon {

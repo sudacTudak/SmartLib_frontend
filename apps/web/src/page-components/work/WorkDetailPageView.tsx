@@ -44,7 +44,7 @@ export function WorkDetailPageView({
   const coverSrc = work.previewLink ?? workCoverPlaceholder300x430Url;
 
   const hasOnlineVersion = Boolean(work.onlineVersionLink);
-  const viewerHref = useMemo(() => APP_ROUTES.workViewer(work.id), [work.id]);
+  const viewerHref = useMemo(() => APP_ROUTES.work.viewer(work.id), [work.id]);
 
   return (
     <PageContent variant="detail">
@@ -67,7 +67,7 @@ export function WorkDetailPageView({
                 workId={work.id}
                 workTitle={work.title}
               />
-              <ToFavoriteButton workId={work.id}/>
+              <ToFavoriteButton workId={work.id} />
             </div>
           </section>
 

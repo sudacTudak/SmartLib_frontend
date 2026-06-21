@@ -5,14 +5,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { getAuthSession } from '@global/api';
-import { useAuth } from 'src/global/auth/AuthContext';
+import { useAuthContext } from 'src/global/auth/AuthContext';
 
 import styles from '@shared-packages/components/auth/auth-forms.module.scss';
 import { APP_ROUTES } from 'src/global/routes';
 
 export function LoginForm() {
   const router = useRouter();
-  const { refreshUser } = useAuth();
+  const { refreshUser } = useAuthContext();
 
   return (
     <SmartlibLoginForm

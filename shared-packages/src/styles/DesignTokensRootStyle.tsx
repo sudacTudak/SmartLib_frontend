@@ -1,4 +1,4 @@
-import { getSmartlibDesignTokensRootCss } from './design-tokens';
+import { getSmartlibDesignTokensRootCss } from './themeTokens';
 
 /**
  * Вставляет глобальные `--smartlib-*` из `design-tokens.ts` (SSR-safe, без отдельного CSS-бандла).

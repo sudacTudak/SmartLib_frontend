@@ -3,7 +3,7 @@
 import { Modal } from 'antd';
 import { useCallback, useState, type ReactNode } from 'react';
 import { LoginForm } from 'src/features/auth';
-import { useAuth } from './AuthContext';
+import { useAuthContext } from './AuthContext';
 import { AuthStatus } from './enums';
 
 interface UseAuthModalReturn {
@@ -16,7 +16,7 @@ interface UseAuthModalReturn {
  * если пользователь не авторизован — открывает модалку, иначе — вызывает переданный action.
  */
 export function useAuthGuard(): UseAuthModalReturn {
-  const { user, status } = useAuth();
+  const { user, status } = useAuthContext();
   const [open, setOpen] = useState(false);
 
   const isAuthed = status === AuthStatus.Ready && Boolean(user);

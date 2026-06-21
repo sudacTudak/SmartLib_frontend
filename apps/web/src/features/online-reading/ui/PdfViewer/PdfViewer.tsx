@@ -191,7 +191,7 @@ export function PdfViewer({ workId, pdfUrl, initialPage }: PdfViewerProps) {
   const isFirstPage = pageNumber <= 1;
   const isLastPage = numPages > 0 && pageNumber >= numPages;
 
-  const workPageLink = useMemo(() => APP_ROUTES.work(workId), [workId]);
+  const workPageLink = useMemo(() => APP_ROUTES.work.index(workId), [workId]);
 
   const setPageElementRef = useCallback((page: number, element: HTMLDivElement | null) => {
     if (element) {
@@ -209,12 +209,7 @@ export function PdfViewer({ workId, pdfUrl, initialPage }: PdfViewerProps) {
     <div className={styles.root}>
       <Flex className={styles.toolbar} align="center">
         <Flex align="center" gap={8}>
-          <Button
-            type="default"
-            href={workPageLink}
-            icon={<LeftOutlined />}
-            iconPlacement="start"
-          >
+          <Button type="default" href={workPageLink} icon={<LeftOutlined />} iconPlacement="start">
             К книге
           </Button>
           <IconButton icon={<MenuOutlined />} sideSize={24} onClick={handleSidebarMenuOpenChange} type="default" />

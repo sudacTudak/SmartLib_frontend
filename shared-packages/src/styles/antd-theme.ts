@@ -1,5 +1,5 @@
 import type { ThemeConfig } from 'antd';
-import { designTokenLiterals } from './design-tokens';
+import { designTokenLiterals } from './themeTokens';
 import { themeVars } from './themeVars';
 
 /**
@@ -9,6 +9,7 @@ import { themeVars } from './themeVars';
 export type SmartlibSemanticThemeTokens = {
   colorPrimaryRgb: string;
   colorYellow: string;
+  colorTransparent: string;
 
   colorBackgroundScreenBase: string;
   colorBackgroundScreenContainer: string;
@@ -97,6 +98,7 @@ export const smartlibAntdTheme: SmartlibThemeConfig = {
     colorPrimaryRgb: designTokenLiterals.colorPrimaryLightRgb,
     colorYellow: themeVars.color.common.yellow,
     colorLightRed: themeVars.color.common.lightRed,
+    colorTransparent: themeVars.color.common.transparent,
 
     colorLink: themeVars.color.brand.primary,
     colorLinkHover: themeVars.color.fill.background.components.button.primary.hover,
@@ -150,40 +152,28 @@ export const smartlibAntdTheme: SmartlibThemeConfig = {
     colorBackgroundComponentsPrimaryDefault: themeVars.color.fill.background.components.primary.default,
     colorBackgroundComponentsPrimaryHover: themeVars.color.fill.background.components.primary.hover,
     colorBackgroundComponentsPrimaryActive: themeVars.color.fill.background.components.primary.active,
-    colorBackgroundComponentsSecondaryDefault:
-      themeVars.color.fill.background.components.secondary.default,
+    colorBackgroundComponentsSecondaryDefault: themeVars.color.fill.background.components.secondary.default,
     colorBackgroundComponentsSecondaryHover: themeVars.color.fill.background.components.secondary.hover,
-    colorBackgroundComponentsSecondaryActive:
-      themeVars.color.fill.background.components.secondary.active,
+    colorBackgroundComponentsSecondaryActive: themeVars.color.fill.background.components.secondary.active,
     colorBackgroundComponentsTertiaryDefault: themeVars.color.fill.background.components.tertiary.default,
     colorBackgroundComponentsTertiaryHover: themeVars.color.fill.background.components.tertiary.hover,
     colorBackgroundComponentsTertiaryActive: themeVars.color.fill.background.components.tertiary.active,
 
-    colorBackgroundComponentsButtonPrimaryDefault:
-      themeVars.color.fill.background.components.button.primary.default,
-    colorBackgroundComponentsButtonPrimaryHover:
-      themeVars.color.fill.background.components.button.primary.hover,
-    colorBackgroundComponentsButtonPrimaryActive:
-      themeVars.color.fill.background.components.button.primary.active,
+    colorBackgroundComponentsButtonPrimaryDefault: themeVars.color.fill.background.components.button.primary.default,
+    colorBackgroundComponentsButtonPrimaryHover: themeVars.color.fill.background.components.button.primary.hover,
+    colorBackgroundComponentsButtonPrimaryActive: themeVars.color.fill.background.components.button.primary.active,
     colorBackgroundComponentsButtonSecondaryDefault:
       themeVars.color.fill.background.components.button.secondary.default,
-    colorBackgroundComponentsButtonSecondaryHover:
-      themeVars.color.fill.background.components.button.secondary.hover,
-    colorBackgroundComponentsButtonSecondaryActive:
-      themeVars.color.fill.background.components.button.secondary.active,
+    colorBackgroundComponentsButtonSecondaryHover: themeVars.color.fill.background.components.button.secondary.hover,
+    colorBackgroundComponentsButtonSecondaryActive: themeVars.color.fill.background.components.button.secondary.active,
 
-    colorFillBgComponentsButtonPrimaryDefault:
-      themeVars.color.fill.background.components.button.primary.default,
+    colorFillBgComponentsButtonPrimaryDefault: themeVars.color.fill.background.components.button.primary.default,
     colorFillBgComponentsButtonPrimaryHover: themeVars.color.fill.background.components.button.primary.hover,
-    colorFillBgComponentsButtonPrimaryActive:
-      themeVars.color.fill.background.components.button.primary.active,
+    colorFillBgComponentsButtonPrimaryActive: themeVars.color.fill.background.components.button.primary.active,
 
-    colorFillBgComponentsButtonSecondaryDefault:
-      themeVars.color.fill.background.components.button.secondary.default,
-    colorFillBgComponentsButtonSecondaryHover:
-      themeVars.color.fill.background.components.button.secondary.hover,
-    colorFillBgComponentsButtonSecondaryActive:
-      themeVars.color.fill.background.components.button.secondary.active,
+    colorFillBgComponentsButtonSecondaryDefault: themeVars.color.fill.background.components.button.secondary.default,
+    colorFillBgComponentsButtonSecondaryHover: themeVars.color.fill.background.components.button.secondary.hover,
+    colorFillBgComponentsButtonSecondaryActive: themeVars.color.fill.background.components.button.secondary.active,
 
     /** Обводки — алиасы Ant + состояния SmartLib */
     colorBorder: themeVars.color.border.primary.default,

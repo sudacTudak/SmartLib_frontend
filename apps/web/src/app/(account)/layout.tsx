@@ -1,13 +1,10 @@
-import { Header } from 'src/widgets/layout/Header/Header';
+import { ReactNode } from "react"
+import { LayoutProvider } from "./_components/LayoutProvider"
 
-import styles from './account-layout.module.scss';
+interface IProfileLayoutProps {
+  children: ReactNode
+}
 
-/** Личный кабинет: только общая шапка, без строки поиска каталога. */
-export default function AccountLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className={styles.root}>
-      <Header />
-      <main className={styles.main}>{children}</main>
-    </div>
-  );
+export default function ProfileLayout({ children }: IProfileLayoutProps) {
+  return <LayoutProvider>{children}</LayoutProvider>
 }

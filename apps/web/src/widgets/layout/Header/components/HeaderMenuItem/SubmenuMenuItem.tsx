@@ -40,6 +40,7 @@ export function SubmenuMenuItem({ items, menuTitle, title, icon, className }: TP
         key: item.key,
         label: item.title,
         onClick: item.itemType === HeaderSubmenuItemType.Action ? handleActionClick : handleLinkClick,
+        extra: item.suffix
       } as MenuItemType;
 
       acc.push(menuItem);

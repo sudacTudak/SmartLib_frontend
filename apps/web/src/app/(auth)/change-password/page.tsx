@@ -8,13 +8,13 @@ import { useEffect } from 'react';
 
 import { getAuthSession } from '@global/api';
 import { AuthStatus } from '@global/auth/enums';
-import { useAuth } from 'src/global/auth/AuthContext';
+import { useAuthContext } from 'src/global/auth/AuthContext';
 
 import styles from './change-password-page.module.scss';
 
 export default function ChangePasswordPage() {
   const router = useRouter();
-  const { user, status } = useAuth();
+  const { user, status } = useAuthContext();
 
   useEffect(() => {
     if (status === AuthStatus.Ready && !user) {
